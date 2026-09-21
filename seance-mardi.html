@@ -488,10 +488,8 @@
 
   .node.qb { border-color: var(--accent); }
 
-  .node.sas { border-style: dashed; }
-
   .node.qb::before,
-  .node.sas::before {
+  .arc.transit::before {
     content: "";
     position: absolute;
     left: -33px;
@@ -569,6 +567,47 @@
     font-size: 19px;
     line-height: 1;
   }
+
+  /* passage traversé sur le chemin, entre flag pull et le retour */
+  .arc.transit {
+    min-height: 82px;
+    padding: 8px 0;
+  }
+
+  .arc.transit .seg { background: var(--accent); }
+
+  .transit-note {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0 12px;
+    background: var(--bg);
+    text-align: center;
+  }
+
+  .transit-note b {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .transit-note > span { font-size: 11.5px; color: var(--muted); }
+
+  /* circuit B : même boucle, sans répéter les explications */
+  .loop.compact .node:not(.qb) {
+    padding: 7px 0 8px;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .loop.compact .node:not(.qb) .do { display: none; }
+  .loop.compact .arc { min-height: 34px; }
+  .loop.compact .arc.transit { min-height: 62px; }
 
   .clip {
     justify-self: start;
@@ -834,7 +873,7 @@
     .loop { padding: 12px 14px 14px; }
     .flow { padding-left: 42px; }
     .return { left: 11px; }
-    .node.qb::before, .node.sas::before { left: -30px; width: 30px; }
+    .node.qb::before, .arc.transit::before { left: -30px; width: 30px; }
 
   }
 
@@ -928,7 +967,10 @@
     .loop-head { margin-bottom: 8px; padding-bottom: 7px; }
     .flow { padding-left: 34px; }
     .return { left: 8px; top: 6px; bottom: 8px; }
-    .node.qb::before, .node.sas::before { left: -24px; width: 24px; }
+    .node.qb::before, .arc.transit::before { left: -24px; width: 24px; }
+    .arc.transit { min-height: 62px; }
+    .transit-note b { font-size: 9.5pt; }
+    .transit-note > span { font-size: 7.5pt; }
     .node { padding: 8px 10px 9px; gap: 5px; }
     .node h4 { font-size: 10.5pt; }
     .node .do, .node .keyline { font-size: 8.5pt; }
@@ -1008,7 +1050,7 @@
         <header>
           <h3>Circuit technique</h3>
         </header>
-        <p class="lead"><strong>5 min</strong> pour expliquer et placer. Ensuite <strong>un seul circuit continu</strong> : les QB ne bougent jamais, les autres joueurs changent de rôle à chaque passage.</p>
+        <p class="lead"><strong>5 min</strong> pour expliquer et placer. Ensuite <strong>2 circuits identiques en parallèle</strong> : les QB ne bougent jamais, les autres joueurs changent de rôle à chaque passage.</p>
 
         <section class="circuit" aria-label="Deux circuits en parallèle">
 
@@ -1071,24 +1113,22 @@
                   </button>
                 </article>
 
-                <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
-
-                <article class="node sas">
-                  <header>
-                    <span class="n">3</span>
-                    <h4>Appui / cut</h4>
-                    <span class="at">passage</span>
-                  </header>
-                  <p class="do">Sortie explosive — tu traverses, tu ne fais pas la queue.</p>
-                  <button class="clip" type="button" data-clip="appuis">
-                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                    appuis
-                  </button>
-                </article>
+                <div class="arc transit">
+                  <span class="seg"></span>
+                  <span class="tip">↓</span>
+                  <p class="transit-note">
+                    <b>Appui / cut</b>
+                    <span>sortie explosive — tu traverses, tu ne fais pas la queue</span>
+                    <button class="clip" type="button" data-clip="appuis">
+                      <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                      appuis
+                    </button>
+                  </p>
+                </div>
               </div>
             </article>
 
-            <article class="loop" aria-label="Circuit B">
+            <article class="loop compact" aria-label="Circuit B">
               <header class="loop-head">
                 <span class="tag">circuit B</span>
                 <b>QB2 fixe</b>
@@ -1119,7 +1159,6 @@
                     <span class="at">2 joueurs</span>
                   </header>
                   <p class="keyline">Slant <span>→</span> Out <span>→</span> Go</p>
-                  <p class="do">Le rusher met la pression sur chaque ballon.</p>
                   <button class="clip" type="button" data-clip="qb">
                     <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
                     drill QB
@@ -1135,27 +1174,23 @@
                     <span class="at">2 joueurs</span>
                   </header>
                   <p class="keyline">Réaction <span>→</span> angle <span>→</span> flag</p>
-                  <p class="do">1 attaquant + 1 défenseur, rôles inversés tout de suite.</p>
                   <button class="clip" type="button" data-clip="def">
                     <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
                     drill flag pull
                   </button>
                 </article>
 
-                <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
-
-                <article class="node sas">
-                  <header>
-                    <span class="n">3</span>
-                    <h4>Appui / cut</h4>
-                    <span class="at">passage</span>
-                  </header>
-                  <p class="do">Sortie explosive — tu traverses, tu ne fais pas la queue.</p>
-                  <button class="clip" type="button" data-clip="appuis">
-                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                    appuis
-                  </button>
-                </article>
+                <div class="arc transit">
+                  <span class="seg"></span>
+                  <span class="tip">↓</span>
+                  <p class="transit-note">
+                    <b>Appui / cut</b>
+                    <button class="clip" type="button" data-clip="appuis">
+                      <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                      appuis
+                    </button>
+                  </p>
+                </div>
               </div>
             </article>
 
