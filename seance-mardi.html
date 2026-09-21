@@ -721,6 +721,80 @@
     cursor: pointer;
   }
 
+  /* ---------- Échauffement ---------- */
+
+  .warm { display: grid; }
+
+  .warm-step {
+    display: grid;
+    align-content: start;
+    gap: 9px;
+    padding: 14px 16px 15px;
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+  }
+
+  .warm-step.dip { border-color: var(--accent); }
+
+  .warm-step > header { display: flex; align-items: center; gap: 10px; }
+
+  .warm-time {
+    flex: none;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .warm-step.dip .warm-time {
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 700;
+  }
+
+  .warm-step h4 { margin: 0; font-size: 15.5px; font-weight: 670; letter-spacing: -.015em; }
+  .warm-step p { margin: 0; font-size: 12.5px; color: var(--muted); }
+  .warm-step .goal { margin: 0; }
+
+  .dip-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 344px;
+    gap: 22px;
+    align-items: start;
+    margin-top: 2px;
+  }
+
+  .dip-text { display: grid; align-content: start; gap: 10px; }
+
+  .frames {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .frame { display: grid; gap: 7px; margin: 0; }
+
+  .frame img {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    display: block;
+    background: #000;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+  }
+
+  .frame figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
   /* ---------- Match & renfo ---------- */
 
   .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 14px; }
@@ -870,6 +944,8 @@
     .headline { font-size: 17.5px; }
     .subline { margin-bottom: 16px; }
     .circuits { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .dip-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .warm-step { padding: 12px 13px 13px; }
     .loop { padding: 12px 14px 14px; }
     .flow { padding-left: 42px; }
     .return { left: 11px; }
@@ -944,7 +1020,7 @@
     .no-print { display: none !important; }
     .top { position: static; background: none; border: 0; padding: 0; }
     .wrap { max-width: none; padding: 0; }
-    .node, .loop, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
+    .node, .loop, .warm-step, .frames, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
     h3, h4 { break-after: avoid; }
     .clip { display: none; }
     .headline { font-size: 15pt; }
@@ -962,6 +1038,11 @@
     .memo .tag { display: inline; }
     .rail .slot { font-size: 12px; }
     .circuit { padding: 14px 16px; }
+    .warm-step { padding: 9px 11px 10px; gap: 6px; }
+    .warm-step h4 { font-size: 10.5pt; }
+    .warm-step p { font-size: 8.5pt; }
+    .dip-grid { grid-template-columns: minmax(0, 1fr) 200px; }
+    .frame figcaption { font-size: 7pt; }
     .circuits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .loop { padding: 9px 10px 10px; }
     .loop-head { margin-bottom: 8px; padding-bottom: 7px; }
@@ -1028,12 +1109,70 @@
         <header>
           <h3>Échauffement dynamique</h3>
         </header>
-        <p class="lead">Mobilité, appuis, hanches et accélérations. Progressif, mais déjà dynamique.</p>
+        <p class="lead">15 min&nbsp;: mobilité, puis le <strong>drill DIP</strong>, puis le DIP sous vitesse. Le groupe reproduit réellement l'exercice.</p>
+
+        <div class="warm">
+
+          <article class="warm-step">
+            <header>
+              <span class="warm-time">0–5 min</span>
+              <h4>Mobilité + hanches + appuis</h4>
+            </header>
+            <p>Travail progressif pour préparer les changements de direction.</p>
+          </article>
+
+          <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
+
+          <article class="warm-step dip">
+            <header>
+              <span class="warm-time">5–10 min</span>
+              <h4>Drill DIP</h4>
+            </header>
+
+            <div class="dip-grid">
+              <div class="dip-text">
+                <p>Ce n'est pas une vidéo à regarder&nbsp;: le groupe exécute le drill montré.</p>
+                <p class="goal"><b>Objectif&nbsp;:</b> dip propre → contrôle des hanches → sortie rapide.</p>
+                <button class="clip" type="button" data-clip="dip">
+                  <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                  Voir le drill complet
+                </button>
+              </div>
+
+              <div class="frames">
+                <figure class="frame">
+                  <img src="thumbs/DbUqh3jRoQw-step-1.jpg" alt="Drill DIP : position de départ, ballon sécurisé">
+                  <figcaption>1 — départ</figcaption>
+                </figure>
+                <figure class="frame">
+                  <img src="thumbs/DbUqh3jRoQw-step-2.jpg" alt="Drill DIP : moment du dip, hanches basses">
+                  <figcaption>2 — dip</figcaption>
+                </figure>
+                <figure class="frame">
+                  <img src="thumbs/DbUqh3jRoQw-step-3.jpg" alt="Drill DIP : sortie et réaccélération">
+                  <figcaption>3 — sortie</figcaption>
+                </figure>
+              </div>
+            </div>
+          </article>
+
+          <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
+
+          <article class="warm-step">
+            <header>
+              <span class="warm-time">10–15 min</span>
+              <h4>DIP → sortie explosive → accélération</h4>
+            </header>
+            <p>On ajoute progressivement de la vitesse&nbsp;: partenaire passif au début, puis partenaire qui vient réellement chercher le flag.</p>
+          </article>
+
+        </div>
+
         <p class="ref-line">
-          <span>Activation dynamique — référence visuelle&nbsp;:</span>
+          <span>Référence complémentaire&nbsp;:</span>
           <button class="clip" type="button" data-clip="xyp">
             <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-            drill appuis
+            appuis
           </button>
         </p>
       </div>
@@ -1338,10 +1477,15 @@
       poster: "thumbs/DcumOOqNKAi_issa_rantbro.jpg",
       caption: "Sas de transition — appui, cut, sortie explosive. On traverse vite, on ne fait pas la queue."
     },
+    dip: {
+      src: "videos/DbUqh3jRoQw_ryanyayawalker.mp4",
+      poster: "thumbs/DbUqh3jRoQw_ryanyayawalker.jpg",
+      caption: "Échauffement — drill DIP : dip propre, contrôle des hanches, sortie rapide."
+    },
     xyp: {
       src: "videos/DdWjv_yla39_xypxox.mp4",
       poster: "thumbs/DdWjv_yla39_xypxox.jpg",
-      caption: "Échauffement — référence visuelle pour l'activation dynamique des appuis."
+      caption: "Référence complémentaire — appuis et mobilité, en début d'échauffement."
     }
   };
 
