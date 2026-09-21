@@ -881,6 +881,51 @@
   .ex-more .chain { margin-top: 12px; }
   .ex-more .ex-cols { border-top: 0; padding-top: 0; margin-top: 6px; }
 
+  /* --- une fiche par zone : les tracés --- */
+
+  .routes { display: grid; gap: 18px; }
+
+  .route {
+    display: grid;
+    gap: 10px;
+    padding: 2px 0 2px 16px;
+    border-left: 2px solid var(--line-strong);
+  }
+
+  .route > header { display: flex; align-items: baseline; gap: 10px; }
+  .route > header b { font-size: 15px; font-weight: 680; letter-spacing: -.01em; }
+  .route > header span { font-size: 12px; color: var(--muted); }
+  .route > header .clip { margin-left: auto; }
+
+  .frames.three { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 540px; }
+
+  .route-key { margin: 0; font-size: 12.5px; color: var(--text); }
+
+  .clip.mini { padding: 3px 9px; font-size: 10.5px; }
+
+  /* --- encadré d'adaptation --- */
+
+  .callout {
+    display: grid;
+    gap: 6px;
+    padding: 13px 15px;
+    border: 1px dashed var(--accent);
+    border-radius: 10px;
+  }
+
+  .callout b {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .callout p { margin: 0; font-size: 12.5px; }
+
+  .note { margin: 0; font-size: 12px; color: var(--dim); }
+  .note b { color: var(--muted); font-weight: 620; }
+
   /* --- déroulement / consignes / à éviter --- */
 
   .ex-cols {
@@ -985,76 +1030,6 @@
   }
 
   .amrap b { margin-left: auto; font-family: var(--mono); font-size: 15px; font-weight: 600; }
-
-  .amrap li.shuttle-item {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    align-items: baseline;
-    gap: 3px 14px;
-  }
-
-  .amrap li.shuttle-item::before { grid-area: 1 / 1; }
-  .amrap li.shuttle-item .lbl { grid-area: 1 / 2; }
-  .amrap li.shuttle-item .total { grid-area: 1 / 3; margin-left: 0; }
-
-  .amrap li.shuttle-item .lbl em {
-    display: block;
-    font-style: normal;
-    font-size: 12.5px;
-    color: var(--muted);
-  }
-
-  .shuttle {
-    grid-area: 2 / 2 / 3 / 4;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    max-width: 460px;
-  }
-
-  .shuttle .pt {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-
-  .shuttle .seg { position: relative; height: 42px; }
-
-  .shuttle .seg::before {
-    content: "";
-    position: absolute;
-    top: 9px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--line-strong);
-  }
-
-  .shuttle .len {
-    position: absolute;
-    top: -3px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0 9px;
-    background: var(--surface);
-    font-family: var(--mono);
-    font-size: 11.5px;
-    color: var(--text);
-  }
-
-  .shuttle .dirs {
-    position: absolute;
-    top: 16px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    font-size: 11.5px;
-    color: var(--muted);
-  }
 
   footer {
     margin-top: 44px;
@@ -1171,7 +1146,7 @@
     .no-print { display: none !important; }
     .top { position: static; background: none; border: 0; padding: 0; }
     .wrap { max-width: none; padding: 0; }
-    .node, .loop, .warm-step, .frames, .ex-key, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
+    .node, .loop, .warm-step, .route, .frames, .ex-key, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
     h3, h4 { break-after: avoid; }
     .clip { display: none; }
     .headline { font-size: 15pt; }
@@ -1247,7 +1222,7 @@
       <li><b>Échauffement dynamique</b> <span class="tag">15 min</span></li>
       <li><b>Circuit technique</b> <span class="arrow">→</span> QB fixes, joueurs en continu <span class="tag">65 min</span></li>
       <li><b>Match</b> <span class="arrow">→</span> 10 + 10 <span class="tag">20 min</span></li>
-      <li><b>Renfo</b> <span class="arrow">→</span> AMRAP <span class="tag">20 min</span></li>
+      <li><b>Renfo</b> <span class="arrow">→</span> finisher collectif <span class="tag">20 min</span></li>
     </ol>
   </section>
 
@@ -1282,35 +1257,37 @@
             <header>
               <span class="warm-time">5–10 min</span>
               <span class="ex-num">01</span>
-              <h4>Préparer le dip : descendre et contrôler</h4>
+              <h4>Préparer le dip : mobilité basse + contrôle</h4>
             </header>
+
+            <p class="chain">Position basse <span>→</span> contrôle du centre de gravité <span>→</span> genou près du sol <span>→</span> transfert</p>
 
             <p class="ex-goal"><b>Objectif&nbsp;:</b> faire descendre fortement les hanches et le corps sans perdre l'équilibre ni le contrôle du ballon. <em>Phase d'apprentissage&nbsp;: ce n'est pas encore un sprint.</em></p>
 
             <div class="frames">
                 <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw-ex1-1.jpg" alt="Exercice 1 : position avant la descente, ballon au-dessus de la tête">
+                  <img src="thumbs/DbUqh3jRoQw_ex1_1.jpg" alt="Exercice 1 : position avant la descente, ballon au-dessus de la tête">
                   <figcaption>
                     <b>Avant la descente</b>
                     <span>Ballon au-dessus de la tête, debout, regard devant.</span>
                   </figcaption>
                 </figure>
                 <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw-ex1-2.jpg" alt="Exercice 1 : début de descente">
+                  <img src="thumbs/DbUqh3jRoQw_ex1_2.jpg" alt="Exercice 1 : début de descente">
                   <figcaption>
                     <b>Début de descente</b>
                     <span>Casse les genoux, les hanches descendent.</span>
                   </figcaption>
                 </figure>
                 <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw-ex1-3.jpg" alt="Exercice 1 : position la plus basse, genou près du sol">
+                  <img src="thumbs/DbUqh3jRoQw_ex1_3.jpg" alt="Exercice 1 : position la plus basse, genou près du sol">
                   <figcaption>
                     <b>Position la plus basse</b>
                     <span>Fente basse, genou près du sol, ballon toujours haut.</span>
                   </figcaption>
                 </figure>
                 <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw-ex1-4.jpg" alt="Exercice 1 : transfert et remontée">
+                  <img src="thumbs/DbUqh3jRoQw_ex1_4.jpg" alt="Exercice 1 : transfert et remontée">
                   <figcaption>
                     <b>Transfert</b>
                     <span>Pousse sur la jambe, remonte juste assez pour repartir.</span>
@@ -1377,35 +1354,37 @@
             <header>
               <span class="warm-time">10–15 min</span>
               <span class="ex-num">02</span>
-              <h4>Dip en mouvement : esquiver et repartir</h4>
+              <h4>Dip en mouvement : descendre → esquiver → repartir</h4>
             </header>
+
+            <p class="chain">Arrivée <span>→</span> abaissement <span>→</span> dip <span>→</span> changement de direction <span>→</span> sortie <span>→</span> réaccélération</p>
 
             <p class="ex-goal"><b>Objectif&nbsp;:</b> ne pas faire un dip statique — descendre sous la tentative de flag et repartir immédiatement.</p>
 
             <div class="frames">
                 <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw-ex2-1.jpg" alt="Exercice 2 : arrivée en course avec le ballon">
+                  <img src="thumbs/DbUqh3jRoQw_ex2_1.jpg" alt="Exercice 2 : arrivée en course avec le ballon">
                   <figcaption>
                     <b>Arrivée</b>
                     <span>Arrive avec de la vitesse, sans freiner complètement.</span>
                   </figcaption>
                 </figure>
                 <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw-ex2-2.jpg" alt="Exercice 2 : engagement du dip">
+                  <img src="thumbs/DbUqh3jRoQw_ex2_2.jpg" alt="Exercice 2 : engagement du dip">
                   <figcaption>
                     <b>Engagement du dip</b>
                     <span>Baisse brutalement le centre de gravité, ballon plaqué.</span>
                   </figcaption>
                 </figure>
                 <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw-ex2-3.jpg" alt="Exercice 2 : point bas du dip">
+                  <img src="thumbs/DbUqh3jRoQw_ex2_3.jpg" alt="Exercice 2 : point bas du dip">
                   <figcaption>
                     <b>Point bas</b>
                     <span>Dip très bas, appui planté, prêt à changer de direction.</span>
                   </figcaption>
                 </figure>
                 <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw-ex2-4.jpg" alt="Exercice 2 : sortie et réaccélération">
+                  <img src="thumbs/DbUqh3jRoQw_ex2_4.jpg" alt="Exercice 2 : sortie et réaccélération">
                   <figcaption>
                     <b>Sortie</b>
                     <span>Sors sur le côté et réaccélère tout de suite.</span>
@@ -1429,8 +1408,6 @@
 
             <details class="ex-more">
               <summary>Détails : déroulement complet, toutes les consignes, erreurs à éviter</summary>
-
-              <p class="chain">Arrivée <span>→</span> descente <span>→</span> dip <span>→</span> appui / changement de direction <span>→</span> sortie <span>→</span> accélération</p>
 
               <div class="ex-cols">
                 <div class="ex-col">
@@ -1523,15 +1500,11 @@
                 <article class="node">
                   <header>
                     <span class="n">1</span>
-                    <h4>Receveur + Rusher</h4>
+                    <h4>Zone QB</h4>
                     <span class="at">2 joueurs</span>
                   </header>
-                  <p class="keyline">Slant <span>→</span> Out <span>→</span> Go</p>
+                  <p class="keyline">1 receveur + 1 rusher</p>
                   <p class="do">Le rusher met la pression sur chaque ballon.</p>
-                  <button class="clip" type="button" data-clip="qb">
-                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                    drill QB
-                  </button>
                 </article>
 
                 <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
@@ -1539,15 +1512,11 @@
                 <article class="node">
                   <header>
                     <span class="n">2</span>
-                    <h4>Flag pull</h4>
+                    <h4>Zone Flag pull</h4>
                     <span class="at">2 joueurs</span>
                   </header>
-                  <p class="keyline">Réaction <span>→</span> angle <span>→</span> flag</p>
+                  <p class="keyline">1 attaquant + 1 défenseur</p>
                   <p class="do">1 attaquant + 1 défenseur, rôles inversés tout de suite.</p>
-                  <button class="clip" type="button" data-clip="def">
-                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                    drill flag pull
-                  </button>
                 </article>
 
                 <div class="arc transit">
@@ -1556,10 +1525,6 @@
                   <p class="transit-note">
                     <b>Appui / cut</b>
                     <span>sortie explosive — tu traverses, tu ne fais pas la queue</span>
-                    <button class="clip" type="button" data-clip="appuis">
-                      <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                      appuis
-                    </button>
                   </p>
                 </div>
               </div>
@@ -1592,14 +1557,10 @@
                 <article class="node">
                   <header>
                     <span class="n">1</span>
-                    <h4>Receveur + Rusher</h4>
+                    <h4>Zone QB</h4>
                     <span class="at">2 joueurs</span>
                   </header>
-                  <p class="keyline">Slant <span>→</span> Out <span>→</span> Go</p>
-                  <button class="clip" type="button" data-clip="qb">
-                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                    drill QB
-                  </button>
+                  <p class="keyline">1 receveur + 1 rusher</p>
                 </article>
 
                 <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
@@ -1607,14 +1568,10 @@
                 <article class="node">
                   <header>
                     <span class="n">2</span>
-                    <h4>Flag pull</h4>
+                    <h4>Zone Flag pull</h4>
                     <span class="at">2 joueurs</span>
                   </header>
-                  <p class="keyline">Réaction <span>→</span> angle <span>→</span> flag</p>
-                  <button class="clip" type="button" data-clip="def">
-                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                    drill flag pull
-                  </button>
+                  <p class="keyline">1 attaquant + 1 défenseur</p>
                 </article>
 
                 <div class="arc transit">
@@ -1622,10 +1579,6 @@
                   <span class="tip">↓</span>
                   <p class="transit-note">
                     <b>Appui / cut</b>
-                    <button class="clip" type="button" data-clip="appuis">
-                      <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                      appuis
-                    </button>
                   </p>
                 </div>
               </div>
@@ -1639,6 +1592,354 @@
           </p>
 
         </section>
+
+        <article class="warm-step ex">
+          <header>
+            <span class="warm-time">zone 1</span>
+            <span class="ex-num">FICHE</span>
+            <h4>Zone QB — 3 tracés</h4>
+          </header>
+
+          <p class="chain">Slant <span>→</span> out <span>→</span> go</p>
+
+          <p class="ex-goal"><b>Objectif&nbsp;:</b> enchaîner les 3 tracés avec le même receveur et garder un ballon attrapable, quel que soit le tracé.</p>
+
+          <div class="routes">
+
+            <section class="route">
+              <header>
+                <b>Slant</b>
+                <span>coupe intérieure</span>
+                <button class="clip mini" type="button" data-clip="slant">▶ 0:01</button>
+              </header>
+              <div class="frames three">
+                  <figure class="frame">
+                    <img src="thumbs/2rOdrFzcNls_slant_1.jpg" alt="Slant : installation du drill, QB et receveur face à face">
+                    <figcaption>
+                      <b>Départ</b>
+                      <span>QB et receveur face à face, ballon en main.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/2rOdrFzcNls_slant_2.jpg" alt="Slant : la passe part et le receveur casse vers l'intérieur">
+                    <figcaption>
+                      <b>Coupe intérieure</b>
+                      <span>Le receveur casse vers l'intérieur, la passe part.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/2rOdrFzcNls_slant_3.jpg" alt="Slant : réception du ballon en avançant">
+                    <figcaption>
+                      <b>Réception</b>
+                      <span>Ballon attrapé en avançant, sans ralentir.</span>
+                    </figcaption>
+                  </figure>
+              </div>
+              <p class="route-key">Coupe nette vers l'intérieur · fenêtre de passe tôt · ballon devant la poitrine.</p>
+            </section>
+
+            <section class="route">
+              <header>
+                <b>Out</b>
+                <span>cassure extérieure</span>
+                <button class="clip mini" type="button" data-clip="out">▶ 0:04</button>
+              </header>
+              <div class="frames three">
+                  <figure class="frame">
+                    <img src="thumbs/2rOdrFzcNls_out_1.jpg" alt="Out : le QB arme et le receveur démarre">
+                    <figcaption>
+                      <b>Départ</b>
+                      <span>Le QB arme, le receveur démarre vers l'extérieur.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/2rOdrFzcNls_out_2.jpg" alt="Out : cassure vers l'extérieur, ballon en l'air">
+                    <figcaption>
+                      <b>Cassure</b>
+                      <span>Le ballon part vers la ligne, le receveur casse dehors.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/2rOdrFzcNls_out_3.jpg" alt="Out : réception près de la ligne">
+                    <figcaption>
+                      <b>Réception</b>
+                      <span>Ballon pris près de la ligne, pieds dedans.</span>
+                    </figcaption>
+                  </figure>
+              </div>
+              <p class="route-key">Cassure vers l'extérieur · rester bas dans la cassure · ballon vers la ligne.</p>
+            </section>
+
+            <section class="route">
+              <header>
+                <b>Go</b>
+                <span>trajectoire profonde</span>
+                <button class="clip mini" type="button" data-clip="go">▶ 0:08</button>
+              </header>
+              <div class="frames three">
+                  <figure class="frame">
+                    <img src="thumbs/2rOdrFzcNls_go_1.jpg" alt="Go : départ vertical du receveur, QB qui arme">
+                    <figcaption>
+                      <b>Départ vertical</b>
+                      <span>Le receveur part profond, le QB arme haut.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/2rOdrFzcNls_go_2.jpg" alt="Go : le ballon part en trajectoire profonde">
+                    <figcaption>
+                      <b>Lancer</b>
+                      <span>Le ballon quitte la main, trajectoire haute.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/2rOdrFzcNls_go_3.jpg" alt="Go : ballon profond lancé devant le receveur">
+                    <figcaption>
+                      <b>Ballon profond</b>
+                      <span>Le ballon est lancé devant : le receveur court dessous.</span>
+                    </figcaption>
+                  </figure>
+              </div>
+              <p class="route-key">Départ vertical sans flotter · ballon lancé devant, jamais derrière · réception en course.</p>
+            </section>
+
+          </div>
+
+          <div class="ex-key">
+            <h5>L'essentiel</h5>
+            <ul>
+              <li>Slant <b>rapide et dosée</b>.</li>
+              <li>Out : <b>timing et précision</b>.</li>
+              <li>Go : <b>plus profond</b>, ballon lancé devant.</li>
+            </ul>
+          </div>
+
+          <aside class="callout">
+            <b>Adaptation Iguanes — ajouter un rusher</b>
+            <p>Le drill filmé est un travail <b>QB / receveur à trois ballons</b> : il n'y a <b>aucun rusher dans la vidéo</b>. Nous ajoutons le rusher pour mettre le QB sous pression — c'est notre adaptation, pas le contenu de la référence.</p>
+          </aside>
+
+          <button class="clip" type="button" data-clip="qb">
+            <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+            Voir la vidéo <i>· 0 s</i>
+          </button>
+
+          <details class="ex-more">
+            <summary>Détails coaching</summary>
+
+            <div class="ex-cols">
+              <div class="ex-col">
+                <h5>Déroulement</h5>
+                <ol class="ex-steps">
+                  <li><b>Plusieurs ballons</b> au même endroit : on ne ramasse pas.</li>
+                  <li>Le receveur enchaîne <b>slant</b>, puis <b>out</b>, puis <b>go</b>.</li>
+                  <li>Le QB enchaîne les 3 passes <b>sans pause</b>.</li>
+                  <li>Le receveur sort, le suivant entre immédiatement.</li>
+                </ol>
+              </div>
+              <div class="ex-col">
+                <h5>Points de coaching</h5>
+                <ul class="points">
+                  <li>Slant : rapide et dosée.</li>
+                  <li>Out : timing et précision, ballon vers la ligne.</li>
+                  <li>Go : plus profond, ballon lancé devant.</li>
+                  <li>Le QB regarde la fenêtre, pas le receveur.</li>
+                  <li>Avec le rusher : la balle doit rester attrapable.</li>
+                </ul>
+              </div>
+              <div class="ex-col">
+                <h5>À éviter</h5>
+                <ul class="points warn">
+                  <li>Attendre que le ballon revienne.</li>
+                  <li>Lancer trop fort sur le slant.</li>
+                  <li>Lancer derrière le receveur sur le go.</li>
+                  <li>Un receveur qui ralentit avant de recevoir.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <article class="warm-step ex">
+          <header>
+            <span class="warm-time">zone 2</span>
+            <span class="ex-num">FICHE</span>
+            <h4>Zone Flag pull — fermer et finir</h4>
+          </header>
+
+          <p class="chain">Réaction <span>→</span> angle <span>→</span> fermeture <span>→</span> approche basse <span>→</span> main au flag <span>→</span> pull</p>
+
+          <p class="ex-goal"><b>Objectif&nbsp;:</b> fermer l'espace <b>avec les pieds</b>, rester bas, et finir le flag sans se jeter ni s'arrêter.</p>
+
+          <div class="frames three">
+                <figure class="frame">
+                  <img src="thumbs/DdFXgBFvyGk_1.jpg" alt="Flag pull : position d'attente basse du défenseur, l'attaquant déclenche">
+                  <figcaption>
+                    <b>Réaction</b>
+                    <span>Position d'attente basse et large. On réagit au premier pas de l'attaquant.</span>
+                  </figcaption>
+                </figure>
+                <figure class="frame">
+                  <img src="thumbs/DdFXgBFvyGk_2.jpg" alt="Flag pull : fermeture de l'angle en fente latérale basse">
+                  <figcaption>
+                    <b>Fermeture de l'angle</b>
+                    <span>Fente latérale : le corps se place sur la trajectoire, bras encore replié.</span>
+                  </figcaption>
+                </figure>
+                <figure class="frame">
+                  <img src="thumbs/DdFXgBFvyGk_3.jpg" alt="Flag pull : approche basse, bras tendu vers le fanion">
+                  <figcaption>
+                    <b>Main vers le flag</b>
+                    <span>Approche basse, bras tendu vers le fanion — pas vers le corps.</span>
+                  </figcaption>
+                </figure>
+          </div>
+
+          <div class="ex-key">
+            <h5>L'essentiel</h5>
+            <ul>
+              <li>Ne pas partir trop tôt : on réagit, on n'anticipe pas.</li>
+              <li>Rester bas et fermer l'espace <b>avec les pieds</b>.</li>
+              <li>La main arrive en dernier, sur le fanion, et on ne s'arrête pas.</li>
+            </ul>
+          </div>
+
+          <p class="note">Dans la vidéo, le plan <b>coupe à l'arrivée de la main</b> : on ne voit jamais le fanion se détacher. La finition du pull est donc à travailler à part.</p>
+
+          <button class="clip" type="button" data-clip="def">
+            <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+            Voir dans la vidéo <i>· 18 s</i>
+          </button>
+
+          <details class="ex-more">
+            <summary>Détails coaching</summary>
+
+            <div class="ex-cols">
+              <div class="ex-col">
+                <h5>Déroulement</h5>
+                <ol class="ex-steps">
+                  <li>L'attaquant déclenche : il part d'un côté.</li>
+                  <li>Le défenseur <b>réagit</b> sans partir trop tôt.</li>
+                  <li>Il <b>ferme l'angle</b> avec les pieds, hanches basses.</li>
+                  <li><b>Approche basse</b>, main vers le fanion.</li>
+                  <li><b>Pull</b>, puis poursuite sans s'arrêter.</li>
+                </ol>
+              </div>
+              <div class="ex-col">
+                <h5>Points de coaching</h5>
+                <ul class="points">
+                  <li>Base large, hanches basses, dos plat.</li>
+                  <li>Le regard reste sur la hanche de l'attaquant.</li>
+                  <li>Le bras ne se tend qu'au dernier moment.</li>
+                  <li>On vise le fanion, pas le corps.</li>
+                  <li>Après le contact, on continue à courir.</li>
+                </ul>
+              </div>
+              <div class="ex-col">
+                <h5>À éviter</h5>
+                <ul class="points warn">
+                  <li>Partir trop tôt et se faire couper.</li>
+                  <li>Se jeter ou plonger : on perd les pieds.</li>
+                  <li>Rester haut : le bras arrive trop tard.</li>
+                  <li>S'arrêter au moment du contact.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <article class="warm-step ex">
+          <header>
+            <span class="warm-time">sas</span>
+            <span class="ex-num">FICHE</span>
+            <h4>Appuis / sortie — le passage</h4>
+          </header>
+
+          <p class="chain">Entrée <span>→</span> abaissement <span>→</span> appuis courts <span>→</span> réorientation <span>→</span> sortie</p>
+
+          <p class="ex-goal"><b>Objectif&nbsp;:</b> traverser le sas en deux ou trois secondes — entrer en mouvement, descendre, réorienter, ressortir — <b>sans jamais s'arrêter</b>.</p>
+
+          <div class="frames">
+                <figure class="frame">
+                  <img src="thumbs/DcumOOqNKAi_1.jpg" alt="Appuis : entrée du joueur déjà en mouvement">
+                  <figcaption>
+                    <b>Entrée</b>
+                    <span>Le joueur entre déjà lancé, pas de départ arrêté.</span>
+                  </figcaption>
+                </figure>
+                <figure class="frame">
+                  <img src="thumbs/DcumOOqNKAi_2.jpg" alt="Appuis : abaissement du centre de gravité au plot">
+                  <figcaption>
+                    <b>Abaissement</b>
+                    <span>Au plot : hanches basses, genoux fléchis, base large.</span>
+                  </figcaption>
+                </figure>
+                <figure class="frame">
+                  <img src="thumbs/DcumOOqNKAi_3.jpg" alt="Appuis : appuis courts et réorientation">
+                  <figcaption>
+                    <b>Appuis courts</b>
+                    <span>Pieds vifs, appuis rapprochés, épaules qui s'ouvrent.</span>
+                  </figcaption>
+                </figure>
+                <figure class="frame">
+                  <img src="thumbs/DcumOOqNKAi_4.jpg" alt="Appuis : sortie explosive vers le QB">
+                  <figcaption>
+                    <b>Sortie</b>
+                    <span>Buste penché, poussée complète : il repart vers le QB.</span>
+                  </figcaption>
+                </figure>
+          </div>
+
+          <div class="ex-key">
+            <h5>L'essentiel</h5>
+            <ul>
+              <li>Rester bas : on ne se redresse pas entre les appuis.</li>
+              <li>Appuis courts et rapides, pas de pieds plats.</li>
+              <li>On traverse et on repart : <b>pas de file devant le sas</b>.</li>
+            </ul>
+          </div>
+
+          <p class="note">Atelier <b>sans ballon</b> dans la vidéo : c'est un travail d'appuis et de déplacement.</p>
+
+          <button class="clip" type="button" data-clip="appuis">
+            <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+            Voir dans la vidéo <i>· 6 s</i>
+          </button>
+
+          <details class="ex-more">
+            <summary>Détails coaching</summary>
+
+            <div class="ex-cols">
+              <div class="ex-col">
+                <h5>Déroulement</h5>
+                <ol class="ex-steps">
+                  <li><b>Entrer en mouvement</b> : les joueurs arrivent déjà lancés.</li>
+                  <li><b>Abaisser</b> le centre de gravité au plot.</li>
+                  <li><b>Appuis courts</b> et rapides pour se réorienter.</li>
+                  <li><b>Tourner les hanches</b>, pas seulement le buste.</li>
+                  <li><b>Ressortir en accélération</b>, directement vers le QB.</li>
+                </ol>
+              </div>
+              <div class="ex-col">
+                <h5>Points de coaching</h5>
+                <ul class="points">
+                  <li>Deux ou trois appuis suffisent : c'est un passage.</li>
+                  <li>Le regard reste devant, la tête ne plonge pas.</li>
+                  <li>Les bras accompagnent la rotation.</li>
+                  <li>La sortie se fait vers l'extérieur, jamais dans le trafic.</li>
+                </ul>
+              </div>
+              <div class="ex-col">
+                <h5>À éviter</h5>
+                <ul class="points warn">
+                  <li>Se redresser entre deux appuis.</li>
+                  <li>Appuis longs, pieds à plat.</li>
+                  <li>Tourner le buste sans les hanches.</li>
+                  <li>S'arrêter en sortie, ou attendre son tour.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
 
       </div>
     </article>
@@ -1686,28 +1987,18 @@
       </div>
       <div class="body">
         <header>
-          <h3>Renforcement — AMRAP 20 min</h3>
+          <h3>Renforcement — finisher collectif</h3>
         </header>
-        <p class="lead">Tout le monde fait la boucle. Terminé ? <strong>On repart au début.</strong> 20 minutes au chrono, pas de stations, pas de comptage individuel.</p>
+        <p class="lead">Finisher collectif, un seul passage. Chacun avance à son rythme — on ne chronomètre personne, on finit ensemble.</p>
 
         <ol class="amrap">
-          <li>Squats <b>15</b></li>
-          <li>Pompes <b>10</b></li>
-          <li>Abdos <b>10</b></li>
-          <li>Burpees <b>5</b></li>
-          <li class="shuttle-item">
-            <span class="lbl">Sprint navette <em>10 m → toucher la ligne → 10 m retour</em></span>
-            <b class="total">20 m total</b>
-            <span class="shuttle">
-              <span class="pt"></span>
-              <span class="seg">
-                <span class="len">10 m</span>
-                <span class="dirs"><span>aller →</span><span>← retour</span></span>
-              </span>
-              <span class="pt"></span>
-            </span>
-          </li>
+          <li>Squats <b>100</b></li>
+          <li>Pompes <b>50</b></li>
+          <li>Abdos <b>100</b></li>
+          <li>Gainage — 10 s par joueur, en relais <b>10 s × joueurs</b></li>
         </ol>
+
+        <p class="lead">Dix joueurs = <strong>1 min 40</strong> de gainage au total.</p>
       </div>
     </article>
 
@@ -1760,34 +2051,54 @@
   "use strict";
 
   var CLIPS = {
-    qb: {
-      src: "videos/2rOdrFzcNls_@dhflagfootball.mp4",
-      poster: "thumbs/2rOdrFzcNls_@dhflagfootball.jpg",
-      caption: "Zone QB — slant, out, go. Un rusher part à chaque action, plusieurs ballons, aucun temps mort."
-    },
-    def: {
-      src: "videos/DdFXgBFvyGk_flaglabperformance.mp4",
-      poster: "thumbs/DdFXgBFvyGk_flaglabperformance.jpg",
-      caption: "Zone flag pull — réaction, fermeture de l'angle, flag. Inversion des rôles tout de suite."
-    },
-    appuis: {
-      src: "videos/DcumOOqNKAi_issa_rantbro.mp4",
-      poster: "thumbs/DcumOOqNKAi_issa_rantbro.jpg",
-      caption: "Sas de transition — appui, cut, sortie explosive. On traverse vite, on ne fait pas la queue."
-    },
     ex1: {
       src: "videos/DbUqh3jRoQw_ryanyayawalker.mp4",
       poster: "thumbs/DbUqh3jRoQw_ryanyayawalker.jpg",
       start: 12.6,
-      caption: "Exercice 01 — apprendre le dip : ballon au-dessus de la tête, fente très basse, genou près du sol, transfert sans se redresser."
+      caption: "Exercice 01 — préparer le dip : ballon au-dessus de la tête, fente très basse, genou près du sol, transfert sans se redresser."
     },
     ex2: {
       src: "videos/DbUqh3jRoQw_ryanyayawalker.mp4",
       poster: "thumbs/DbUqh3jRoQw_ryanyayawalker.jpg",
       start: 26.0,
-      caption: "Exercice 02 — le dip en mouvement : arrivée en course, dip très bas au plot, appui, changement de direction, réaccélération."
+      caption: "Exercice 02 — dip en mouvement : arrivée en course, dip très bas au plot, appui, changement de direction, réaccélération."
     },
-    
+    qb: {
+      src: "videos/2rOdrFzcNls_@dhflagfootball.mp4",
+      poster: "thumbs/2rOdrFzcNls_@dhflagfootball.jpg",
+      start: 0,
+      caption: "Zone QB — 3-ball drill : slant, out, go. Un receveur, trois ballons, aucune pause."
+    },
+    slant: {
+      src: "videos/2rOdrFzcNls_@dhflagfootball.mp4",
+      poster: "thumbs/2rOdrFzcNls_@dhflagfootball.jpg",
+      start: 0.4,
+      caption: "Tracé 1 — slant : coupe intérieure, fenêtre tôt, ballon devant la poitrine."
+    },
+    out: {
+      src: "videos/2rOdrFzcNls_@dhflagfootball.mp4",
+      poster: "thumbs/2rOdrFzcNls_@dhflagfootball.jpg",
+      start: 3.9,
+      caption: "Tracé 2 — out : cassure vers l'extérieur, ballon vers la ligne."
+    },
+    go: {
+      src: "videos/2rOdrFzcNls_@dhflagfootball.mp4",
+      poster: "thumbs/2rOdrFzcNls_@dhflagfootball.jpg",
+      start: 7.1,
+      caption: "Tracé 3 — go : départ vertical, ballon lancé profond devant le receveur."
+    },
+    def: {
+      src: "videos/DdFXgBFvyGk_flaglabperformance.mp4",
+      poster: "thumbs/DdFXgBFvyGk_flaglabperformance.jpg",
+      start: 17.2,
+      caption: "Zone Flag pull — réaction, fermeture de l'angle, approche basse, main vers le fanion. Le plan coupe avant que le fanion ne se détache."
+    },
+    appuis: {
+      src: "videos/DcumOOqNKAi_issa_rantbro.mp4",
+      poster: "thumbs/DcumOOqNKAi_issa_rantbro.jpg",
+      start: 6.0,
+      caption: "Sas — appuis et sortie : entrée en mouvement, abaissement, appuis courts, réorientation, accélération. Atelier sans ballon."
+    }
   };
 
   var overlay = document.getElementById("clipOverlay");
