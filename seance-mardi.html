@@ -355,7 +355,7 @@
 
   .goal b { color: var(--muted); font-weight: 600; }
 
-  /* ---------- Circuit technique : le parcours ---------- */
+  /* ---------- Technique : deux circuits en parallèle ---------- */
 
   .circuit {
     padding: 22px;
@@ -364,190 +364,210 @@
     border-radius: var(--radius);
   }
 
-  .circuit-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 9px 14px;
-    margin-bottom: 20px;
+  .headline {
+    margin: 0 0 9px;
+    font-size: 19px;
+    font-weight: 740;
+    letter-spacing: .005em;
+    line-height: 1.3;
+    text-transform: uppercase;
+    text-wrap: pretty;
   }
 
-  .fixed {
-    display: inline-flex;
+  .headline i { font-style: normal; color: var(--dim); padding: 0 4px; }
+
+  .subline {
+    display: flex;
     align-items: center;
     gap: 8px;
-    padding: 5px 13px 5px 9px;
-    background: var(--accent);
-    color: var(--accent-ink);
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-  }
-
-  .fixed .k { font-size: 13.5px; letter-spacing: 0; }
-
-  .circuit-head p { margin: 0; font-size: 13.5px; color: var(--muted); }
-  .circuit-head p b { color: var(--text); font-weight: 620; }
-
-  .crowd {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    margin-left: auto;
-    font-size: 12.5px;
+    margin: 0 0 22px;
+    font-size: 13px;
     color: var(--muted);
   }
 
-  .crowd b { color: var(--text); font-weight: 620; }
-
-  .crowd i {
+  .subline i {
     width: 8px;
     height: 8px;
+    flex: none;
     border-radius: 50%;
     background: var(--accent);
   }
 
-  /* --- la grille en anneau --- */
+  /* --- les deux circuits --- */
 
-  .ring-grid {
+  .circuits {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 116px minmax(0, 1fr);
-    grid-template-rows: minmax(158px, auto) 128px minmax(158px, auto);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
   }
 
-  .n1 { grid-area: 1 / 1; }
-  .a12 { grid-area: 1 / 2; }
-  .n2 { grid-area: 1 / 3; }
-  .a23 { grid-area: 2 / 3; }
-  .hub { grid-area: 2 / 2; }
-  .a41 { grid-area: 2 / 1; }
-  .n4 { grid-area: 3 / 1; }
-  .a34 { grid-area: 3 / 2; }
-  .n3 { grid-area: 3 / 3; }
-
-  /* --- le tracé et ses flèches --- */
-
-  .arc {
-    position: relative;
+  .loop {
     display: grid;
-    place-items: center;
-    min-height: 44px;
+    gap: 0;
+    padding: 14px 16px 16px;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
   }
 
-  .arc .seg { position: absolute; background: var(--line-strong); }
-  .arc.h .seg { left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; }
-  .arc.v .seg { top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; }
-
-  .arc .tip {
-    position: relative;
-    padding: 2px 8px;
-    background: var(--bg);
-    color: var(--accent);
-    font-size: 22px;
-    line-height: 1;
+  .loop-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 11px;
+    border-bottom: 1px solid var(--line);
   }
 
-  .arc.retour .seg { background: var(--accent); }
+  .loop-head .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-  .arc.retour .tag {
+  .loop-head b { font-size: 15px; font-weight: 700; color: var(--accent); }
+
+  .loop-head .count {
+    margin-left: auto;
+    font-size: 11.5px;
+    color: var(--dim);
+    white-space: nowrap;
+  }
+
+  /* le retour dessiné, sur le flanc gauche */
+
+  .flow { position: relative; padding-left: 46px; }
+
+  .return {
+    position: absolute;
+    left: 13px;
+    top: 10px;
+    bottom: 12px;
+    width: 2px;
+    background: var(--accent);
+  }
+
+  .return .arrow,
+  .return .word {
     position: absolute;
     left: 50%;
-    bottom: 4px;
-    transform: translateX(-50%);
-    padding: 0 5px;
     background: var(--bg);
+  }
+
+  .return .arrow { transform: translateX(-50%); color: var(--accent); line-height: 1; }
+  .return .up { top: -11px; font-size: 15px; }
+  .return .back { bottom: -11px; font-size: 14px; }
+
+  .return .word {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+    writing-mode: vertical-rl;
+    padding: 7px 0;
     font-family: var(--mono);
     font-size: 9.5px;
-    letter-spacing: .1em;
+    letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--accent);
     white-space: nowrap;
   }
 
-  .only-mobile { display: none; }
-
-  /* --- les postes --- */
+  /* --- un poste --- */
 
   .node {
     position: relative;
     display: grid;
     align-content: start;
-    gap: 9px;
-    padding: 15px 17px 16px;
+    gap: 8px;
+    padding: 13px 15px 14px;
     background: var(--bg);
     border: 1px solid var(--line-strong);
-    border-radius: 12px;
+    border-radius: 10px;
   }
 
   .node.qb { border-color: var(--accent); }
 
-  .node > header { display: flex; align-items: center; gap: 10px; }
+  .node.sas { border-style: dashed; }
+
+  .node.qb::before,
+  .node.sas::before {
+    content: "";
+    position: absolute;
+    left: -33px;
+    top: 50%;
+    width: 33px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .node > header { display: flex; align-items: center; gap: 9px; }
 
   .node .n {
     display: grid;
     place-items: center;
-    width: 24px;
+    min-width: 24px;
     height: 24px;
+    padding: 0 7px;
     flex: none;
-    border-radius: 50%;
+    border-radius: 999px;
     background: var(--surface-2);
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 11px;
     color: var(--muted);
   }
 
   .node.qb .n { background: var(--accent); color: var(--accent-ink); font-weight: 700; }
 
-  .node h4 { margin: 0; font-size: 16.5px; font-weight: 670; letter-spacing: -.015em; }
+  .node h4 { margin: 0; font-size: 15.5px; font-weight: 670; letter-spacing: -.015em; }
 
   .node .at {
     margin-left: auto;
     font-family: var(--mono);
     font-size: 9.5px;
-    letter-spacing: .08em;
+    letter-spacing: .07em;
     text-transform: uppercase;
     color: var(--dim);
     white-space: nowrap;
   }
 
-  .node.qb .at { color: var(--accent); }
+  .node .do { margin: 0; font-size: 12.5px; color: var(--muted); }
 
-  .node .do { margin: 0; font-size: 13px; color: var(--muted); }
-
-  .players {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  .node .keyline {
     margin: 0;
-    font-size: 11.5px;
-    color: var(--dim);
+    font-size: 14px;
+    font-weight: 640;
+    letter-spacing: -.01em;
   }
 
-  .players i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); }
-  .players span { margin-left: 4px; }
+  .node .keyline span { color: var(--dim); padding: 0 3px; }
 
-  .next {
+  /* --- liaisons verticales --- */
+
+  .arc {
+    position: relative;
     display: grid;
-    gap: 2px;
-    margin: 3px 0 0;
-    padding-top: 12px;
-    border-top: 1px solid var(--line);
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--muted);
+    place-items: center;
+    min-height: 40px;
   }
 
-  .next span {
-    font-family: -apple-system, "SF Pro Text", system-ui, sans-serif;
-    font-size: 17.5px;
-    font-weight: 700;
-    letter-spacing: -.015em;
-    text-transform: none;
+  .arc .seg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    margin-left: -1px;
+    background: var(--line-strong);
+  }
+
+  .arc .tip {
+    position: relative;
+    padding: 1px 8px;
+    background: var(--bg);
     color: var(--accent);
+    font-size: 19px;
+    line-height: 1;
   }
 
   .clip {
@@ -566,41 +586,21 @@
 
   .clip:hover { color: var(--text); border-color: var(--line-strong); }
 
-  .node .aside { margin: 0; font-size: 11.5px; color: var(--dim); }
-
-  /* --- le poste fixe, au centre --- */
-
-  .hub {
-    position: relative;
-    display: grid;
-    align-content: center;
-    justify-items: center;
-    gap: 5px;
-    padding: 14px 12px;
-    text-align: center;
-    background: var(--surface-2);
-    background: color-mix(in srgb, var(--accent) 15%, var(--bg));
-    border: 2px solid var(--accent);
-    border-radius: 12px;
+  .ref-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0 0;
+    font-size: 12.5px;
+    color: var(--dim);
   }
-
-  .hub .hub-tag {
-    font-family: var(--mono);
-    font-size: 9.5px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  .hub > b { font-size: 21px; font-weight: 720; letter-spacing: -.025em; }
-  .hub small { font-size: 11.5px; line-height: 1.45; color: var(--muted); }
-  .hub small b { font-size: inherit; font-weight: 700; color: var(--text); }
 
   .loop-close {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 18px 0 0;
+    margin: 20px 0 0;
     padding-top: 15px;
     border-top: 1px dashed var(--line-strong);
     font-size: 13px;
@@ -828,36 +828,13 @@
     .rail .dot { position: static; align-self: center; }
     .rail .slot, .rail .at, .rail .len { padding-left: 0; margin: 0; }
     .circuit { padding: 16px; }
-    .circuit-head { margin-bottom: 14px; }
-    .ring-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
-    .n1, .n2, .n3, .n4, .hub, .a12, .a23, .a34, .a41 { grid-area: auto; }
-    .hub { order: -1; }
-    .arc { min-height: 56px; }
-    .arc.h .seg {
-      left: 50%;
-      right: auto;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      height: auto;
-      margin: 0 0 0 -1px;
-    }
-    .only-desktop { display: none; }
-    .only-mobile { display: inline; }
-    .arc.retour {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      min-height: 68px;
-    }
-    .arc.retour .tag {
-      position: static;
-      transform: none;
-      padding: 3px 10px 3px 2px;
-      font-size: 10.5px;
-    }
-    .arc.retour .tip { padding: 3px 2px 3px 10px; }
+    .headline { font-size: 17.5px; }
+    .subline { margin-bottom: 16px; }
+    .circuits { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .loop { padding: 12px 14px 14px; }
+    .flow { padding-left: 42px; }
+    .return { left: 11px; }
+    .node.qb::before, .node.sas::before { left: -30px; width: 30px; }
 
   }
 
@@ -894,6 +871,7 @@
   }
 
   .node { border-radius: 10px; }
+  .loop { border-radius: 10px; }
 
   .half,
   .amrap li,
@@ -911,8 +889,7 @@
     .memo { margin-top: 8px; }
     .body h3 { font-size: 19px; }
     .circuit { padding-top: 12px; }
-    .ring-grid { grid-template-rows: none; }
-    .arc { min-height: 46px; }
+    .arc { min-height: 42px; }
   }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -928,11 +905,14 @@
     .no-print { display: none !important; }
     .top { position: static; background: none; border: 0; padding: 0; }
     .wrap { max-width: none; padding: 0; }
-    .node, .hub, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
+    .node, .loop, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
     h3, h4 { break-after: avoid; }
     .clip { display: none; }
-    .ring-grid { grid-template-rows: minmax(0, auto) 96px minmax(0, auto); }
-    .arc .tip { font-size: 18px; }
+    .headline { font-size: 15pt; }
+    .subline { margin-bottom: 12px; }
+    .arc { min-height: 30px; }
+    .arc .tip { font-size: 15px; }
+    .flow { padding-left: 40px; }
     .blocks { gap: 16px; }
     .block { gap: 14px; grid-template-columns: 82px minmax(0, 1fr); }
     .rail { display: block; padding-top: 2px; }
@@ -943,8 +923,21 @@
     .memo .tag { display: inline; }
     .rail .slot { font-size: 12px; }
     .circuit { padding: 14px 16px; }
-    .node { padding: 11px 13px 12px; }
-    .next span { font-size: 15pt; }
+    .circuits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .loop { padding: 9px 10px 10px; }
+    .loop-head { margin-bottom: 8px; padding-bottom: 7px; }
+    .flow { padding-left: 34px; }
+    .return { left: 8px; top: 6px; bottom: 8px; }
+    .node.qb::before, .node.sas::before { left: -24px; width: 24px; }
+    .node { padding: 8px 10px 9px; gap: 5px; }
+    .node h4 { font-size: 10.5pt; }
+    .node .do, .node .keyline { font-size: 8.5pt; }
+    .node .at, .loop-head .tag { font-size: 7pt; }
+    .loop-head b { font-size: 10.5pt; }
+    .return .word { font-size: 7pt; }
+    .arc { min-height: 22px; }
+    .headline { font-size: 13pt; }
+    .subline { font-size: 8.5pt; }
     .memo { padding: 12px 16px; margin-bottom: 18px; }
     .memo li { font-size: 12pt; }
     .keyline { font-size: 15pt; margin-bottom: 10px; }
@@ -994,6 +987,13 @@
           <h3>Échauffement dynamique</h3>
         </header>
         <p class="lead">Mobilité, appuis, hanches et accélérations. Progressif, mais déjà dynamique.</p>
+        <p class="ref-line">
+          <span>Activation dynamique — référence visuelle&nbsp;:</span>
+          <button class="clip" type="button" data-clip="xyp">
+            <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+            drill appuis
+          </button>
+        </p>
       </div>
     </article>
 
@@ -1010,115 +1010,160 @@
         </header>
         <p class="lead"><strong>5 min</strong> pour expliquer et placer. Ensuite <strong>un seul circuit continu</strong> : les QB ne bougent jamais, les autres joueurs changent de rôle à chaque passage.</p>
 
-        <section class="circuit" aria-label="Parcours du circuit">
+        <section class="circuit" aria-label="Deux circuits en parallèle">
 
-          <div class="circuit-head">
-            <span class="fixed"><span class="k">QB</span> poste fixe</span>
-            <p>Les 2 QB et le snapper ne quittent jamais leur poste. <b>Pas de pause pour le QB.</b></p>
-            <span class="crowd"><i></i><b>≈ 10 joueurs</b> répartis sur la boucle</span>
-          </div>
+          <p class="headline">2 QB fixes <i>·</i> 2 circuits identiques <i>·</i> 4 joueurs autour de chaque QB</p>
+          <p class="subline"><i></i> Les deux circuits tournent en même temps — 5 personnes par circuit, ≈ 10 joueurs.</p>
 
-          <div class="ring-grid">
+          <div class="circuits">
 
-            <div class="hub">
-              <span class="hub-tag">poste fixe</span>
-              <b>QB</b>
-              <small>étapes <b>1</b> et <b>3</b></small>
-            </div>
-
-            <!-- 1 -->
-            <article class="node n1 qb">
-              <header>
-                <span class="n">1</span>
-                <h4>Recevoir au QB</h4>
-                <span class="at">au QB</span>
+            <article class="loop" aria-label="Circuit A">
+              <header class="loop-head">
+                <span class="tag">circuit A</span>
+                <b>QB1 fixe</b>
+                <span class="count">5 personnes</span>
               </header>
-              <p class="do">tracé, puis réception de la passe</p>
-              <p class="players"><i></i><i></i><span>2 joueurs en attente</span></p>
-              <p class="next">fini <span>→ atelier receveur</span></p>
-              <button class="clip" type="button" data-clip="qb">
-                <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                voir le drill QB
-              </button>
+
+              <div class="flow">
+                <div class="return" aria-hidden="true">
+                  <span class="arrow up">↑</span>
+                  <span class="word">retour au QB</span>
+                  <span class="arrow back">↺</span>
+                </div>
+
+                <article class="node qb">
+                  <header>
+                    <span class="n">QB1</span>
+                    <h4>Poste fixe</h4>
+                  </header>
+                  <p class="do">Il ne bouge jamais et enchaîne les ballons.</p>
+                </article>
+
+                <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↕</span></div>
+
+                <article class="node">
+                  <header>
+                    <span class="n">1</span>
+                    <h4>Receveur + Rusher</h4>
+                    <span class="at">2 joueurs</span>
+                  </header>
+                  <p class="keyline">Slant <span>→</span> Out <span>→</span> Go</p>
+                  <p class="do">Le rusher met la pression sur chaque ballon.</p>
+                  <button class="clip" type="button" data-clip="qb">
+                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                    drill QB
+                  </button>
+                </article>
+
+                <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
+
+                <article class="node">
+                  <header>
+                    <span class="n">2</span>
+                    <h4>Flag pull</h4>
+                    <span class="at">2 joueurs</span>
+                  </header>
+                  <p class="keyline">Réaction <span>→</span> angle <span>→</span> flag</p>
+                  <p class="do">1 attaquant + 1 défenseur, rôles inversés tout de suite.</p>
+                  <button class="clip" type="button" data-clip="def">
+                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                    drill flag pull
+                  </button>
+                </article>
+
+                <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
+
+                <article class="node sas">
+                  <header>
+                    <span class="n">3</span>
+                    <h4>Appui / cut</h4>
+                    <span class="at">passage</span>
+                  </header>
+                  <p class="do">Sortie explosive — tu traverses, tu ne fais pas la queue.</p>
+                  <button class="clip" type="button" data-clip="appuis">
+                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                    appuis
+                  </button>
+                </article>
+              </div>
             </article>
 
-            <div class="arc h a12" aria-hidden="true">
-              <span class="seg"></span>
-              <span class="tip only-desktop">→</span>
-              <span class="tip only-mobile">↓</span>
-            </div>
-
-            <!-- 2 -->
-            <article class="node n2">
-              <header>
-                <span class="n">2</span>
-                <h4>Atelier receveur</h4>
+            <article class="loop" aria-label="Circuit B">
+              <header class="loop-head">
+                <span class="tag">circuit B</span>
+                <b>QB2 fixe</b>
+                <span class="count">5 personnes</span>
               </header>
-              <p class="do">cut, catch, accélération après réception</p>
-              <p class="players"><i></i><i></i><span>2 joueurs</span></p>
-              <p class="next">fini <span>→ va rusher le QB</span></p>
-              <button class="clip" type="button" data-clip="rec">
-                <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                voir le drill receveur
-              </button>
+
+              <div class="flow">
+                <div class="return" aria-hidden="true">
+                  <span class="arrow up">↑</span>
+                  <span class="word">retour au QB</span>
+                  <span class="arrow back">↺</span>
+                </div>
+
+                <article class="node qb">
+                  <header>
+                    <span class="n">QB2</span>
+                    <h4>Poste fixe</h4>
+                  </header>
+                  <p class="do">Il ne bouge jamais et enchaîne les ballons.</p>
+                </article>
+
+                <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↕</span></div>
+
+                <article class="node">
+                  <header>
+                    <span class="n">1</span>
+                    <h4>Receveur + Rusher</h4>
+                    <span class="at">2 joueurs</span>
+                  </header>
+                  <p class="keyline">Slant <span>→</span> Out <span>→</span> Go</p>
+                  <p class="do">Le rusher met la pression sur chaque ballon.</p>
+                  <button class="clip" type="button" data-clip="qb">
+                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                    drill QB
+                  </button>
+                </article>
+
+                <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
+
+                <article class="node">
+                  <header>
+                    <span class="n">2</span>
+                    <h4>Flag pull</h4>
+                    <span class="at">2 joueurs</span>
+                  </header>
+                  <p class="keyline">Réaction <span>→</span> angle <span>→</span> flag</p>
+                  <p class="do">1 attaquant + 1 défenseur, rôles inversés tout de suite.</p>
+                  <button class="clip" type="button" data-clip="def">
+                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                    drill flag pull
+                  </button>
+                </article>
+
+                <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
+
+                <article class="node sas">
+                  <header>
+                    <span class="n">3</span>
+                    <h4>Appui / cut</h4>
+                    <span class="at">passage</span>
+                  </header>
+                  <p class="do">Sortie explosive — tu traverses, tu ne fais pas la queue.</p>
+                  <button class="clip" type="button" data-clip="appuis">
+                    <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                    appuis
+                  </button>
+                </article>
+              </div>
             </article>
-
-            <div class="arc v a23" aria-hidden="true">
-              <span class="seg"></span>
-              <span class="tip">↓</span>
-            </div>
-
-            <!-- 3 -->
-            <article class="node n3 qb">
-              <header>
-                <span class="n">3</span>
-                <h4>Rusher du QB</h4>
-                <span class="at">au QB</span>
-              </header>
-              <p class="do">mettre la pression sur le QB, à chaque ballon</p>
-              <p class="players"><i></i><span>1 joueur</span></p>
-              <p class="next">fini <span>→ va en défense</span></p>
-              <p class="aside">Même poste que l'étape 1 : le QB ne s'arrête pas.</p>
-              <button class="clip" type="button" data-clip="qb">
-                <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                voir le drill QB
-              </button>
-            </article>
-
-            <div class="arc h a34" aria-hidden="true">
-              <span class="seg"></span>
-              <span class="tip only-desktop">←</span>
-              <span class="tip only-mobile">↓</span>
-            </div>
-
-            <!-- 4 -->
-            <article class="node n4">
-              <header>
-                <span class="n">4</span>
-                <h4>Atelier défense</h4>
-              </header>
-              <p class="do">réaction, angle, flag pull</p>
-              <p class="players"><i></i><i></i><i></i><span>3 joueurs</span></p>
-              <p class="next">fini <span>→ va recevoir au QB</span></p>
-              <button class="clip" type="button" data-clip="def">
-                <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                voir le drill défense
-              </button>
-            </article>
-
-            <div class="arc v a41 retour" aria-hidden="true">
-              <span class="seg"></span>
-              <span class="tip only-desktop">↑</span>
-              <span class="tip only-mobile">↺</span>
-              <span class="tag only-desktop">retour</span>
-              <span class="tag only-mobile">retour à l'étape 1</span>
-            </div>
 
           </div>
 
           <p class="loop-close">
             <span class="glyph">↺</span>
-            <span><b>Personne n'attend&nbsp;:</b> après chaque passage tu avances d'un cran. Aucun groupe figé, aucune rotation programmée.</span>
+            <span><b>Les QB ne bougent jamais</b> : seuls les 8 joueurs tournent, et chacun change de rôle après chaque passage.</span>
           </p>
 
         </section>
@@ -1197,7 +1242,7 @@
   </div>
 
   <footer>
-    <span>Les 3 vidéos indispensables : QB <code>2rOdrFzcNls</code> · Receveurs <code>DcumOOqNKAi</code> · Défense <code>DdFXgBFvyGk</code></span>
+    <span>Les 3 vidéos indispensables : QB <code>2rOdrFzcNls</code> · Appuis <code>DcumOOqNKAi</code> · Défense <code>DdFXgBFvyGk</code></span>
     <a href="preview.html">Galerie complète (25 vidéos)</a>
   </footer>
 
@@ -1246,17 +1291,22 @@
     qb: {
       src: "videos/2rOdrFzcNls_@dhflagfootball.mp4",
       poster: "thumbs/2rOdrFzcNls_@dhflagfootball.jpg",
-      caption: "Poste QB — 3-ball drill : slant, out, go. Un rusher part à chaque action, plusieurs ballons, aucun temps mort."
-    },
-    rec: {
-      src: "videos/DcumOOqNKAi_issa_rantbro.mp4",
-      poster: "thumbs/DcumOOqNKAi_issa_rantbro.jpg",
-      caption: "Poste receveur — cut, catch, puis accélération après la réception. Le suivant part immédiatement."
+      caption: "Zone QB — slant, out, go. Un rusher part à chaque action, plusieurs ballons, aucun temps mort."
     },
     def: {
       src: "videos/DdFXgBFvyGk_flaglabperformance.mp4",
       poster: "thumbs/DdFXgBFvyGk_flaglabperformance.jpg",
-      caption: "Poste défense — réaction, fermeture de l'angle, flag pull. Inversion des rôles tout de suite."
+      caption: "Zone flag pull — réaction, fermeture de l'angle, flag. Inversion des rôles tout de suite."
+    },
+    appuis: {
+      src: "videos/DcumOOqNKAi_issa_rantbro.mp4",
+      poster: "thumbs/DcumOOqNKAi_issa_rantbro.jpg",
+      caption: "Sas de transition — appui, cut, sortie explosive. On traverse vite, on ne fait pas la queue."
+    },
+    xyp: {
+      src: "videos/DdWjv_yla39_xypxox.mp4",
+      poster: "thumbs/DdWjv_yla39_xypxox.jpg",
+      caption: "Échauffement — référence visuelle pour l'activation dynamique des appuis."
     }
   };
 
