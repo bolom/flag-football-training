@@ -449,82 +449,203 @@
 
   .goal b { color: var(--muted); font-weight: 600; }
 
-  /* ---------- Ateliers ---------- */
+  /* ---------- Circuit technique ---------- */
 
-  .rotation {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 22px;
-  }
-
-  .rot {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    padding: 8px 12px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    font-size: 12.5px;
-    color: var(--muted);
-  }
-
-  .rot b { color: var(--text); font-weight: 620; }
-  .rot span { font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em; }
-
-  .workshops { display: grid; gap: 18px; }
-
-  .shop {
-    padding: 20px 20px 18px;
+  .circuit {
+    padding: 22px;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
   }
 
-  .shop > header {
+  .circuit-head {
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
-    gap: 8px 12px;
-    margin-bottom: 4px;
+    align-items: center;
+    gap: 9px 14px;
+    margin-bottom: 2px;
   }
 
-  .shop .num {
+  .fixed {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 13px 5px 9px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .fixed .k { font-size: 13.5px; letter-spacing: 0; }
+
+  .circuit-head p { margin: 0; font-size: 13.5px; color: var(--muted); }
+  .circuit-head p b { color: var(--text); font-weight: 620; }
+
+  .chain {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 30px;
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .step {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 2px;
+    padding: 13px 15px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+
+  .step.qb { border-color: var(--accent); }
+
+  .step .n {
+    display: grid;
+    place-items: center;
+    width: 23px;
+    height: 23px;
+    margin-bottom: 6px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
     font-family: var(--mono);
     font-size: 12px;
-    color: var(--accent);
-    letter-spacing: .08em;
-  }
-
-  .shop h4 {
-    margin: 0;
-    font-size: 17px;
-    font-weight: 660;
-    letter-spacing: -.015em;
-  }
-
-  .shop .dur {
-    margin-left: auto;
-    font-family: var(--mono);
-    font-size: 12.5px;
-    color: var(--dim);
-  }
-
-  .shop .sub {
-    margin: 0 0 18px;
-    font-size: 13px;
     color: var(--muted);
   }
 
-  .shop .cols {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 208px;
-    gap: 28px;
-    align-items: center;
+  .step.qb .n {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 700;
   }
 
-  .shop .cols.no-video { grid-template-columns: minmax(0, 1fr); }
+  .step b { font-size: 15.5px; font-weight: 660; letter-spacing: -.015em; }
+  .step small { font-size: 12px; color: var(--muted); }
+
+  .step .where {
+    margin-top: 7px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .step.qb .where { color: var(--accent); }
+
+  .step + .step::before {
+    content: "→";
+    position: absolute;
+    left: -24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 19px;
+    line-height: 1;
+    color: var(--line-strong);
+  }
+
+  .loop-back {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--line-strong);
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+
+  .loop-back .glyph {
+    display: grid;
+    place-items: center;
+    width: 25px;
+    height: 25px;
+    flex: none;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    color: var(--accent);
+    font-size: 14px;
+  }
+
+  .loop-back b { color: var(--text); font-weight: 620; }
+
+  /* --- détail des postes --- */
+
+  .posts {
+    margin-top: 18px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .posts > h4 {
+    margin: 0;
+    padding: 13px 20px;
+    border-bottom: 1px solid var(--line);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .posts-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .post {
+    display: grid;
+    align-content: start;
+    gap: 11px;
+    padding: 18px 20px 20px;
+    border-left: 1px solid var(--line);
+  }
+
+  .post:first-child { border-left: 0; }
+
+  .post .role { display: flex; align-items: baseline; gap: 9px; }
+
+  .post .role .tag-num {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .08em;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .post .role h5 { margin: 0; font-size: 16px; font-weight: 660; letter-spacing: -.015em; }
+
+  .post .keyline { margin: 0; font-size: 14.5px; font-weight: 630; }
+  .post .keyline span { color: var(--dim); padding: 0 3px; }
+  .post ul.points li { font-size: 12.5px; }
+  .post .goal, .post .clip-note { margin-top: 0; }
+
+  .go-next {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--line-strong);
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 650;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+  }
+
+  .go-next span { color: var(--accent); font-weight: 750; }
+
+  .post .player { max-width: 168px; }
+  .post .clip-note { justify-content: flex-start; gap: 12px; }
 
   .player {
     position: relative;
@@ -560,46 +681,40 @@
   .clip-note a:hover { color: var(--text); }
 
   .refs {
-    margin-top: 18px;
-    padding-top: 16px;
-    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin-top: 16px;
+    font-size: 12.5px;
+    color: var(--dim);
   }
 
-  .refs p {
-    margin: 0 0 10px;
-    font-size: 13px;
-    color: var(--muted);
-    max-width: 70ch;
-  }
-
-  .refs .row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .refs b { color: var(--muted); font-weight: 600; }
 
   .ref {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 11px;
-    padding: 8px 12px 8px 8px;
+    gap: 8px;
+    padding: 5px 11px 5px 6px;
     background: var(--surface-2);
     border: 1px solid var(--line);
-    border-radius: 10px;
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 12px;
     text-decoration: none;
-    color: var(--text);
   }
 
-  .ref:hover { border-color: var(--line-strong); }
+  .ref:hover { border-color: var(--line-strong); color: var(--text); }
 
   .ref img {
-    width: 34px;
-    height: 34px;
-    object-fit: cover;
-    border-radius: 7px;
+    width: 22px;
+    height: 22px;
     flex: none;
+    object-fit: cover;
+    border-radius: 5px;
     background: #000;
   }
-
-  .ref .txt { display: grid; gap: 1px; }
-  .ref .txt b { font-size: 13px; font-weight: 600; }
-  .ref .txt span { font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
 
   /* ---------- Match & renfo ---------- */
 
@@ -653,6 +768,76 @@
 
   .amrap b { margin-left: auto; font-family: var(--mono); font-size: 15px; font-weight: 600; }
 
+  .amrap li.shuttle-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 3px 14px;
+  }
+
+  .amrap li.shuttle-item::before { grid-area: 1 / 1; }
+  .amrap li.shuttle-item .lbl { grid-area: 1 / 2; }
+  .amrap li.shuttle-item .total { grid-area: 1 / 3; margin-left: 0; }
+
+  .amrap li.shuttle-item .lbl em {
+    display: block;
+    font-style: normal;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+
+  .shuttle {
+    grid-area: 2 / 2 / 3 / 4;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    max-width: 460px;
+  }
+
+  .shuttle .pt {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .shuttle .seg { position: relative; height: 42px; }
+
+  .shuttle .seg::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--line-strong);
+  }
+
+  .shuttle .len {
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 9px;
+    background: var(--surface);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--text);
+  }
+
+  .shuttle .dirs {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+
   footer {
     margin-top: 44px;
     padding: 22px 0 60px;
@@ -676,9 +861,13 @@
     .rail { display: flex; align-items: baseline; gap: 12px; padding-top: 0; }
     .rail .dot { position: static; align-self: center; }
     .rail .slot, .rail .at, .rail .len { padding-left: 0; margin: 0; }
-    .shop .cols { grid-template-columns: minmax(0, 1fr); }
-    .player { max-width: 260px; }
-    .memo .tag { display: none; }
+    .circuit { padding: 16px; }
+    .chain { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+    .step + .step::before { content: "↓"; left: 50%; top: -23px; transform: translateX(-50%); }
+    .posts-grid { grid-template-columns: minmax(0, 1fr); }
+    .post { border-left: 0; border-top: 1px solid var(--line); }
+    .post:first-child { border-top: 0; }
+    .post .player { max-width: 190px; }
   }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -694,10 +883,9 @@
     .no-print { display: none !important; }
     .top { position: static; background: none; border: 0; padding: 0; }
     .wrap { max-width: none; padding: 0; }
-    .shop, .half, .memo, .goal, .amrap li, .refs { break-inside: avoid; }
+    .post, .half, .memo, .goal, .amrap li, .circuit, .posts { break-inside: avoid; }
     h3, h4 { break-after: avoid; }
     .player { display: none; }
-    .shop .cols { grid-template-columns: minmax(0, 1fr); }
     .clip-note { justify-content: flex-start; gap: 14px; margin-top: 6px; }
     .blocks { gap: 16px; }
     .block { gap: 14px; grid-template-columns: 82px minmax(0, 1fr); }
@@ -708,8 +896,10 @@
     .rail .len { margin-top: 3px; }
     .memo .tag { display: inline; }
     .rail .slot { font-size: 12px; }
-    .shop { padding: 12px 14px; }
-    .shop .cols { gap: 16px; }
+    .circuit { padding: 14px 16px; }
+    .chain { gap: 22px; }
+    .posts { margin-top: 12px; }
+    .post { padding: 12px 14px; }
     .memo { padding: 12px 16px; margin-bottom: 18px; }
     .memo li { font-size: 12pt; }
     .keyline { font-size: 15pt; margin-bottom: 10px; }
@@ -745,10 +935,10 @@
     <div class="chrono-mid">
       <div class="presets" id="presets">
         <button class="chip" type="button" data-min="15">15 · Échauffement</button>
-        <button class="chip" type="button" data-min="18">18 · Rotation</button>
+        <button class="chip" type="button" data-min="65">65 · Circuit</button>
         <button class="chip" type="button" data-min="10">10 · Mi-temps</button>
         <button class="chip" type="button" data-min="20">20 · AMRAP</button>
-        <button class="chip" type="button" data-min="2">2 · Changement</button>
+        <button class="chip" type="button" data-min="2">2 · Transition</button>
       </div>
       <div class="bar"><i id="progress"></i></div>
     </div>
@@ -766,11 +956,9 @@
     <h2>À retenir</h2>
     <ol>
       <li><b>Jonathan</b> <span class="arrow">→</span> warm-up <span class="tag">15 min</span></li>
-      <li><b>QB</b> <span class="arrow">→</span> slant · out · go + rusher <span class="tag">18 min</span></li>
-      <li><b>Receveur</b> <span class="arrow">→</span> tracé · catch · sprint <span class="tag">18 min</span></li>
-      <li><b>Défense</b> <span class="arrow">→</span> réaction · flag pull <span class="tag">18 min</span></li>
-      <li><b>Match</b> <span class="arrow">→</span> 10 + 10, interruptions limitées <span class="tag">20 min</span></li>
-      <li><b>Renfo</b> <span class="arrow">→</span> AMRAP, on repart au début <span class="tag">20 min</span></li>
+      <li><b>Circuit technique</b> <span class="arrow">→</span> QB fixes, joueurs en continu <span class="tag">65 min</span></li>
+      <li><b>Match</b> <span class="arrow">→</span> 10 + 10 <span class="tag">20 min</span></li>
+      <li><b>Renfo</b> <span class="arrow">→</span> AMRAP <span class="tag">20 min</span></li>
     </ol>
   </section>
 
@@ -805,144 +993,125 @@
       </div>
       <div class="body">
         <header>
-          <h3>Technique — 3 ateliers</h3>
+          <h3>Circuit technique</h3>
           <button class="tick no-print" type="button" aria-pressed="false" data-tick="1">
             <span class="box">✓</span> Fait
           </button>
         </header>
-        <p class="lead"><strong>5 min</strong> pour expliquer et placer les groupes, puis <strong>3 rotations de 18 min</strong>, avec environ 2 min pour changer.</p>
+        <p class="lead"><strong>5 min</strong> pour expliquer et placer. Ensuite <strong>un seul circuit continu</strong> : les QB ne bougent jamais, les autres joueurs changent de rôle à chaque passage.</p>
 
-        <div class="rotation">
-          <div class="rot"><b>Groupe A</b> <span>1 → 2 → 3</span></div>
-          <div class="rot"><b>Groupe B</b> <span>2 → 3 → 1</span></div>
-          <div class="rot"><b>Groupe C</b> <span>3 → 1 → 2</span></div>
+        <section class="circuit" aria-label="Circuit continu">
+          <div class="circuit-head">
+            <span class="fixed"><span class="k">QB</span> poste fixe</span>
+            <p>Les deux QB restent à l'atelier QB. <b>Pas de pause pour le QB.</b></p>
+          </div>
+
+          <ol class="chain">
+            <li class="step qb">
+              <span class="n">1</span>
+              <b>Recevoir au QB</b>
+              <small>tracé puis passe</small>
+              <span class="where">au QB</span>
+            </li>
+            <li class="step">
+              <span class="n">2</span>
+              <b>Catch / cut</b>
+              <small>atelier receveur</small>
+              <span class="where">poste receveur</span>
+            </li>
+            <li class="step qb">
+              <span class="n">3</span>
+              <b>Rusher le QB</b>
+              <small>rush immédiat</small>
+              <span class="where">au QB</span>
+            </li>
+            <li class="step">
+              <span class="n">4</span>
+              <b>Flag pull</b>
+              <small>angle puis flag</small>
+              <span class="where">poste défense</span>
+            </li>
+          </ol>
+
+          <div class="loop-back">
+            <span class="glyph">↺</span>
+            <span><b>Retour à l'étape 1</b> — tu changes de rôle à chaque passage.</span>
+          </div>
+        </section>
+
+        <section class="posts" aria-label="Détail des postes">
+          <h4>Ce qui se passe à chaque poste</h4>
+          <div class="posts-grid">
+
+            <article class="post">
+              <div class="role"><span class="tag-num">ÉTAPES 1 ET 3</span><h5>Poste QB</h5></div>
+              <p class="keyline">Slant <span>→</span> Out <span>→</span> Go</p>
+              <ul class="points">
+                <li><b>1 QB fixe</b> + 1 snapper + 1 receveur + 1 rusher, et <b>plusieurs ballons</b>.</li>
+                <li><b>Snap</b> → rush immédiat → tracé → passe → <b>joueur suivant tout de suite</b>.</li>
+                <li>Le receveur part à l'atelier receveur, le rusher part à la défense : un autre joueur prend leur place.</li>
+                <li>Le QB adapte : slant <b>rapide et dosée</b>, out <b>timing et précision</b>, go <b>plus profond</b>.</li>
+              </ul>
+              <div class="go-next">PAS DE PAUSE <span>POUR LE QB</span></div>
+              <p class="goal"><b>Objectif&nbsp;:</b> pression + précision + dosage + répétition.</p>
+              <div class="player">
+                <img src="thumbs/2rOdrFzcNls_@dhflagfootball.jpg" alt="Aperçu du 3-ball drill">
+                <video src="videos/2rOdrFzcNls_@dhflagfootball.mp4" poster="thumbs/2rOdrFzcNls_@dhflagfootball.jpg" controls playsinline preload="metadata"></video>
+              </div>
+              <div class="clip-note">
+                <span>DH Flag Football · 0:13</span>
+                <a href="preview.html#2rOdrFzcNls">Galerie</a>
+              </div>
+            </article>
+
+            <article class="post">
+              <div class="role"><span class="tag-num">ÉTAPE 2</span><h5>Poste receveur</h5></div>
+              <p class="keyline">Cut <span>→</span> catch <span>→</span> accélération</p>
+              <ul class="points">
+                <li>Un seul exercice : cut, catch, <b>accélération après réception</b>.</li>
+                <li>Pas de file de receveurs : le suivant démarre immédiatement.</li>
+              </ul>
+              <div class="go-next">FINI <span>→ VA RUSHER LE QB</span></div>
+              <p class="goal"><b>Objectif&nbsp;:</b> appuis propres, mains sûres, courir après le catch.</p>
+              <div class="player">
+                <img src="thumbs/Dczym60zlH0_colleenaugustinmma.jpg" alt="Aperçu du poste receveur">
+                <video src="videos/Dczym60zlH0_colleenaugustinmma.mp4" poster="thumbs/Dczym60zlH0_colleenaugustinmma.jpg" controls playsinline preload="metadata"></video>
+              </div>
+              <div class="clip-note">
+                <span>Colleen Augustin · 2:19</span>
+                <a href="preview.html#Dczym60zlH0">Galerie</a>
+              </div>
+            </article>
+
+            <article class="post">
+              <div class="role"><span class="tag-num">ÉTAPE 4</span><h5>Poste défense</h5></div>
+              <p class="keyline">Réaction <span>→</span> angle <span>→</span> flag</p>
+              <ul class="points">
+                <li>Réagir, <b>fermer l'angle</b>, prendre le flag.</li>
+                <li>Inversion des rôles immédiatement. Très peu d'attente, très cardio.</li>
+              </ul>
+              <div class="go-next">FINI <span>→ VA RECEVOIR AU QB</span></div>
+              <p class="goal"><b>Objectif&nbsp;:</b> le premier pas, l'angle, le flag.</p>
+              <div class="player">
+                <img src="thumbs/DdFXgBFvyGk_flaglabperformance.jpg" alt="Aperçu du poste défense">
+                <video src="videos/DdFXgBFvyGk_flaglabperformance.mp4" poster="thumbs/DdFXgBFvyGk_flaglabperformance.jpg" controls playsinline preload="metadata"></video>
+              </div>
+              <div class="clip-note">
+                <span>Flag Lab Performance · 0:20</span>
+                <a href="preview.html#DdFXgBFvyGk">Galerie</a>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <div class="refs">
+          <b>Références hors circuit</b>
+          <a class="ref" href="preview.html#DbqgFBStgE0"><img src="thumbs/DbqgFBStgE0_martamathews_.jpg" alt="">Mains — avant-séance</a>
+          <a class="ref" href="preview.html#DcjO5jbgQqt"><img src="thumbs/DcjO5jbgQqt_flyte_club.jpg" alt="">Hanches — variante A</a>
+          <a class="ref" href="preview.html#Dc1OYpMtbvT"><img src="thumbs/Dc1OYpMtbvT_martamathews_.jpg" alt="">Hanches — variante B</a>
         </div>
 
-        <div class="workshops">
-
-          <!-- Atelier 1 -->
-          <section class="shop">
-            <header>
-              <span class="num">ATELIER 1</span>
-              <h4>QB — 3-ball drill + RUSHER</h4>
-              <span class="dur">18 min</span>
-            </header>
-            <p class="sub">Vidéo principale : <code>2rOdrFzcNls_@dhflagfootball.mp4</code></p>
-
-            <div class="cols">
-              <div>
-                <p class="keyline">Slant <span>→</span> Out <span>→</span> Go</p>
-                <ul class="points">
-                  <li><b>QB + snapper + receveur + rusher.</b> Le rusher part à chaque action.</li>
-                  <li>Le QB adapte : slant <b>rapide et dosée</b>, out <b>timing et précision</b>, go <b>plus profond</b>.</li>
-                  <li>Avec tes <b>2 QB</b> : 3 passes, puis changement de QB. Ça tourne sans arrêt.</li>
-                </ul>
-                <p class="goal"><b>Objectif&nbsp;:</b> énormément de répétitions — et même sous fatigue, la balle doit rester catchable.</p>
-              </div>
-
-              <div>
-                <div class="player">
-                  <img src="thumbs/2rOdrFzcNls_@dhflagfootball.jpg" alt="Aperçu du 3-ball drill">
-                  <video src="videos/2rOdrFzcNls_@dhflagfootball.mp4" poster="thumbs/2rOdrFzcNls_@dhflagfootball.jpg" controls playsinline preload="metadata"></video>
-                </div>
-                <div class="clip-note">
-                  <span>DH Flag Football · 0:13</span>
-                  <a href="preview.html#2rOdrFzcNls">Galerie</a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Atelier 2 -->
-          <section class="shop">
-            <header>
-              <span class="num">ATELIER 2</span>
-              <h4>Receveurs — cut, catch, accélération</h4>
-              <span class="dur">18 min</span>
-            </header>
-            <p class="sub">Vidéo : <code>Dczym60zlH0_colleenaugustinmma.mp4</code></p>
-
-            <div class="cols">
-              <div>
-                <p class="keyline">Départ <span>→</span> cut <span>→</span> catch <span>→</span> sprint</p>
-                <ul class="points">
-                  <li><b>Un seul exercice :</b> départ, tracé ou cut, catch, <b>accélération après réception</b>, retour par l'extérieur.</li>
-                  <li>Le suivant démarre <b>immédiatement</b> — pas de longue file. Deux lignes identiques si vous êtes nombreux.</li>
-                </ul>
-                <p class="goal"><b>Objectif&nbsp;:</b> appuis propres, mains sûres, et courir après le catch.</p>
-              </div>
-
-              <div>
-                <div class="player">
-                  <img src="thumbs/Dczym60zlH0_colleenaugustinmma.jpg" alt="Aperçu de l'atelier receveurs">
-                  <video src="videos/Dczym60zlH0_colleenaugustinmma.mp4" poster="thumbs/Dczym60zlH0_colleenaugustinmma.jpg" controls playsinline preload="metadata"></video>
-                </div>
-                <div class="clip-note">
-                  <span>Colleen Augustin · 2:19</span>
-                  <a href="preview.html#Dczym60zlH0">Galerie</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="refs">
-              <p>Pour travailler les mains en début de séance — référence seulement, <b>pas un deuxième atelier mardi</b>.</p>
-              <div class="row">
-                <a class="ref" href="preview.html#DbqgFBStgE0">
-                  <img src="thumbs/DbqgFBStgE0_martamathews_.jpg" alt="">
-                  <span class="txt"><b>Mains · avant-séance</b><span>martamathews_ · 0:18</span></span>
-                </a>
-              </div>
-            </div>
-          </section>
-
-          <!-- Atelier 3 -->
-          <section class="shop">
-            <header>
-              <span class="num">ATELIER 3</span>
-              <h4>Défense — réaction + FLAG PULL</h4>
-              <span class="dur">18 min</span>
-            </header>
-            <p class="sub">Vidéo principale : <code>DdFXgBFvyGk_flaglabperformance.mp4</code></p>
-
-            <div class="cols">
-              <div>
-                <p class="keyline">Déclenche <span>→</span> réagis <span>→</span> ferme l'angle <span>→</span> flag</p>
-                <ul class="points">
-                  <li>L'attaquant déclenche, le défenseur <b>réagit</b>, <b>ferme l'angle</b>, prend le flag.</li>
-                  <li>Puis <b>inversion des rôles immédiatement</b>.</li>
-                  <li>Très peu d'attente. Très cardio.</li>
-                </ul>
-                <p class="goal"><b>Objectif&nbsp;:</b> le premier pas, l'angle, et le flag — sans temps mort.</p>
-              </div>
-
-              <div>
-                <div class="player">
-                  <img src="thumbs/DdFXgBFvyGk_flaglabperformance.jpg" alt="Aperçu de l'atelier défense">
-                  <video src="videos/DdFXgBFvyGk_flaglabperformance.mp4" poster="thumbs/DdFXgBFvyGk_flaglabperformance.jpg" controls playsinline preload="metadata"></video>
-                </div>
-                <div class="clip-note">
-                  <span>Flag Lab Performance · 0:20</span>
-                  <a href="preview.html#DdFXgBFvyGk">Galerie</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="refs">
-              <p>Mouvement de hanches que l'attaquant peut utiliser dans le drill — <b>des gestes, pas de nouveaux ateliers</b>.</p>
-              <div class="row">
-                <a class="ref" href="preview.html#DcjO5jbgQqt">
-                  <img src="thumbs/DcjO5jbgQqt_flyte_club.jpg" alt="">
-                  <span class="txt"><b>Hanches · variante A</b><span>flyte_club · 0:27</span></span>
-                </a>
-                <a class="ref" href="preview.html#Dc1OYpMtbvT">
-                  <img src="thumbs/Dc1OYpMtbvT_martamathews_.jpg" alt="">
-                  <span class="txt"><b>Hanches · variante B</b><span>martamathews_ · 0:14</span></span>
-                </a>
-              </div>
-            </div>
-          </section>
-
-        </div>
       </div>
     </article>
 
@@ -1006,7 +1175,18 @@
           <li>Pompes <b>10</b></li>
           <li>Abdos <b>10</b></li>
           <li>Burpees <b>5</b></li>
-          <li>Navette 20 m <b>aller + retour</b></li>
+          <li class="shuttle-item">
+            <span class="lbl">Sprint navette <em>10 m → toucher la ligne → 10 m retour</em></span>
+            <b class="total">20 m total</b>
+            <span class="shuttle">
+              <span class="pt"></span>
+              <span class="seg">
+                <span class="len">10 m</span>
+                <span class="dirs"><span>aller →</span><span>← retour</span></span>
+              </span>
+              <span class="pt"></span>
+            </span>
+          </li>
         </ol>
       </div>
     </article>
