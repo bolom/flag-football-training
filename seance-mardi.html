@@ -355,7 +355,7 @@
 
   .goal b { color: var(--muted); font-weight: 600; }
 
-  /* ---------- Circuit technique ---------- */
+  /* ---------- Circuit technique : le parcours ---------- */
 
   .circuit {
     padding: 22px;
@@ -369,7 +369,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 9px 14px;
-    margin-bottom: 2px;
+    margin-bottom: 20px;
   }
 
   .fixed {
@@ -391,235 +391,295 @@
   .circuit-head p { margin: 0; font-size: 13.5px; color: var(--muted); }
   .circuit-head p b { color: var(--text); font-weight: 620; }
 
-  .chain {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 30px;
-    margin: 20px 0 0;
-    padding: 0;
-    list-style: none;
+  .crowd {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-left: auto;
+    font-size: 12.5px;
+    color: var(--muted);
   }
 
-  .step {
+  .crowd b { color: var(--text); font-weight: 620; }
+
+  .crowd i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* --- la grille en anneau --- */
+
+  .ring-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 116px minmax(0, 1fr);
+    grid-template-rows: minmax(158px, auto) 128px minmax(158px, auto);
+  }
+
+  .n1 { grid-area: 1 / 1; }
+  .a12 { grid-area: 1 / 2; }
+  .n2 { grid-area: 1 / 3; }
+  .a23 { grid-area: 2 / 3; }
+  .hub { grid-area: 2 / 2; }
+  .a41 { grid-area: 2 / 1; }
+  .n4 { grid-area: 3 / 1; }
+  .a34 { grid-area: 3 / 2; }
+  .n3 { grid-area: 3 / 3; }
+
+  /* --- le tracé et ses flèches --- */
+
+  .arc {
     position: relative;
     display: grid;
-    align-content: start;
-    gap: 2px;
-    padding: 13px 15px 14px;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-  }
-
-  .step.qb { border-color: var(--accent); }
-
-  .step .n {
-    display: grid;
     place-items: center;
-    width: 23px;
-    height: 23px;
-    margin-bottom: 6px;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 1px solid var(--line-strong);
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
+    min-height: 44px;
   }
 
-  .step.qb .n {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--accent-ink);
-    font-weight: 700;
-  }
+  .arc .seg { position: absolute; background: var(--line-strong); }
+  .arc.h .seg { left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; }
+  .arc.v .seg { top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; }
 
-  .step b { font-size: 15.5px; font-weight: 660; letter-spacing: -.015em; }
-  .step small { font-size: 12px; color: var(--muted); }
-
-  .step .where {
-    margin-top: 7px;
-    font-family: var(--mono);
-    font-size: 10.5px;
-    letter-spacing: .07em;
-    text-transform: uppercase;
-    color: var(--dim);
-  }
-
-  .step.qb .where { color: var(--accent); }
-
-  .step + .step::before {
-    content: "→";
-    position: absolute;
-    left: -24px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 19px;
-    line-height: 1;
-    color: var(--line-strong);
-  }
-
-  .loop-back {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 16px;
-    padding-top: 15px;
-    border-top: 1px dashed var(--line-strong);
-    font-size: 13.5px;
-    color: var(--muted);
-  }
-
-  .loop-back .glyph {
-    display: grid;
-    place-items: center;
-    width: 25px;
-    height: 25px;
-    flex: none;
-    border: 1px solid var(--line-strong);
-    border-radius: 50%;
+  .arc .tip {
+    position: relative;
+    padding: 2px 8px;
+    background: var(--bg);
     color: var(--accent);
-    font-size: 14px;
+    font-size: 22px;
+    line-height: 1;
   }
 
-  .loop-back b { color: var(--text); font-weight: 620; }
+  .arc.retour .seg { background: var(--accent); }
 
-  /* --- détail des postes --- */
-
-  .posts {
-    margin-top: 18px;
-    overflow: hidden;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-  }
-
-  .posts > h4 {
-    margin: 0;
-    padding: 13px 20px;
-    border-bottom: 1px solid var(--line);
-    font-size: 11.5px;
-    font-weight: 600;
+  .arc.retour .tag {
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    transform: translateX(-50%);
+    padding: 0 5px;
+    background: var(--bg);
+    font-family: var(--mono);
+    font-size: 9.5px;
     letter-spacing: .1em;
     text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .posts-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-
-  .post {
-    display: grid;
-    align-content: start;
-    gap: 11px;
-    padding: 18px 20px 20px;
-    border-left: 1px solid var(--line);
-  }
-
-  .post:first-child { border-left: 0; }
-
-  .post .role { display: flex; align-items: baseline; gap: 9px; }
-
-  .post .role .tag-num {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    letter-spacing: .08em;
     color: var(--accent);
     white-space: nowrap;
   }
 
-  .post .role h5 { margin: 0; font-size: 16px; font-weight: 660; letter-spacing: -.015em; }
+  .only-mobile { display: none; }
 
-  .post .keyline { margin: 0; font-size: 14.5px; font-weight: 630; }
-  .post .keyline span { color: var(--dim); padding: 0 3px; }
-  .post ul.points li { font-size: 12.5px; }
-  .post .goal, .post .clip-note { margin-top: 0; }
+  /* --- les postes --- */
 
-  .go-next {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 12px;
-    background: var(--surface-2);
-    border: 1px solid var(--line-strong);
-    border-radius: 9px;
-    font-size: 12px;
-    font-weight: 650;
-    letter-spacing: .03em;
-    text-transform: uppercase;
-  }
-
-  .go-next span { color: var(--accent); font-weight: 750; }
-
-  .post .player { max-width: 168px; }
-  .post .clip-note { justify-content: flex-start; gap: 12px; }
-
-  .player {
+  .node {
     position: relative;
-    aspect-ratio: 9 / 16;
-    overflow: hidden;
-    background: #000;
-    border: 1px solid var(--line);
+    display: grid;
+    align-content: start;
+    gap: 9px;
+    padding: 15px 17px 16px;
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
     border-radius: 12px;
   }
 
-  .player img,
-  .player video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
+  .node.qb { border-color: var(--accent); }
+
+  .node > header { display: flex; align-items: center; gap: 10px; }
+
+  .node .n {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--surface-2);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
   }
 
-  .player img { object-fit: cover; }
+  .node.qb .n { background: var(--accent); color: var(--accent-ink); font-weight: 700; }
 
-  .clip-note {
+  .node h4 { margin: 0; font-size: 16.5px; font-weight: 670; letter-spacing: -.015em; }
+
+  .node .at {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    white-space: nowrap;
+  }
+
+  .node.qb .at { color: var(--accent); }
+
+  .node .do { margin: 0; font-size: 13px; color: var(--muted); }
+
+  .players {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 9px;
+    align-items: center;
+    gap: 5px;
+    margin: 0;
     font-size: 11.5px;
     color: var(--dim);
   }
 
-  .clip-note a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line-strong); }
-  .clip-note a:hover { color: var(--text); }
+  .players i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); }
+  .players span { margin-left: 4px; }
 
-  .refs {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px 12px;
-    margin-top: 16px;
-    font-size: 12.5px;
-    color: var(--dim);
+  .next {
+    display: grid;
+    gap: 2px;
+    margin: 3px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
   }
 
-  .refs b { color: var(--muted); font-weight: 600; }
+  .next span {
+    font-family: -apple-system, "SF Pro Text", system-ui, sans-serif;
+    font-size: 17.5px;
+    font-weight: 700;
+    letter-spacing: -.015em;
+    text-transform: none;
+    color: var(--accent);
+  }
 
-  .ref {
+  .clip {
+    justify-self: start;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 5px 11px 5px 6px;
-    background: var(--surface-2);
+    gap: 7px;
+    padding: 5px 11px;
+    background: none;
     border: 1px solid var(--line);
     border-radius: 8px;
+    font-size: 11.5px;
     color: var(--muted);
-    font-size: 12px;
-    text-decoration: none;
+    cursor: pointer;
   }
 
-  .ref:hover { border-color: var(--line-strong); color: var(--text); }
+  .clip:hover { color: var(--text); border-color: var(--line-strong); }
 
-  .ref img {
-    width: 22px;
-    height: 22px;
+  .node .aside { margin: 0; font-size: 11.5px; color: var(--dim); }
+
+  /* --- le poste fixe, au centre --- */
+
+  .hub {
+    position: relative;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 5px;
+    padding: 14px 12px;
+    text-align: center;
+    background: var(--surface-2);
+    background: color-mix(in srgb, var(--accent) 15%, var(--bg));
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+  }
+
+  .hub .hub-tag {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .hub > b { font-size: 21px; font-weight: 720; letter-spacing: -.025em; }
+  .hub small { font-size: 11.5px; line-height: 1.45; color: var(--muted); }
+  .hub small b { font-size: inherit; font-weight: 700; color: var(--text); }
+
+  .loop-close {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 18px 0 0;
+    padding-top: 15px;
+    border-top: 1px dashed var(--line-strong);
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .loop-close .glyph {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
     flex: none;
-    object-fit: cover;
-    border-radius: 5px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    color: var(--accent);
+    font-size: 13px;
+  }
+
+  .loop-close b { color: var(--text); font-weight: 620; }
+
+  /* --- visionneuse --- */
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+  }
+
+  .overlay[hidden] { display: none; }
+
+  .overlay-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 6, .88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .overlay-panel {
+    position: relative;
+    display: grid;
+    gap: 12px;
+    justify-items: center;
+    max-width: min(460px, 92vw);
+  }
+
+  .overlay-panel video {
+    width: auto;
+    max-width: 100%;
+    max-height: 76vh;
     background: #000;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 14px;
+    display: block;
+  }
+
+  .overlay-cap {
+    margin: 0;
+    color: rgba(255, 255, 255, .72);
+    font-size: 12.5px;
+    text-align: center;
+  }
+
+  .overlay-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    background: #1d1d20;
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
   }
 
   /* ---------- Match & renfo ---------- */
@@ -768,12 +828,37 @@
     .rail .dot { position: static; align-self: center; }
     .rail .slot, .rail .at, .rail .len { padding-left: 0; margin: 0; }
     .circuit { padding: 16px; }
-    .chain { grid-template-columns: minmax(0, 1fr); gap: 26px; }
-    .step + .step::before { content: "↓"; left: 50%; top: -23px; transform: translateX(-50%); }
-    .posts-grid { grid-template-columns: minmax(0, 1fr); }
-    .post { border-left: 0; border-top: 1px solid var(--line); }
-    .post:first-child { border-top: 0; }
-    .post .player { max-width: 190px; }
+    .circuit-head { margin-bottom: 14px; }
+    .ring-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
+    .n1, .n2, .n3, .n4, .hub, .a12, .a23, .a34, .a41 { grid-area: auto; }
+    .hub { order: -1; }
+    .arc { min-height: 56px; }
+    .arc.h .seg {
+      left: 50%;
+      right: auto;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      height: auto;
+      margin: 0 0 0 -1px;
+    }
+    .only-desktop { display: none; }
+    .only-mobile { display: inline; }
+    .arc.retour {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      min-height: 68px;
+    }
+    .arc.retour .tag {
+      position: static;
+      transform: none;
+      padding: 3px 10px 3px 2px;
+      font-size: 10.5px;
+    }
+    .arc.retour .tip { padding: 3px 2px 3px 10px; }
+
   }
 
   /* ---------- Version terrain allégée ---------- */
@@ -808,19 +893,7 @@
     padding: 18px 0;
   }
 
-  .step { background: transparent; }
-
-  .posts {
-    background: transparent;
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0;
-  }
-
-  .post {
-    padding-top: 16px;
-    padding-bottom: 18px;
-  }
+  .node { border-radius: 10px; }
 
   .half,
   .amrap li,
@@ -838,6 +911,8 @@
     .memo { margin-top: 8px; }
     .body h3 { font-size: 19px; }
     .circuit { padding-top: 12px; }
+    .ring-grid { grid-template-rows: none; }
+    .arc { min-height: 46px; }
   }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -853,10 +928,11 @@
     .no-print { display: none !important; }
     .top { position: static; background: none; border: 0; padding: 0; }
     .wrap { max-width: none; padding: 0; }
-    .post, .half, .memo, .goal, .amrap li, .circuit, .posts { break-inside: avoid; }
+    .node, .hub, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
     h3, h4 { break-after: avoid; }
-    .player { display: none; }
-    .clip-note { justify-content: flex-start; gap: 14px; margin-top: 6px; }
+    .clip { display: none; }
+    .ring-grid { grid-template-rows: minmax(0, auto) 96px minmax(0, auto); }
+    .arc .tip { font-size: 18px; }
     .blocks { gap: 16px; }
     .block { gap: 14px; grid-template-columns: 82px minmax(0, 1fr); }
     .rail { display: block; padding-top: 2px; }
@@ -867,9 +943,8 @@
     .memo .tag { display: inline; }
     .rail .slot { font-size: 12px; }
     .circuit { padding: 14px 16px; }
-    .chain { gap: 22px; }
-    .posts { margin-top: 12px; }
-    .post { padding: 12px 14px; }
+    .node { padding: 11px 13px 12px; }
+    .next span { font-size: 15pt; }
     .memo { padding: 12px 16px; margin-bottom: 18px; }
     .memo li { font-size: 12pt; }
     .keyline { font-size: 15pt; margin-bottom: 10px; }
@@ -935,111 +1010,118 @@
         </header>
         <p class="lead"><strong>5 min</strong> pour expliquer et placer. Ensuite <strong>un seul circuit continu</strong> : les QB ne bougent jamais, les autres joueurs changent de rôle à chaque passage.</p>
 
-        <section class="circuit" aria-label="Circuit continu">
+        <section class="circuit" aria-label="Parcours du circuit">
+
           <div class="circuit-head">
             <span class="fixed"><span class="k">QB</span> poste fixe</span>
-            <p>Les deux QB restent à l'atelier QB. <b>Pas de pause pour le QB.</b></p>
+            <p>Les 2 QB et le snapper ne quittent jamais leur poste. <b>Pas de pause pour le QB.</b></p>
+            <span class="crowd"><i></i><b>≈ 10 joueurs</b> répartis sur la boucle</span>
           </div>
 
-          <ol class="chain">
-            <li class="step qb">
-              <span class="n">1</span>
-              <b>Recevoir au QB</b>
-              <small>tracé puis passe</small>
-              <span class="where">au QB</span>
-            </li>
-            <li class="step">
-              <span class="n">2</span>
-              <b>Catch / cut</b>
-              <small>atelier receveur</small>
-              <span class="where">poste receveur</span>
-            </li>
-            <li class="step qb">
-              <span class="n">3</span>
-              <b>Rusher le QB</b>
-              <small>rush immédiat</small>
-              <span class="where">au QB</span>
-            </li>
-            <li class="step">
-              <span class="n">4</span>
-              <b>Flag pull</b>
-              <small>angle puis flag</small>
-              <span class="where">poste défense</span>
-            </li>
-          </ol>
+          <div class="ring-grid">
 
-          <div class="loop-back">
+            <div class="hub">
+              <span class="hub-tag">poste fixe</span>
+              <b>QB</b>
+              <small>étapes <b>1</b> et <b>3</b></small>
+            </div>
+
+            <!-- 1 -->
+            <article class="node n1 qb">
+              <header>
+                <span class="n">1</span>
+                <h4>Recevoir au QB</h4>
+                <span class="at">au QB</span>
+              </header>
+              <p class="do">tracé, puis réception de la passe</p>
+              <p class="players"><i></i><i></i><span>2 joueurs en attente</span></p>
+              <p class="next">fini <span>→ atelier receveur</span></p>
+              <button class="clip" type="button" data-clip="qb">
+                <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                voir le drill QB
+              </button>
+            </article>
+
+            <div class="arc h a12" aria-hidden="true">
+              <span class="seg"></span>
+              <span class="tip only-desktop">→</span>
+              <span class="tip only-mobile">↓</span>
+            </div>
+
+            <!-- 2 -->
+            <article class="node n2">
+              <header>
+                <span class="n">2</span>
+                <h4>Atelier receveur</h4>
+              </header>
+              <p class="do">cut, catch, accélération après réception</p>
+              <p class="players"><i></i><i></i><span>2 joueurs</span></p>
+              <p class="next">fini <span>→ va rusher le QB</span></p>
+              <button class="clip" type="button" data-clip="rec">
+                <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                voir le drill receveur
+              </button>
+            </article>
+
+            <div class="arc v a23" aria-hidden="true">
+              <span class="seg"></span>
+              <span class="tip">↓</span>
+            </div>
+
+            <!-- 3 -->
+            <article class="node n3 qb">
+              <header>
+                <span class="n">3</span>
+                <h4>Rusher du QB</h4>
+                <span class="at">au QB</span>
+              </header>
+              <p class="do">mettre la pression sur le QB, à chaque ballon</p>
+              <p class="players"><i></i><span>1 joueur</span></p>
+              <p class="next">fini <span>→ va en défense</span></p>
+              <p class="aside">Même poste que l'étape 1 : le QB ne s'arrête pas.</p>
+              <button class="clip" type="button" data-clip="qb">
+                <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                voir le drill QB
+              </button>
+            </article>
+
+            <div class="arc h a34" aria-hidden="true">
+              <span class="seg"></span>
+              <span class="tip only-desktop">←</span>
+              <span class="tip only-mobile">↓</span>
+            </div>
+
+            <!-- 4 -->
+            <article class="node n4">
+              <header>
+                <span class="n">4</span>
+                <h4>Atelier défense</h4>
+              </header>
+              <p class="do">réaction, angle, flag pull</p>
+              <p class="players"><i></i><i></i><i></i><span>3 joueurs</span></p>
+              <p class="next">fini <span>→ va recevoir au QB</span></p>
+              <button class="clip" type="button" data-clip="def">
+                <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+                voir le drill défense
+              </button>
+            </article>
+
+            <div class="arc v a41 retour" aria-hidden="true">
+              <span class="seg"></span>
+              <span class="tip only-desktop">↑</span>
+              <span class="tip only-mobile">↺</span>
+              <span class="tag only-desktop">retour</span>
+              <span class="tag only-mobile">retour à l'étape 1</span>
+            </div>
+
+          </div>
+
+          <p class="loop-close">
             <span class="glyph">↺</span>
-            <span><b>Retour à l'étape 1</b> — tu changes de rôle à chaque passage.</span>
-          </div>
+            <span><b>Personne n'attend&nbsp;:</b> après chaque passage tu avances d'un cran. Aucun groupe figé, aucune rotation programmée.</span>
+          </p>
+
         </section>
-
-        <section class="posts" aria-label="Détail des postes">
-          <h4>Ce qui se passe à chaque poste</h4>
-          <div class="posts-grid">
-
-            <article class="post">
-              <div class="role"><span class="tag-num">ÉTAPES 1 ET 3</span><h5>Poste QB</h5></div>
-              <p class="keyline">Slant <span>→</span> Out <span>→</span> Go</p>
-              <ul class="points">
-                <li><b>1 QB fixe</b> + 1 snapper + 1 receveur + 1 rusher, et <b>plusieurs ballons</b>.</li>
-                <li><b>Snap</b> → rush immédiat → tracé → passe → <b>joueur suivant tout de suite</b>.</li>
-                <li>Le receveur part à l'atelier receveur, le rusher part à la défense : un autre joueur prend leur place.</li>
-                <li>Le QB adapte : slant <b>rapide et dosée</b>, out <b>timing et précision</b>, go <b>plus profond</b>.</li>
-              </ul>
-              <div class="go-next">PAS DE PAUSE <span>POUR LE QB</span></div>
-              <p class="goal"><b>Objectif&nbsp;:</b> pression + précision + dosage + répétition.</p>
-              <div class="player">
-                <img src="thumbs/2rOdrFzcNls_@dhflagfootball.jpg" alt="Aperçu du 3-ball drill">
-                <video src="videos/2rOdrFzcNls_@dhflagfootball.mp4" poster="thumbs/2rOdrFzcNls_@dhflagfootball.jpg" controls playsinline preload="metadata"></video>
-              </div>
-              <div class="clip-note">
-                <span>DH Flag Football · 0:13</span>
-                <a href="preview.html#2rOdrFzcNls">Galerie</a>
-              </div>
-            </article>
-
-            <article class="post">
-              <div class="role"><span class="tag-num">ÉTAPE 2</span><h5>Poste receveur</h5></div>
-              <p class="keyline">Cut <span>→</span> catch <span>→</span> accélération</p>
-              <ul class="points">
-                <li>Un seul exercice : cut, catch, <b>accélération après réception</b>.</li>
-                <li>Pas de file de receveurs : le suivant démarre immédiatement.</li>
-              </ul>
-              <div class="go-next">FINI <span>→ VA RUSHER LE QB</span></div>
-              <p class="goal"><b>Objectif&nbsp;:</b> appuis propres, mains sûres, courir après le catch.</p>
-              <div class="player">
-                <img src="thumbs/DcumOOqNKAi_issa_rantbro(1).jpg" alt="Aperçu du poste receveur">
-                <video src="videos/DcumOOqNKAi_issa_rantbro(1).mp4" poster="thumbs/DcumOOqNKAi_issa_rantbro(1).jpg" controls playsinline preload="metadata"></video>
-              </div>
-              <div class="clip-note">
-                <span>Issa Rantbro</span>
-                <a href="preview.html#DcumOOqNKAi">Galerie</a>
-              </div>
-            </article>
-
-            <article class="post">
-              <div class="role"><span class="tag-num">ÉTAPE 4</span><h5>Poste défense</h5></div>
-              <p class="keyline">Réaction <span>→</span> angle <span>→</span> flag</p>
-              <ul class="points">
-                <li>Réagir, <b>fermer l'angle</b>, prendre le flag.</li>
-                <li>Inversion des rôles immédiatement. Très peu d'attente, très cardio.</li>
-              </ul>
-              <div class="go-next">FINI <span>→ VA RECEVOIR AU QB</span></div>
-              <p class="goal"><b>Objectif&nbsp;:</b> le premier pas, l'angle, le flag.</p>
-              <div class="player">
-                <img src="thumbs/DdFXgBFvyGk_flaglabperformance.jpg" alt="Aperçu du poste défense">
-                <video src="videos/DdFXgBFvyGk_flaglabperformance.mp4" poster="thumbs/DdFXgBFvyGk_flaglabperformance.jpg" controls playsinline preload="metadata"></video>
-              </div>
-              <div class="clip-note">
-                <span>Flag Lab Performance · 0:20</span>
-                <a href="preview.html#DdFXgBFvyGk">Galerie</a>
-              </div>
-            </article>
-
-          </div>
-        </section>
-
 
       </div>
     </article>
@@ -1142,6 +1224,76 @@
 
   theme.addEventListener("click", function () {
     setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+  });
+})();
+</script>
+<div class="overlay" id="clipOverlay" hidden>
+  <div class="overlay-bg" data-close></div>
+  <div class="overlay-panel" role="dialog" aria-modal="true" aria-label="Vidéo du poste">
+    <video id="clipVideo" controls playsinline preload="none"></video>
+    <p class="overlay-cap" id="clipCaption"></p>
+    <button class="overlay-close" type="button" data-close aria-label="Fermer">
+      <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var CLIPS = {
+    qb: {
+      src: "videos/2rOdrFzcNls_@dhflagfootball.mp4",
+      poster: "thumbs/2rOdrFzcNls_@dhflagfootball.jpg",
+      caption: "Poste QB — 3-ball drill : slant, out, go. Un rusher part à chaque action, plusieurs ballons, aucun temps mort."
+    },
+    rec: {
+      src: "videos/DcumOOqNKAi_issa_rantbro.mp4",
+      poster: "thumbs/DcumOOqNKAi_issa_rantbro.jpg",
+      caption: "Poste receveur — cut, catch, puis accélération après la réception. Le suivant part immédiatement."
+    },
+    def: {
+      src: "videos/DdFXgBFvyGk_flaglabperformance.mp4",
+      poster: "thumbs/DdFXgBFvyGk_flaglabperformance.jpg",
+      caption: "Poste défense — réaction, fermeture de l'angle, flag pull. Inversion des rôles tout de suite."
+    }
+  };
+
+  var overlay = document.getElementById("clipOverlay");
+  var video = document.getElementById("clipVideo");
+  var caption = document.getElementById("clipCaption");
+
+  function open(key) {
+    var clip = CLIPS[key];
+    if (!clip || !overlay) return;
+    video.src = clip.src;
+    video.poster = clip.poster;
+    caption.textContent = clip.caption;
+    overlay.hidden = false;
+    document.body.style.overflow = "hidden";
+    video.play().catch(function () {});
+  }
+
+  function close() {
+    if (!overlay || overlay.hidden) return;
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+    overlay.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-clip]"), function (button) {
+    button.addEventListener("click", function () { open(button.dataset.clip); });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-close]"), function (node) {
+    node.addEventListener("click", close);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") close();
   });
 })();
 </script>

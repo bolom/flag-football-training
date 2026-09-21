@@ -31,7 +31,7 @@ Résultat : **23/23 liens résolus, 0 erreur, 23 URLs uniques**.
 | `preview.template.html` | Gabarit de la galerie, avec le marqueur `__DATA__` |
 | `build-preview.py` | Régénère `preview.html` + les vignettes manquantes |
 | `thumbs/` | Une vignette JPG par vidéo (480 px de large) |
-| `seance-mardi.html` | Feuille de séance de 2 h (blocs, circuit technique continu, chrono, AMRAP) |
+| `seance-mardi.html` | Feuille de séance de 2 h (blocs, circuit technique en parcours, AMRAP) |
 
 ## Aperçu
 
