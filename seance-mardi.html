@@ -1001,7 +1001,7 @@
   .half h5 { margin: 4px 0 6px; font-size: 15px; font-weight: 640; }
   .half p { margin: 0; font-size: 13px; color: var(--muted); }
 
-  .amrap {
+  .finisher {
     display: grid;
     gap: 8px;
     margin: 0 0 16px;
@@ -1010,7 +1010,7 @@
     counter-reset: move;
   }
 
-  .amrap li {
+  .finisher li {
     display: flex;
     align-items: baseline;
     gap: 14px;
@@ -1021,7 +1021,7 @@
     font-size: 16px;
   }
 
-  .amrap li::before {
+  .finisher li::before {
     counter-increment: move;
     content: counter(move);
     font-family: var(--mono);
@@ -1029,7 +1029,7 @@
     color: var(--dim);
   }
 
-  .amrap b { margin-left: auto; font-family: var(--mono); font-size: 15px; font-weight: 600; }
+  .finisher b { margin-left: auto; font-family: var(--mono); font-size: 15px; font-weight: 600; }
 
   footer {
     margin-top: 44px;
@@ -1115,7 +1115,7 @@
   .loop { border-radius: 10px; }
 
   .half,
-  .amrap li,
+  .finisher li,
   .goal {
     background: transparent;
   }
@@ -1146,7 +1146,7 @@
     .no-print { display: none !important; }
     .top { position: static; background: none; border: 0; padding: 0; }
     .wrap { max-width: none; padding: 0; }
-    .node, .loop, .warm-step, .route, .frames, .ex-key, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
+    .node, .loop, .warm-step, .route, .frames, .ex-key, .half, .memo, .goal, .finisher li, .circuit { break-inside: avoid; }
     h3, h4 { break-after: avoid; }
     .clip { display: none; }
     .headline { font-size: 15pt; }
@@ -1991,7 +1991,7 @@
         </header>
         <p class="lead">Finisher collectif, un seul passage. Chacun avance à son rythme — on ne chronomètre personne, on finit ensemble.</p>
 
-        <ol class="amrap">
+        <ol class="finisher">
           <li>Squats <b>100</b></li>
           <li>Pompes <b>50</b></li>
           <li>Abdos <b>100</b></li>
