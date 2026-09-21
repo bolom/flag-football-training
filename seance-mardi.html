@@ -625,16 +625,6 @@
 
   .clip:hover { color: var(--text); border-color: var(--line-strong); }
 
-  .ref-line {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    margin: 14px 0 0;
-    font-size: 12.5px;
-    color: var(--dim);
-  }
-
   .loop-close {
     display: flex;
     align-items: center;
@@ -812,6 +802,84 @@
   }
 
   .frame figcaption span { font-size: 11.5px; line-height: 1.4; color: var(--muted); }
+
+  /* --- l'essentiel, toujours visible --- */
+
+  .ex-key { display: grid; gap: 8px; }
+
+  .ex-key h5 {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .ex-key ul {
+    display: grid;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ex-key li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 13.5px;
+    color: var(--text);
+    text-wrap: pretty;
+  }
+
+  .ex-key li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 7px;
+    height: 7px;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+
+  /* --- le reste, replié --- */
+
+  .ex-more > summary {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    list-style: none;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .ex-more > summary::-webkit-details-marker { display: none; }
+  .ex-more > summary:hover { color: var(--text); }
+
+  .ex-more > summary::before {
+    content: "+";
+    display: grid;
+    place-items: center;
+    width: 17px;
+    height: 17px;
+    flex: none;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    font-size: 11px;
+    color: var(--accent);
+  }
+
+  .ex-more[open] > summary::before { content: "−"; }
+  .ex-more[open] > summary { margin-bottom: 4px; }
+  .ex-more .chain { margin-top: 12px; }
+  .ex-more .ex-cols { border-top: 0; padding-top: 0; margin-top: 6px; }
 
   /* --- déroulement / consignes / à éviter --- */
 
@@ -1103,7 +1171,7 @@
     .no-print { display: none !important; }
     .top { position: static; background: none; border: 0; padding: 0; }
     .wrap { max-width: none; padding: 0; }
-    .node, .loop, .warm-step, .frames, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
+    .node, .loop, .warm-step, .frames, .ex-key, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
     h3, h4 { break-after: avoid; }
     .clip { display: none; }
     .headline { font-size: 15pt; }
@@ -1121,6 +1189,9 @@
     .memo .tag { display: inline; }
     .rail .slot { font-size: 12px; }
     .circuit { padding: 14px 16px; }
+    .ex-key li { font-size: 8.5pt; }
+    .ex-more > summary { display: none; }
+    .ex-more .ex-cols { border-top: 0; }
     .warm-step { padding: 9px 11px 10px; gap: 7px; }
     .warm-step h4 { font-size: 10.5pt; }
     .warm-step p, .ex-steps li, .ex-col ul.points li { font-size: 8pt; }
@@ -1211,7 +1282,7 @@
             <header>
               <span class="warm-time">5–10 min</span>
               <span class="ex-num">01</span>
-              <h4>Apprendre le dip</h4>
+              <h4>Préparer le dip : descendre et contrôler</h4>
             </header>
 
             <p class="ex-goal"><b>Objectif&nbsp;:</b> faire descendre fortement les hanches et le corps sans perdre l'équilibre ni le contrôle du ballon. <em>Phase d'apprentissage&nbsp;: ce n'est pas encore un sprint.</em></p>
@@ -1247,44 +1318,57 @@
                 </figure>
             </div>
 
-            <div class="ex-cols">
-              <div class="ex-col">
-                <h5>Déroulement</h5>
-                <ol class="ex-steps">
-                  <li>Ballon tenu <b>haut, au-dessus de la tête</b>.</li>
-                  <li>Descente <b>très basse</b> sur les jambes.</li>
-                  <li>Passage en <b>fente</b>, genou qui descend près du sol.</li>
-                  <li><b>Transfert</b> du poids d'un côté à l'autre, sans se redresser.</li>
-                  <li><b>Avancée progressive</b> entre les plots, ballon contrôlé du début à la fin.</li>
-                </ol>
-              </div>
-              <div class="ex-col">
-                <h5>Consignes</h5>
-                <ul class="points">
-                  <li>Bassin très bas.</li>
-                  <li>Genou proche du sol, sans s'écraser dessus.</li>
-                  <li>Poitrine contrôlée.</li>
-                  <li>Ballon sécurisé.</li>
-                  <li>Remonter juste assez pour pouvoir repartir.</li>
-                  <li>Alterner les côtés.</li>
-                  <li>Mouvement propre avant vitesse.</li>
-                </ul>
-              </div>
-              <div class="ex-col">
-                <h5>À éviter</h5>
-                <ul class="points warn">
-                  <li>Se redresser entre les mouvements.</li>
-                  <li>S'écraser sur le genou.</li>
-                  <li>Perdre le ballon, ou le baisser.</li>
-                  <li>Chercher la vitesse avant la propreté du geste.</li>
-                </ul>
-              </div>
+            <div class="ex-key">
+              <h5>L'essentiel</h5>
+              <ul>
+                <li>Bassin très bas.</li>
+                <li>Genou proche du sol, sans s'écraser dessus.</li>
+                <li>Remonter juste assez pour pouvoir repartir.</li>
+              </ul>
             </div>
 
             <button class="clip" type="button" data-clip="ex1">
               <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
               Voir dans la vidéo <i>· 13 s</i>
             </button>
+
+            <details class="ex-more">
+              <summary>Détails : déroulement complet, toutes les consignes, erreurs à éviter</summary>
+
+              <div class="ex-cols">
+                <div class="ex-col">
+                  <h5>Déroulement</h5>
+                  <ol class="ex-steps">
+                    <li>Ballon tenu <b>haut, au-dessus de la tête</b>.</li>
+                    <li>Descente <b>très basse</b> sur les jambes.</li>
+                    <li>Passage en <b>fente</b>, genou qui descend près du sol.</li>
+                    <li><b>Transfert</b> du poids d'un côté à l'autre, sans se redresser.</li>
+                    <li><b>Avancée progressive</b> entre les plots, ballon contrôlé du début à la fin.</li>
+                  </ol>
+                </div>
+                <div class="ex-col">
+                  <h5>Consignes</h5>
+                  <ul class="points">
+                    <li>Bassin très bas.</li>
+                    <li>Genou proche du sol, sans s'écraser dessus.</li>
+                    <li>Poitrine contrôlée.</li>
+                    <li>Ballon sécurisé.</li>
+                    <li>Remonter juste assez pour pouvoir repartir.</li>
+                    <li>Alterner les côtés.</li>
+                    <li>Mouvement propre avant vitesse.</li>
+                  </ul>
+                </div>
+                <div class="ex-col">
+                  <h5>À éviter</h5>
+                  <ul class="points warn">
+                    <li>Se redresser entre les mouvements.</li>
+                    <li>S'écraser sur le genou.</li>
+                    <li>Perdre le ballon, ou le baisser.</li>
+                    <li>Chercher la vitesse avant la propreté du geste.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
           </article>
 
           <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
@@ -1293,12 +1377,10 @@
             <header>
               <span class="warm-time">10–15 min</span>
               <span class="ex-num">02</span>
-              <h4>Le dip en mouvement</h4>
+              <h4>Dip en mouvement : esquiver et repartir</h4>
             </header>
 
             <p class="ex-goal"><b>Objectif&nbsp;:</b> ne pas faire un dip statique — descendre sous la tentative de flag et repartir immédiatement.</p>
-
-            <p class="chain">Arrivée <span>→</span> descente <span>→</span> dip <span>→</span> appui / changement de direction <span>→</span> sortie <span>→</span> accélération</p>
 
             <div class="frames">
                 <figure class="frame">
@@ -1331,58 +1413,65 @@
                 </figure>
             </div>
 
-            <div class="ex-cols">
-              <div class="ex-col">
-                <h5>Déroulement</h5>
-                <ol class="ex-steps">
-                  <li><b>Arriver en course</b> avec le ballon.</li>
-                  <li><b>Approcher le plot</b> sans casser l'allure.</li>
-                  <li><b>Abaisser brutalement</b> le centre de gravité : dip très bas.</li>
-                  <li><b>Planter / appuyer</b> pour changer de trajectoire.</li>
-                  <li><b>Protéger le ballon</b> pendant le changement de direction.</li>
-                  <li><b>Ressortir et réaccélérer</b> immédiatement.</li>
-                </ol>
-              </div>
-              <div class="ex-col">
-                <h5>Consignes</h5>
-                <ul class="points">
-                  <li>Arriver avec de la vitesse contrôlée.</li>
-                  <li>Ne pas freiner complètement avant le dip.</li>
-                  <li>Descendre les hanches.</li>
-                  <li>Genou très bas.</li>
-                  <li>Garder le ballon sécurisé.</li>
-                  <li>Sortir du dip vers un côté.</li>
-                  <li>Réaccélérer immédiatement.</li>
-                  <li>Pas de pause en position basse.</li>
-                </ul>
-              </div>
-              <div class="ex-col">
-                <h5>À éviter</h5>
-                <ul class="points warn">
-                  <li>Freiner complètement avant le dip.</li>
-                  <li>Faire un dip statique, s'arrêter en bas.</li>
-                  <li>Descendre sans changer de direction.</li>
-                  <li>Ressortir sans réaccélérer.</li>
-                  <li>Ballon exposé pendant le dip.</li>
-                </ul>
-              </div>
+            <div class="ex-key">
+              <h5>L'essentiel</h5>
+              <ul>
+                <li>Ne pas freiner complètement avant le dip.</li>
+                <li>Descendre les hanches, genou très bas.</li>
+                <li>Sortir du dip vers un côté et réaccélérer tout de suite.</li>
+              </ul>
             </div>
 
             <button class="clip" type="button" data-clip="ex2">
               <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
               Voir dans la vidéo <i>· 27 s</i>
             </button>
+
+            <details class="ex-more">
+              <summary>Détails : déroulement complet, toutes les consignes, erreurs à éviter</summary>
+
+              <p class="chain">Arrivée <span>→</span> descente <span>→</span> dip <span>→</span> appui / changement de direction <span>→</span> sortie <span>→</span> accélération</p>
+
+              <div class="ex-cols">
+                <div class="ex-col">
+                  <h5>Déroulement</h5>
+                  <ol class="ex-steps">
+                    <li><b>Arriver en course</b> avec le ballon.</li>
+                    <li><b>Approcher le plot</b> sans casser l'allure.</li>
+                    <li><b>Abaisser brutalement</b> le centre de gravité : dip très bas.</li>
+                    <li><b>Planter / appuyer</b> pour changer de trajectoire.</li>
+                    <li><b>Protéger le ballon</b> pendant le changement de direction.</li>
+                    <li><b>Ressortir et réaccélérer</b> immédiatement.</li>
+                  </ol>
+                </div>
+                <div class="ex-col">
+                  <h5>Consignes</h5>
+                  <ul class="points">
+                    <li>Arriver avec de la vitesse contrôlée.</li>
+                    <li>Ne pas freiner complètement avant le dip.</li>
+                    <li>Descendre les hanches.</li>
+                    <li>Genou très bas.</li>
+                    <li>Garder le ballon sécurisé.</li>
+                    <li>Sortir du dip vers un côté.</li>
+                    <li>Réaccélérer immédiatement.</li>
+                    <li>Pas de pause en position basse.</li>
+                  </ul>
+                </div>
+                <div class="ex-col">
+                  <h5>À éviter</h5>
+                  <ul class="points warn">
+                    <li>Freiner complètement avant le dip.</li>
+                    <li>Faire un dip statique, s'arrêter en bas.</li>
+                    <li>Descendre sans changer de direction.</li>
+                    <li>Ressortir sans réaccélérer.</li>
+                    <li>Ballon exposé pendant le dip.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
           </article>
 
         </div>
-
-        <p class="ref-line">
-          <span>Référence complémentaire&nbsp;:</span>
-          <button class="clip" type="button" data-clip="xyp">
-            <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-            appuis
-          </button>
-        </p>
 
       </div>
     </article>
@@ -1698,11 +1787,7 @@
       start: 26.0,
       caption: "Exercice 02 — le dip en mouvement : arrivée en course, dip très bas au plot, appui, changement de direction, réaccélération."
     },
-    xyp: {
-      src: "videos/DdWjv_yla39_xypxox.mp4",
-      poster: "thumbs/DdWjv_yla39_xypxox.jpg",
-      caption: "Référence complémentaire — appuis et mobilité, en début d'échauffement."
-    }
+    
   };
 
   var overlay = document.getElementById("clipOverlay");
@@ -1745,6 +1830,22 @@
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") close();
+  });
+
+  /* impression : on déplie les détails, la fiche papier doit être complète */
+  var reopened = [];
+
+  window.addEventListener("beforeprint", function () {
+    reopened = [];
+    Array.prototype.forEach.call(document.querySelectorAll("details:not([open])"), function (item) {
+      item.open = true;
+      reopened.push(item);
+    });
+  });
+
+  window.addEventListener("afterprint", function () {
+    reopened.forEach(function (item) { item.open = false; });
+    reopened = [];
   });
 })();
 </script>
