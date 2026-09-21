@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mardi — séance 2 h</title>
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --surface: #141416;
+    --surface-2: #1d1d20;
+    --line: rgba(255, 255, 255, .11);
+    --line-strong: rgba(255, 255, 255, .22);
+    --text: rgba(255, 255, 255, .94);
+    --muted: rgba(255, 255, 255, .55);
+    --dim: rgba(255, 255, 255, .34);
+    --accent: oklch(.88 .19 128);
+    --accent-ink: #0a0a0b;
+    --warn: oklch(.82 .16 62);
+    --radius: 14px;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+  }
+
+  [data-theme="light"] {
+    --bg: #f4f3ef;
+    --surface: #ffffff;
+    --surface-2: #eceae3;
+    --line: rgba(20, 20, 22, .12);
+    --line-strong: rgba(20, 20, 22, .24);
+    --text: rgba(16, 16, 18, .93);
+    --muted: rgba(16, 16, 18, .58);
+    --dim: rgba(16, 16, 18, .4);
+    --accent: oklch(.55 .15 132);
+    --accent-ink: #ffffff;
+    --warn: oklch(.55 .14 55);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button, input, select { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- En-tête ---------- */
+
+  .top {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: saturate(1.4) blur(16px);
+    -webkit-backdrop-filter: saturate(1.4) blur(16px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .top .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 18px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .title { margin-right: auto; min-width: 0; }
+
+  .title h1 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 680;
+    letter-spacing: -.015em;
+  }
+
+  .title p {
+    margin: 0;
+    font-size: 12px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .start {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 12px;
+    height: 36px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+
+  .start label { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+
+  .start input {
+    width: 78px;
+    border: 0;
+    background: none;
+    outline: none;
+    font-family: var(--mono);
+    font-size: 13.5px;
+  }
+
+  .icon-btn {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    flex: none;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .icon-btn:hover { color: var(--text); }
+
+  /* ---------- Chrono ---------- */
+
+  .chrono {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 18px;
+    margin: 18px 0 26px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .clock {
+    font-family: var(--mono);
+    font-size: 46px;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    min-width: 3.6ch;
+  }
+
+  .clock.done { color: var(--accent); }
+
+  .chrono-mid { display: grid; gap: 9px; min-width: 0; }
+
+  .presets { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .chip {
+    padding: 5px 11px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 12.5px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+  }
+
+  .chip:hover { color: var(--text); }
+
+  .chip[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: transparent;
+    color: var(--accent-ink);
+    font-weight: 600;
+  }
+
+  .bar {
+    height: 6px;
+    background: var(--surface-2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .bar i {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width .25s linear;
+  }
+
+  .chrono-actions { display: flex; align-items: center; gap: 8px; }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .btn:hover { border-color: var(--line-strong); }
+
+  .btn.primary {
+    background: var(--accent);
+    border-color: transparent;
+    color: var(--accent-ink);
+    font-weight: 650;
+    min-width: 132px;
+    justify-content: center;
+  }
+
+  .btn.square { width: 40px; padding: 0; justify-content: center; }
+
+  /* ---------- Fiche mentale ---------- */
+
+  .memo {
+    padding: 20px 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 34px;
+  }
+
+  .memo h2 {
+    margin: 0 0 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .memo ol {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .memo li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 16.5px;
+    letter-spacing: -.01em;
+  }
+
+  .memo li::before {
+    counter-increment: step;
+    content: counter(step);
+    flex: none;
+    width: 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--dim);
+  }
+
+  .memo b { font-weight: 660; }
+  .memo .arrow { color: var(--dim); }
+  .memo .tag {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ---------- Blocs ---------- */
+
+  .blocks { display: grid; gap: 34px; }
+
+  .block {
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .rail { position: relative; padding-top: 3px; }
+
+  .rail::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 20px;
+    bottom: -34px;
+    width: 1px;
+    background: var(--line);
+  }
+
+  .block:last-child .rail::before { display: none; }
+
+  .rail .dot {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    border: 1px solid var(--line-strong);
+  }
+
+  .block.done .rail .dot { background: var(--accent); border-color: var(--accent); }
+
+  .rail .slot {
+    padding-left: 20px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .rail .at {
+    padding-left: 20px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--dim);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .rail .len {
+    padding-left: 20px;
+    margin-top: 5px;
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+
+  .body { min-width: 0; }
+
+  code {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .body > header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .body h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 660;
+    letter-spacing: -.02em;
+  }
+
+  .tick {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    height: 30px;
+    padding: 0 11px;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .tick .box {
+    display: grid;
+    place-items: center;
+    width: 13px;
+    height: 13px;
+    border: 1.5px solid var(--line-strong);
+    border-radius: 4px;
+    color: var(--accent-ink);
+    font-size: 9px;
+    line-height: 1;
+  }
+
+  .tick[aria-pressed="true"] { color: var(--text); border-color: var(--accent); }
+  .tick[aria-pressed="true"] .box { background: var(--accent); border-color: var(--accent); }
+
+  .lead {
+    margin: 0 0 16px;
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 68ch;
+  }
+
+  .lead strong { color: var(--text); font-weight: 620; }
+
+  .keyline {
+    margin: 0 0 18px;
+    font-size: 22px;
+    font-weight: 640;
+    letter-spacing: -.02em;
+  }
+
+  .keyline span { color: var(--dim); padding: 0 4px; }
+
+  ul.points {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 8px;
+  }
+
+  ul.points li {
+    position: relative;
+    padding-left: 17px;
+    font-size: 14.5px;
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+
+  ul.points li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--line-strong);
+  }
+
+  ul.points b { color: var(--text); font-weight: 620; }
+
+  .goal {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    font-size: 14px;
+  }
+
+  .goal b { color: var(--muted); font-weight: 600; }
+
+  /* ---------- Ateliers ---------- */
+
+  .rotation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .rot {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+
+  .rot b { color: var(--text); font-weight: 620; }
+  .rot span { font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em; }
+
+  .workshops { display: grid; gap: 18px; }
+
+  .shop {
+    padding: 20px 20px 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .shop > header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 12px;
+    margin-bottom: 4px;
+  }
+
+  .shop .num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: .08em;
+  }
+
+  .shop h4 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 660;
+    letter-spacing: -.015em;
+  }
+
+  .shop .dur {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--dim);
+  }
+
+  .shop .sub {
+    margin: 0 0 18px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .shop .cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 208px;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .shop .cols.no-video { grid-template-columns: minmax(0, 1fr); }
+
+  .player {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+
+  .player img,
+  .player video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .player img { object-fit: cover; }
+
+  .clip-note {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 9px;
+    font-size: 11.5px;
+    color: var(--dim);
+  }
+
+  .clip-note a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line-strong); }
+  .clip-note a:hover { color: var(--text); }
+
+  .refs {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .refs p {
+    margin: 0 0 10px;
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 70ch;
+  }
+
+  .refs .row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .ref {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 8px 12px 8px 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .ref:hover { border-color: var(--line-strong); }
+
+  .ref img {
+    width: 34px;
+    height: 34px;
+    object-fit: cover;
+    border-radius: 7px;
+    flex: none;
+    background: #000;
+  }
+
+  .ref .txt { display: grid; gap: 1px; }
+  .ref .txt b { font-size: 13px; font-weight: 600; }
+  .ref .txt span { font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  /* ---------- Match & renfo ---------- */
+
+  .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 14px; }
+
+  .half {
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+
+  .half .n {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--accent);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .half h5 { margin: 4px 0 6px; font-size: 15px; font-weight: 640; }
+  .half p { margin: 0; font-size: 13px; color: var(--muted); }
+
+  .amrap {
+    display: grid;
+    gap: 8px;
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+    counter-reset: move;
+  }
+
+  .amrap li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 11px 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 16px;
+  }
+
+  .amrap li::before {
+    counter-increment: move;
+    content: counter(move);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--dim);
+  }
+
+  .amrap b { margin-left: auto; font-family: var(--mono); font-size: 15px; font-weight: 600; }
+
+  footer {
+    margin-top: 44px;
+    padding: 22px 0 60px;
+    border-top: 1px solid var(--line);
+    color: var(--dim);
+    font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+  }
+
+  footer a { color: var(--muted); }
+
+  @media (max-width: 760px) {
+    .chrono { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .clock { font-size: 40px; }
+    .chrono-actions { flex-wrap: wrap; }
+    .btn.primary { flex: 1; }
+    .block { grid-template-columns: 1fr; gap: 12px; }
+    .rail::before { display: none; }
+    .rail { display: flex; align-items: baseline; gap: 12px; padding-top: 0; }
+    .rail .dot { position: static; align-self: center; }
+    .rail .slot, .rail .at, .rail .len { padding-left: 0; margin: 0; }
+    .shop .cols { grid-template-columns: minmax(0, 1fr); }
+    .player { max-width: 260px; }
+    .memo .tag { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  @media print {
+    :root {
+      --bg: #fff; --surface: #fff; --surface-2: #fff;
+      --line: rgba(0, 0, 0, .2); --line-strong: rgba(0, 0, 0, .35);
+      --text: #000; --muted: #333; --dim: #666; --accent: #2f6b1f; --accent-ink: #fff;
+    }
+    @page { margin: 13mm; }
+    body { font-size: 9.5pt; line-height: 1.4; }
+    .no-print { display: none !important; }
+    .top { position: static; background: none; border: 0; padding: 0; }
+    .wrap { max-width: none; padding: 0; }
+    .shop, .half, .memo, .goal, .amrap li, .refs { break-inside: avoid; }
+    h3, h4 { break-after: avoid; }
+    .player { display: none; }
+    .shop .cols { grid-template-columns: minmax(0, 1fr); }
+    .clip-note { justify-content: flex-start; gap: 14px; margin-top: 6px; }
+    .blocks { gap: 16px; }
+    .block { gap: 14px; grid-template-columns: 82px minmax(0, 1fr); }
+    .rail { display: block; padding-top: 2px; }
+    .rail::before { display: none; }
+    .rail .dot { position: absolute; left: 0; top: 6px; }
+    .rail .slot, .rail .at, .rail .len { padding-left: 17px; margin-top: 0; }
+    .rail .len { margin-top: 3px; }
+    .memo .tag { display: inline; }
+    .rail .slot { font-size: 12px; }
+    .shop { padding: 12px 14px; }
+    .shop .cols { gap: 16px; }
+    .memo { padding: 12px 16px; margin-bottom: 18px; }
+    .memo li { font-size: 12pt; }
+    .keyline { font-size: 15pt; margin-bottom: 10px; }
+    .lead { margin-bottom: 10px; }
+    .chrono { display: none; }
+    footer { padding-bottom: 0; border-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="title">
+      <h1>Mardi — séance 2 h</h1>
+      <p id="schedule">0:00 → 2:00</p>
+    </div>
+
+    <div class="start no-print">
+      <label for="start">Début</label>
+      <input id="start" type="time" value="18:30" step="300">
+    </div>
+
+    <button class="icon-btn no-print" id="theme" type="button" aria-label="Changer de thème"></button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="chrono no-print" aria-label="Chrono">
+    <div class="clock" id="clock">00:00</div>
+
+    <div class="chrono-mid">
+      <div class="presets" id="presets">
+        <button class="chip" type="button" data-min="15">15 · Échauffement</button>
+        <button class="chip" type="button" data-min="18">18 · Rotation</button>
+        <button class="chip" type="button" data-min="10">10 · Mi-temps</button>
+        <button class="chip" type="button" data-min="20">20 · AMRAP</button>
+        <button class="chip" type="button" data-min="2">2 · Changement</button>
+      </div>
+      <div class="bar"><i id="progress"></i></div>
+    </div>
+
+    <div class="chrono-actions">
+      <button class="btn primary" id="toggle" type="button">Démarrer</button>
+      <button class="btn square" id="plus" type="button" title="Ajouter 1 minute" aria-label="Ajouter 1 minute">+1</button>
+      <button class="btn square" id="reset" type="button" title="Réinitialiser" aria-label="Réinitialiser">
+        <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8a5.5 5.5 0 1 0 1.7-4M2.4 2v3.2h3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+    </div>
+  </section>
+
+  <section class="memo" aria-label="Fiche mentale de coach">
+    <h2>À retenir</h2>
+    <ol>
+      <li><b>Jonathan</b> <span class="arrow">→</span> warm-up <span class="tag">15 min</span></li>
+      <li><b>QB</b> <span class="arrow">→</span> slant · out · go + rusher <span class="tag">18 min</span></li>
+      <li><b>Receveur</b> <span class="arrow">→</span> tracé · catch · sprint <span class="tag">18 min</span></li>
+      <li><b>Défense</b> <span class="arrow">→</span> réaction · flag pull <span class="tag">18 min</span></li>
+      <li><b>Match</b> <span class="arrow">→</span> 10 + 10, interruptions limitées <span class="tag">20 min</span></li>
+      <li><b>Renfo</b> <span class="arrow">→</span> AMRAP, on repart au début <span class="tag">20 min</span></li>
+    </ol>
+  </section>
+
+  <div class="blocks">
+
+    <!-- 0:00 -->
+    <article class="block" data-minute="0">
+      <div class="rail">
+        <span class="dot"></span>
+        <div class="slot">0:00</div>
+        <div class="at" data-clock="0">18:30</div>
+        <div class="len">15 min</div>
+      </div>
+      <div class="body">
+        <header>
+          <h3>Échauffement dynamique</h3>
+          <button class="tick no-print" type="button" aria-pressed="false" data-tick="0">
+            <span class="box">✓</span> Fait
+          </button>
+        </header>
+        <p class="lead">Mené par <strong>Jonathan</strong>. Progressif, en mouvement, jusqu'aux appuis et aux hanches.</p>
+      </div>
+    </article>
+
+    <!-- 0:15 -->
+    <article class="block" data-minute="15">
+      <div class="rail">
+        <span class="dot"></span>
+        <div class="slot">0:15</div>
+        <div class="at" data-clock="15">18:45</div>
+        <div class="len">65 min</div>
+      </div>
+      <div class="body">
+        <header>
+          <h3>Technique — 3 ateliers</h3>
+          <button class="tick no-print" type="button" aria-pressed="false" data-tick="1">
+            <span class="box">✓</span> Fait
+          </button>
+        </header>
+        <p class="lead"><strong>5 min</strong> pour expliquer et placer les groupes, puis <strong>3 rotations de 18 min</strong>, avec environ 2 min pour changer.</p>
+
+        <div class="rotation">
+          <div class="rot"><b>Groupe A</b> <span>1 → 2 → 3</span></div>
+          <div class="rot"><b>Groupe B</b> <span>2 → 3 → 1</span></div>
+          <div class="rot"><b>Groupe C</b> <span>3 → 1 → 2</span></div>
+        </div>
+
+        <div class="workshops">
+
+          <!-- Atelier 1 -->
+          <section class="shop">
+            <header>
+              <span class="num">ATELIER 1</span>
+              <h4>QB — 3-ball drill + RUSHER</h4>
+              <span class="dur">18 min</span>
+            </header>
+            <p class="sub">Vidéo principale : <code>2rOdrFzcNls_@dhflagfootball.mp4</code></p>
+
+            <div class="cols">
+              <div>
+                <p class="keyline">Slant <span>→</span> Out <span>→</span> Go</p>
+                <ul class="points">
+                  <li><b>QB + snapper + receveur + rusher.</b> Le rusher part à chaque action.</li>
+                  <li>Le QB adapte : slant <b>rapide et dosée</b>, out <b>timing et précision</b>, go <b>plus profond</b>.</li>
+                  <li>Avec tes <b>2 QB</b> : 3 passes, puis changement de QB. Ça tourne sans arrêt.</li>
+                </ul>
+                <p class="goal"><b>Objectif&nbsp;:</b> énormément de répétitions — et même sous fatigue, la balle doit rester catchable.</p>
+              </div>
+
+              <div>
+                <div class="player">
+                  <img src="thumbs/2rOdrFzcNls_@dhflagfootball.jpg" alt="Aperçu du 3-ball drill">
+                  <video src="videos/2rOdrFzcNls_@dhflagfootball.mp4" poster="thumbs/2rOdrFzcNls_@dhflagfootball.jpg" controls playsinline preload="metadata"></video>
+                </div>
+                <div class="clip-note">
+                  <span>DH Flag Football · 0:13</span>
+                  <a href="preview.html#2rOdrFzcNls">Galerie</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Atelier 2 -->
+          <section class="shop">
+            <header>
+              <span class="num">ATELIER 2</span>
+              <h4>Receveurs — cut, catch, accélération</h4>
+              <span class="dur">18 min</span>
+            </header>
+            <p class="sub">Vidéo : <code>Dczym60zlH0_colleenaugustinmma.mp4</code></p>
+
+            <div class="cols">
+              <div>
+                <p class="keyline">Départ <span>→</span> cut <span>→</span> catch <span>→</span> sprint</p>
+                <ul class="points">
+                  <li><b>Un seul exercice :</b> départ, tracé ou cut, catch, <b>accélération après réception</b>, retour par l'extérieur.</li>
+                  <li>Le suivant démarre <b>immédiatement</b> — pas de longue file. Deux lignes identiques si vous êtes nombreux.</li>
+                </ul>
+                <p class="goal"><b>Objectif&nbsp;:</b> appuis propres, mains sûres, et courir après le catch.</p>
+              </div>
+
+              <div>
+                <div class="player">
+                  <img src="thumbs/Dczym60zlH0_colleenaugustinmma.jpg" alt="Aperçu de l'atelier receveurs">
+                  <video src="videos/Dczym60zlH0_colleenaugustinmma.mp4" poster="thumbs/Dczym60zlH0_colleenaugustinmma.jpg" controls playsinline preload="metadata"></video>
+                </div>
+                <div class="clip-note">
+                  <span>Colleen Augustin · 2:19</span>
+                  <a href="preview.html#Dczym60zlH0">Galerie</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="refs">
+              <p>Pour travailler les mains en début de séance — référence seulement, <b>pas un deuxième atelier mardi</b>.</p>
+              <div class="row">
+                <a class="ref" href="preview.html#DbqgFBStgE0">
+                  <img src="thumbs/DbqgFBStgE0_martamathews_.jpg" alt="">
+                  <span class="txt"><b>Mains · avant-séance</b><span>martamathews_ · 0:18</span></span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Atelier 3 -->
+          <section class="shop">
+            <header>
+              <span class="num">ATELIER 3</span>
+              <h4>Défense — réaction + FLAG PULL</h4>
+              <span class="dur">18 min</span>
+            </header>
+            <p class="sub">Vidéo principale : <code>DdFXgBFvyGk_flaglabperformance.mp4</code></p>
+
+            <div class="cols">
+              <div>
+                <p class="keyline">Déclenche <span>→</span> réagis <span>→</span> ferme l'angle <span>→</span> flag</p>
+                <ul class="points">
+                  <li>L'attaquant déclenche, le défenseur <b>réagit</b>, <b>ferme l'angle</b>, prend le flag.</li>
+                  <li>Puis <b>inversion des rôles immédiatement</b>.</li>
+                  <li>Très peu d'attente. Très cardio.</li>
+                </ul>
+                <p class="goal"><b>Objectif&nbsp;:</b> le premier pas, l'angle, et le flag — sans temps mort.</p>
+              </div>
+
+              <div>
+                <div class="player">
+                  <img src="thumbs/DdFXgBFvyGk_flaglabperformance.jpg" alt="Aperçu de l'atelier défense">
+                  <video src="videos/DdFXgBFvyGk_flaglabperformance.mp4" poster="thumbs/DdFXgBFvyGk_flaglabperformance.jpg" controls playsinline preload="metadata"></video>
+                </div>
+                <div class="clip-note">
+                  <span>Flag Lab Performance · 0:20</span>
+                  <a href="preview.html#DdFXgBFvyGk">Galerie</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="refs">
+              <p>Mouvement de hanches que l'attaquant peut utiliser dans le drill — <b>des gestes, pas de nouveaux ateliers</b>.</p>
+              <div class="row">
+                <a class="ref" href="preview.html#DcjO5jbgQqt">
+                  <img src="thumbs/DcjO5jbgQqt_flyte_club.jpg" alt="">
+                  <span class="txt"><b>Hanches · variante A</b><span>flyte_club · 0:27</span></span>
+                </a>
+                <a class="ref" href="preview.html#Dc1OYpMtbvT">
+                  <img src="thumbs/Dc1OYpMtbvT_martamathews_.jpg" alt="">
+                  <span class="txt"><b>Hanches · variante B</b><span>martamathews_ · 0:14</span></span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- 1:20 -->
+    <article class="block" data-minute="80">
+      <div class="rail">
+        <span class="dot"></span>
+        <div class="slot">1:20</div>
+        <div class="at" data-clock="80">19:50</div>
+        <div class="len">20 min</div>
+      </div>
+      <div class="body">
+        <header>
+          <h3>Match — 2 × 10 min</h3>
+          <button class="tick no-print" type="button" aria-pressed="false" data-tick="2">
+            <span class="box">✓</span> Fait
+          </button>
+        </header>
+
+        <div class="split">
+          <div class="half">
+            <span class="n">1re mi-temps</span>
+            <h5>10 minutes</h5>
+            <p>Changement immédiat à la fin.</p>
+          </div>
+          <div class="half">
+            <span class="n">2e mi-temps</span>
+            <h5>10 minutes</h5>
+            <p>On limite les interruptions au maximum.</p>
+          </div>
+        </div>
+
+        <p class="lead" style="margin-top:18px">Tu ne regardes que trois choses, directement liées aux ateliers :</p>
+        <ul class="points">
+          <li><b>QB</b> — précision sous rush.</li>
+          <li><b>Receveurs</b> — catch + accélération.</li>
+          <li><b>Défense</b> — angle + flag pull.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 1:40 -->
+    <article class="block" data-minute="100">
+      <div class="rail">
+        <span class="dot"></span>
+        <div class="slot">1:40</div>
+        <div class="at" data-clock="100">20:10</div>
+        <div class="len">20 min</div>
+      </div>
+      <div class="body">
+        <header>
+          <h3>Renforcement — AMRAP 20 min</h3>
+          <button class="tick no-print" type="button" aria-pressed="false" data-tick="3">
+            <span class="box">✓</span> Fait
+          </button>
+        </header>
+        <p class="lead">Tout le monde fait la boucle. Terminé ? <strong>On repart au début.</strong> 20 minutes au chrono, pas de stations, pas de comptage individuel.</p>
+
+        <ol class="amrap">
+          <li>Squats <b>15</b></li>
+          <li>Pompes <b>10</b></li>
+          <li>Abdos <b>10</b></li>
+          <li>Burpees <b>5</b></li>
+          <li>Navette 20 m <b>aller + retour</b></li>
+        </ol>
+      </div>
+    </article>
+
+  </div>
+
+  <footer>
+    <span>Les 3 vidéos indispensables : QB <code>2rOdrFzcNls</code> · Receveurs <code>Dczym60zlH0</code> · Défense <code>DdFXgBFvyGk</code></span>
+    <a href="preview.html">Galerie complète (25 vidéos)</a>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var TOTAL_MINUTES = 120;
+
+  var el = {
+    clock: document.getElementById("clock"),
+    progress: document.getElementById("progress"),
+    toggle: document.getElementById("toggle"),
+    plus: document.getElementById("plus"),
+    reset: document.getElementById("reset"),
+    presets: document.getElementById("presets"),
+    start: document.getElementById("start"),
+    schedule: document.getElementById("schedule"),
+    theme: document.getElementById("theme")
+  };
+
+  function read(key, fallback) {
+    try {
+      var raw = localStorage.getItem("seance." + key);
+      return raw === null ? fallback : JSON.parse(raw);
+    } catch (e) { return fallback; }
+  }
+
+  function write(key, value) {
+    try { localStorage.setItem("seance." + key, JSON.stringify(value)); } catch (e) {}
+  }
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+
+  function formatSeconds(total) {
+    var s = Math.max(0, Math.round(total));
+    return pad(Math.floor(s / 60)) + ":" + pad(s % 60);
+  }
+
+  /* ---------- Horaires réels ---------- */
+
+  function paintSchedule() {
+    var parts = (el.start.value || "18:30").split(":");
+    var base = new Date();
+    base.setHours(Number(parts[0]), Number(parts[1]), 0, 0);
+
+    function at(minutes) {
+      var d = new Date(base.getTime() + minutes * 60000);
+      return pad(d.getHours()) + ":" + pad(d.getMinutes());
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-clock]"), function (node) {
+      node.textContent = at(Number(node.dataset.clock));
+    });
+
+    el.schedule.textContent = at(0) + " → " + at(TOTAL_MINUTES) + " · 2 h";
+  }
+
+  el.start.addEventListener("input", function () {
+    write("start", el.start.value);
+    paintSchedule();
+  });
+
+  /* ---------- Chrono ---------- */
+
+  var timer = { total: 0, remaining: 0, running: false, endAt: 0, tick: null };
+
+  function paintTimer() {
+    el.clock.textContent = formatSeconds(timer.remaining);
+    el.clock.classList.toggle("done", timer.remaining <= 0 && timer.total > 0 && !timer.running);
+    var ratio = timer.total > 0 ? 1 - timer.remaining / timer.total : 0;
+    el.progress.style.width = (Math.max(0, Math.min(1, ratio)) * 100).toFixed(1) + "%";
+    el.toggle.textContent = timer.running ? "Pause" : (timer.remaining > 0 && timer.remaining < timer.total ? "Reprendre" : "Démarrer");
+    document.title = timer.running ? formatSeconds(timer.remaining) + " — Mardi" : "Mardi — séance 2 h";
+  }
+
+  function stopTick() {
+    if (timer.tick) { clearInterval(timer.tick); timer.tick = null; }
+  }
+
+  function run() {
+    stopTick();
+    timer.tick = setInterval(function () {
+      timer.remaining = (timer.endAt - Date.now()) / 1000;
+      if (timer.remaining <= 0) {
+        timer.remaining = 0;
+        timer.running = false;
+        stopTick();
+        write("endAt", 0);
+        beep();
+      }
+      paintTimer();
+    }, 200);
+  }
+
+  function start() {
+    if (timer.remaining <= 0) timer.remaining = timer.total;
+    timer.running = true;
+    timer.endAt = Date.now() + timer.remaining * 1000;
+    write("endAt", timer.endAt);
+    run();
+    paintTimer();
+  }
+
+  function pause() {
+    timer.running = false;
+    stopTick();
+    write("endAt", 0);
+    paintTimer();
+  }
+
+  function setPreset(minutes) {
+    pause();
+    timer.total = minutes * 60;
+    timer.remaining = timer.total;
+    Array.prototype.forEach.call(el.presets.querySelectorAll(".chip"), function (c) {
+      c.setAttribute("aria-pressed", String(Number(c.dataset.min) === minutes));
+    });
+    paintTimer();
+  }
+
+  el.toggle.addEventListener("click", function () { timer.running ? pause() : start(); });
+
+  el.plus.addEventListener("click", function () {
+    timer.remaining += 60;
+    timer.total = Math.max(timer.total, timer.remaining);
+    if (timer.running) timer.endAt += 60000;
+    paintTimer();
+  });
+
+  el.reset.addEventListener("click", function () {
+    pause();
+    timer.remaining = timer.total;
+    paintTimer();
+  });
+
+  el.presets.addEventListener("click", function (e) {
+    var chip = e.target.closest(".chip");
+    if (chip) setPreset(Number(chip.dataset.min));
+  });
+
+  /* Trois bips courts à la fin du temps. */
+  function beep() {
+    try {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      var ctx = new Ctx();
+      [0, 0.4, 0.8].forEach(function (offset) {
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        var t = ctx.currentTime + offset;
+        osc.type = "sine";
+        osc.frequency.value = 880;
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.exponentialRampToValueAtTime(0.22, t + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+        osc.connect(gain).connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + 0.35);
+      });
+      setTimeout(function () { ctx.close(); }, 2000);
+    } catch (e) {}
+  }
+
+  /* ---------- Cases « fait » ---------- */
+
+  var done = read("done", {});
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-tick]"), function (button) {
+    var key = button.dataset.tick;
+    button.setAttribute("aria-pressed", String(!!done[key]));
+    if (done[key]) button.closest(".block").classList.add("done");
+    button.addEventListener("click", function () {
+      var next = button.getAttribute("aria-pressed") !== "true";
+      button.setAttribute("aria-pressed", String(next));
+      button.closest(".block").classList.toggle("done", next);
+      done[key] = next;
+      write("done", done);
+    });
+  });
+
+  /* ---------- Thème ---------- */
+
+  var SUN = '<svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.4"></circle><path d="M8 .8v1.8M8 13.4v1.8M.8 8h1.8M13.4 8h1.8M2.9 2.9l1.3 1.3M11.8 11.8l1.3 1.3M13.1 2.9l-1.3 1.3M4.2 11.8l-1.3 1.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"></path></svg>';
+  var MOON = '<svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.2 9.6A5.6 5.6 0 0 1 6.4 2.8 5.8 5.8 0 1 0 13.2 9.6z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"></path></svg>';
+
+  function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    el.theme.innerHTML = theme === "dark" ? SUN : MOON;
+    el.theme.title = theme === "dark" ? "Passer en clair" : "Passer en sombre";
+    write("theme", theme);
+  }
+
+  el.theme.addEventListener("click", function () {
+    setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+  });
+
+  /* ---------- Démarrage ---------- */
+
+  el.start.value = read("start", "18:30");
+  paintSchedule();
+
+  setTheme(read("theme", window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"));
+
+  var savedEnd = read("endAt", 0);
+  var savedTotal = read("total", 0);
+  if (savedTotal > 0) {
+    timer.total = savedTotal;
+    timer.remaining = savedTotal;
+    Array.prototype.forEach.call(el.presets.querySelectorAll(".chip"), function (c) {
+      c.setAttribute("aria-pressed", String(Number(c.dataset.min) === savedTotal / 60));
+    });
+  }
+  if (savedEnd && savedEnd > Date.now()) {
+    timer.running = true;
+    timer.endAt = savedEnd;
+    timer.remaining = (savedEnd - Date.now()) / 1000;
+    run();
+  }
+  paintTimer();
+
+  window.addEventListener("beforeunload", function () {
+    write("total", timer.total);
+  });
+})();
+</script>
+</body>
+</html>

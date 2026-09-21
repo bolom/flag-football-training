@@ -1,0 +1,24 @@
+SHORTCODE        COMPTE                     DUREE    RESOLUTION  TAILLE    FICHIER
+DcHC2HbSsEt      flagfootballedge           15      s 720x1280    3.5M      videos/DcHC2HbSsEt_flagfootballedge.mp4
+DYZ1Y-_IK6V      jenny.flagfootball         52      s 720x1280     22M      videos/DYZ1Y-_IK6V_jenny.flagfootball.mp4
+DcumOOqNKAi      issa_rantbro               36      s 720x1280     13M      videos/DcumOOqNKAi_issa_rantbro.mp4
+DbUqh3jRoQw      ryanyayawalker             35      s 720x1280     21M      videos/DbUqh3jRoQw_ryanyayawalker.mp4
+Db8QeafsCGn      nextlevelculture           17      s 720x1280    2.7M      videos/Db8QeafsCGn_nextlevelculture.mp4
+DcylBuQsR8X      gym_cumados                22      s 720x1280    2.7M      videos/DcylBuQsR8X_gym_cumados.mp4
+DbB4reFhmqc      nextlevelculture           25      s 720x1280    8.6M      videos/DbB4reFhmqc_nextlevelculture.mp4
+Dc07nD9IWIQ      bala.training              34      s 720x1280    6.9M      videos/Dc07nD9IWIQ_bala.training.mp4
+DdWjv_yla39      xypxox                     7       s 720x1280    1.6M      videos/DdWjv_yla39_xypxox.mp4
+DbqgFBStgE0      martamathews_              18      s 720x1280    4.6M      videos/DbqgFBStgE0_martamathews_.mp4
+DZ-4EngPvRy      andreapetrone_             68      s 720x1280     29M      videos/DZ-4EngPvRy_andreapetrone_.mp4
+Dc1OYpMtbvT      martamathews_              14      s 720x1280    6.0M      videos/Dc1OYpMtbvT_martamathews_.mp4
+DcJ-RFEhSw8      im22fitness                8       s 720x1280    2.1M      videos/DcJ-RFEhSw8_im22fitness.mp4
+DcjO5jbgQqt      flyte_club                 27      s 720x1280     14M      videos/DcjO5jbgQqt_flyte_club.mp4
+DdFXgBFvyGk      flaglabperformance         20      s 720x1280    8.8M      videos/DdFXgBFvyGk_flaglabperformance.mp4
+DdKaCQbBNt4      toribrito6                 14      s 720x1280    1.7M      videos/DdKaCQbBNt4_toribrito6.mp4
+Dc4wl_kNWXy      flagfootballedge           31      s 720x1280    8.6M      videos/Dc4wl_kNWXy_flagfootballedge.mp4
+DYGDo_ZtiU4      flagfootball_ducks         27      s 720x1280     17M      videos/DYGDo_ZtiU4_flagfootball_ducks.mp4
+Dczym60zlH0      colleenaugustinmma         139     s 720x1280     53M      videos/Dczym60zlH0_colleenaugustinmma.mp4
+Dc8BDb7N9qM      womensflagfootballcamp     11      s 720x1280    7.3M      videos/Dc8BDb7N9qM_womensflagfootballcamp.mp4
+Dc_kBkJxAHC      gridirongangfootball       89      s 720x1280     23M      videos/Dc_kBkJxAHC_gridirongangfootball.mp4
+Dc3ZbmWo4-D      jenny.flagfootball         48      s 720x1280     22M      videos/Dc3ZbmWo4-D_jenny.flagfootball.mp4
+DbWcwdaSAIa      football_phenoms           31      s 720x1280     12M      videos/DbWcwdaSAIa_football_phenoms.mp4
