@@ -721,21 +721,21 @@
     cursor: pointer;
   }
 
-  /* ---------- Échauffement ---------- */
+  /* ---------- Échauffement : fiche de coaching ---------- */
 
   .warm { display: grid; }
 
   .warm-step {
     display: grid;
     align-content: start;
-    gap: 9px;
-    padding: 14px 16px 15px;
+    gap: 11px;
+    padding: 15px 17px 16px;
     background: var(--bg);
     border: 1px solid var(--line-strong);
     border-radius: 12px;
   }
 
-  .warm-step.dip { border-color: var(--accent); }
+  .warm-step.ex { border-color: var(--accent); }
 
   .warm-step > header { display: flex; align-items: center; gap: 10px; }
 
@@ -749,7 +749,7 @@
     color: var(--muted);
   }
 
-  .warm-step.dip .warm-time {
+  .warm-step.ex .warm-time {
     background: var(--accent);
     color: var(--accent-ink);
     font-weight: 700;
@@ -757,28 +757,41 @@
 
   .warm-step h4 { margin: 0; font-size: 15.5px; font-weight: 670; letter-spacing: -.015em; }
   .warm-step p { margin: 0; font-size: 12.5px; color: var(--muted); }
-  .warm-step .goal { margin: 0; }
 
-  .dip-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 344px;
-    gap: 22px;
-    align-items: start;
-    margin-top: 2px;
+  .ex-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    color: var(--accent);
   }
 
-  .dip-text { display: grid; align-content: start; gap: 10px; }
+  .ex-goal { max-width: 74ch; }
+  .ex-goal b { color: var(--text); font-weight: 620; }
+  .ex-goal em { font-style: normal; color: var(--dim); }
+
+  .chain {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .chain span { color: var(--accent); padding: 0 4px; }
+
+  /* --- les images du mouvement --- */
 
   .frames {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 690px;
+    margin-top: 2px;
   }
 
   .frame { position: relative; display: grid; gap: 7px; margin: 0; }
 
-  .frame img,
-  .frame video {
+  .frame img {
     width: 100%;
     aspect-ratio: 9 / 16;
     object-fit: cover;
@@ -788,16 +801,70 @@
     border-radius: 9px;
   }
 
-  /* la boucle se superpose à la vignette fixe, qui sert d'image de repli */
-  .frame video { position: absolute; top: 0; left: 0; }
+  .frame figcaption { display: grid; gap: 3px; }
 
-  .frame figcaption {
+  .frame figcaption b {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .frame figcaption span { font-size: 11.5px; line-height: 1.4; color: var(--muted); }
+
+  /* --- déroulement / consignes / à éviter --- */
+
+  .ex-cols {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 4px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+
+  .ex-col h5 {
+    margin: 0 0 9px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .ex-steps {
+    display: grid;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: ex;
+  }
+
+  .ex-steps li {
+    position: relative;
+    padding-left: 19px;
+    font-size: 12.5px;
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+
+  .ex-steps li::before {
+    counter-increment: ex;
+    content: counter(ex);
+    position: absolute;
+    left: 0;
+    top: 1px;
     font-family: var(--mono);
     font-size: 10px;
-    letter-spacing: .07em;
-    text-transform: uppercase;
-    color: var(--muted);
+    color: var(--accent);
   }
+
+  .ex-steps li b { color: var(--text); font-weight: 620; }
+
+  .ex-col ul.points li { font-size: 12.5px; }
+  .ex-col ul.points.warn li::before { background: var(--dim); }
 
   /* ---------- Match & renfo ---------- */
 
@@ -948,8 +1015,20 @@
     .headline { font-size: 17.5px; }
     .subline { margin-bottom: 16px; }
     .circuits { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-    .dip-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
     .warm-step { padding: 12px 13px 13px; }
+    .ex-cols { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .frames {
+      grid-auto-flow: column;
+      grid-auto-columns: 132px;
+      grid-template-columns: none;
+      gap: 10px;
+      max-width: none;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+    }
+    .frame { scroll-snap-align: start; }
     .loop { padding: 12px 14px 14px; }
     .flow { padding-left: 42px; }
     .return { left: 11px; }
@@ -1011,10 +1090,7 @@
     .arc { min-height: 42px; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
-    .frame video { display: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
   @media print {
     :root {
@@ -1030,7 +1106,6 @@
     .node, .loop, .warm-step, .frames, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
     h3, h4 { break-after: avoid; }
     .clip { display: none; }
-    .frame video { display: none; }
     .headline { font-size: 15pt; }
     .subline { margin-bottom: 12px; }
     .arc { min-height: 30px; }
@@ -1046,11 +1121,12 @@
     .memo .tag { display: inline; }
     .rail .slot { font-size: 12px; }
     .circuit { padding: 14px 16px; }
-    .warm-step { padding: 9px 11px 10px; gap: 6px; }
+    .warm-step { padding: 9px 11px 10px; gap: 7px; }
     .warm-step h4 { font-size: 10.5pt; }
-    .warm-step p { font-size: 8.5pt; }
-    .dip-grid { grid-template-columns: minmax(0, 1fr) 200px; }
-    .frame figcaption { font-size: 7pt; }
+    .warm-step p, .ex-steps li, .ex-col ul.points li { font-size: 8pt; }
+    .frames { max-width: none; gap: 8px; }
+    .frame figcaption b, .frame figcaption span { font-size: 6.5pt; }
+    .ex-cols { gap: 12px; }
     .circuits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .loop { padding: 9px 10px 10px; }
     .loop-head { margin-bottom: 8px; padding-bottom: 7px; }
@@ -1117,64 +1193,185 @@
         <header>
           <h3>Échauffement dynamique</h3>
         </header>
-        <p class="lead">15 min&nbsp;: mobilité, puis le <strong>drill DIP</strong>, puis le DIP sous vitesse. Le groupe reproduit réellement l'exercice.</p>
+        <p class="lead">15 min en trois temps. Les deux exercices sont ceux de la vidéo&nbsp;: le groupe les <strong>exécute</strong>, il ne les regarde pas.</p>
 
         <div class="warm">
 
           <article class="warm-step">
             <header>
               <span class="warm-time">0–5 min</span>
-              <h4>Mobilité + hanches + appuis</h4>
+              <h4>Préparation</h4>
             </header>
-            <p>Travail progressif pour préparer les changements de direction.</p>
+            <p>Mobilité hanches, chevilles, genoux, déplacements bas, activation progressive.</p>
           </article>
 
           <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
 
-          <article class="warm-step dip">
+          <article class="warm-step ex">
             <header>
               <span class="warm-time">5–10 min</span>
-              <h4>Drill DIP</h4>
+              <span class="ex-num">01</span>
+              <h4>Apprendre le dip</h4>
             </header>
 
-            <div class="dip-grid">
-              <div class="dip-text">
-                <p>Ce n'est pas une vidéo à regarder&nbsp;: le groupe exécute le drill montré.</p>
-                <p class="goal"><b>Objectif&nbsp;:</b> dip propre → contrôle des hanches → sortie rapide.</p>
-                <button class="clip" type="button" data-clip="dip">
-                  <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-                  Voir le drill complet
-                </button>
-              </div>
+            <p class="ex-goal"><b>Objectif&nbsp;:</b> faire descendre fortement les hanches et le corps sans perdre l'équilibre ni le contrôle du ballon. <em>Phase d'apprentissage&nbsp;: ce n'est pas encore un sprint.</em></p>
 
-              <div class="frames">
+            <div class="frames">
                 <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw-step-1.jpg" alt="Drill DIP : position de départ, ballon sécurisé">
-                  <video src="clips/dip-step-1.mp4" poster="thumbs/DbUqh3jRoQw-step-1.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-                  <figcaption>1 — départ</figcaption>
+                  <img src="thumbs/DbUqh3jRoQw-ex1-1.jpg" alt="Exercice 1 : position avant la descente, ballon au-dessus de la tête">
+                  <figcaption>
+                    <b>Avant la descente</b>
+                    <span>Ballon au-dessus de la tête, debout, regard devant.</span>
+                  </figcaption>
                 </figure>
                 <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw-step-2.jpg" alt="Drill DIP : moment du dip, hanches basses">
-                  <video src="clips/dip-step-2.mp4" poster="thumbs/DbUqh3jRoQw-step-2.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-                  <figcaption>2 — dip</figcaption>
+                  <img src="thumbs/DbUqh3jRoQw-ex1-2.jpg" alt="Exercice 1 : début de descente">
+                  <figcaption>
+                    <b>Début de descente</b>
+                    <span>Casse les genoux, les hanches descendent.</span>
+                  </figcaption>
                 </figure>
                 <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw-step-3.jpg" alt="Drill DIP : sortie et réaccélération">
-                  <video src="clips/dip-step-3.mp4" poster="thumbs/DbUqh3jRoQw-step-3.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-                  <figcaption>3 — sortie</figcaption>
+                  <img src="thumbs/DbUqh3jRoQw-ex1-3.jpg" alt="Exercice 1 : position la plus basse, genou près du sol">
+                  <figcaption>
+                    <b>Position la plus basse</b>
+                    <span>Fente basse, genou près du sol, ballon toujours haut.</span>
+                  </figcaption>
                 </figure>
+                <figure class="frame">
+                  <img src="thumbs/DbUqh3jRoQw-ex1-4.jpg" alt="Exercice 1 : transfert et remontée">
+                  <figcaption>
+                    <b>Transfert</b>
+                    <span>Pousse sur la jambe, remonte juste assez pour repartir.</span>
+                  </figcaption>
+                </figure>
+            </div>
+
+            <div class="ex-cols">
+              <div class="ex-col">
+                <h5>Déroulement</h5>
+                <ol class="ex-steps">
+                  <li>Ballon tenu <b>haut, au-dessus de la tête</b>.</li>
+                  <li>Descente <b>très basse</b> sur les jambes.</li>
+                  <li>Passage en <b>fente</b>, genou qui descend près du sol.</li>
+                  <li><b>Transfert</b> du poids d'un côté à l'autre, sans se redresser.</li>
+                  <li><b>Avancée progressive</b> entre les plots, ballon contrôlé du début à la fin.</li>
+                </ol>
+              </div>
+              <div class="ex-col">
+                <h5>Consignes</h5>
+                <ul class="points">
+                  <li>Bassin très bas.</li>
+                  <li>Genou proche du sol, sans s'écraser dessus.</li>
+                  <li>Poitrine contrôlée.</li>
+                  <li>Ballon sécurisé.</li>
+                  <li>Remonter juste assez pour pouvoir repartir.</li>
+                  <li>Alterner les côtés.</li>
+                  <li>Mouvement propre avant vitesse.</li>
+                </ul>
+              </div>
+              <div class="ex-col">
+                <h5>À éviter</h5>
+                <ul class="points warn">
+                  <li>Se redresser entre les mouvements.</li>
+                  <li>S'écraser sur le genou.</li>
+                  <li>Perdre le ballon, ou le baisser.</li>
+                  <li>Chercher la vitesse avant la propreté du geste.</li>
+                </ul>
               </div>
             </div>
+
+            <button class="clip" type="button" data-clip="ex1">
+              <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+              Voir dans la vidéo <i>· 13 s</i>
+            </button>
           </article>
 
           <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
 
-          <article class="warm-step">
+          <article class="warm-step ex">
             <header>
               <span class="warm-time">10–15 min</span>
-              <h4>DIP → sortie explosive → accélération</h4>
+              <span class="ex-num">02</span>
+              <h4>Le dip en mouvement</h4>
             </header>
-            <p>On ajoute progressivement de la vitesse&nbsp;: partenaire passif au début, puis partenaire qui vient réellement chercher le flag.</p>
+
+            <p class="ex-goal"><b>Objectif&nbsp;:</b> ne pas faire un dip statique — descendre sous la tentative de flag et repartir immédiatement.</p>
+
+            <p class="chain">Arrivée <span>→</span> descente <span>→</span> dip <span>→</span> appui / changement de direction <span>→</span> sortie <span>→</span> accélération</p>
+
+            <div class="frames">
+                <figure class="frame">
+                  <img src="thumbs/DbUqh3jRoQw-ex2-1.jpg" alt="Exercice 2 : arrivée en course avec le ballon">
+                  <figcaption>
+                    <b>Arrivée</b>
+                    <span>Arrive avec de la vitesse, sans freiner complètement.</span>
+                  </figcaption>
+                </figure>
+                <figure class="frame">
+                  <img src="thumbs/DbUqh3jRoQw-ex2-2.jpg" alt="Exercice 2 : engagement du dip">
+                  <figcaption>
+                    <b>Engagement du dip</b>
+                    <span>Baisse brutalement le centre de gravité, ballon plaqué.</span>
+                  </figcaption>
+                </figure>
+                <figure class="frame">
+                  <img src="thumbs/DbUqh3jRoQw-ex2-3.jpg" alt="Exercice 2 : point bas du dip">
+                  <figcaption>
+                    <b>Point bas</b>
+                    <span>Dip très bas, appui planté, prêt à changer de direction.</span>
+                  </figcaption>
+                </figure>
+                <figure class="frame">
+                  <img src="thumbs/DbUqh3jRoQw-ex2-4.jpg" alt="Exercice 2 : sortie et réaccélération">
+                  <figcaption>
+                    <b>Sortie</b>
+                    <span>Sors sur le côté et réaccélère tout de suite.</span>
+                  </figcaption>
+                </figure>
+            </div>
+
+            <div class="ex-cols">
+              <div class="ex-col">
+                <h5>Déroulement</h5>
+                <ol class="ex-steps">
+                  <li><b>Arriver en course</b> avec le ballon.</li>
+                  <li><b>Approcher le plot</b> sans casser l'allure.</li>
+                  <li><b>Abaisser brutalement</b> le centre de gravité : dip très bas.</li>
+                  <li><b>Planter / appuyer</b> pour changer de trajectoire.</li>
+                  <li><b>Protéger le ballon</b> pendant le changement de direction.</li>
+                  <li><b>Ressortir et réaccélérer</b> immédiatement.</li>
+                </ol>
+              </div>
+              <div class="ex-col">
+                <h5>Consignes</h5>
+                <ul class="points">
+                  <li>Arriver avec de la vitesse contrôlée.</li>
+                  <li>Ne pas freiner complètement avant le dip.</li>
+                  <li>Descendre les hanches.</li>
+                  <li>Genou très bas.</li>
+                  <li>Garder le ballon sécurisé.</li>
+                  <li>Sortir du dip vers un côté.</li>
+                  <li>Réaccélérer immédiatement.</li>
+                  <li>Pas de pause en position basse.</li>
+                </ul>
+              </div>
+              <div class="ex-col">
+                <h5>À éviter</h5>
+                <ul class="points warn">
+                  <li>Freiner complètement avant le dip.</li>
+                  <li>Faire un dip statique, s'arrêter en bas.</li>
+                  <li>Descendre sans changer de direction.</li>
+                  <li>Ressortir sans réaccélérer.</li>
+                  <li>Ballon exposé pendant le dip.</li>
+                </ul>
+              </div>
+            </div>
+
+            <button class="clip" type="button" data-clip="ex2">
+              <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
+              Voir dans la vidéo <i>· 27 s</i>
+            </button>
           </article>
 
         </div>
@@ -1186,6 +1383,7 @@
             appuis
           </button>
         </p>
+
       </div>
     </article>
 
@@ -1488,10 +1686,17 @@
       poster: "thumbs/DcumOOqNKAi_issa_rantbro.jpg",
       caption: "Sas de transition — appui, cut, sortie explosive. On traverse vite, on ne fait pas la queue."
     },
-    dip: {
+    ex1: {
       src: "videos/DbUqh3jRoQw_ryanyayawalker.mp4",
       poster: "thumbs/DbUqh3jRoQw_ryanyayawalker.jpg",
-      caption: "Échauffement — drill DIP : dip propre, contrôle des hanches, sortie rapide."
+      start: 12.6,
+      caption: "Exercice 01 — apprendre le dip : ballon au-dessus de la tête, fente très basse, genou près du sol, transfert sans se redresser."
+    },
+    ex2: {
+      src: "videos/DbUqh3jRoQw_ryanyayawalker.mp4",
+      poster: "thumbs/DbUqh3jRoQw_ryanyayawalker.jpg",
+      start: 26.0,
+      caption: "Exercice 02 — le dip en mouvement : arrivée en course, dip très bas au plot, appui, changement de direction, réaccélération."
     },
     xyp: {
       src: "videos/DdWjv_yla39_xypxox.mp4",
@@ -1510,8 +1715,14 @@
     video.src = clip.src;
     video.poster = clip.poster;
     caption.textContent = clip.caption;
+    var start = clip.start || 0;
+    video.addEventListener("loadedmetadata", function seek() {
+      video.removeEventListener("loadedmetadata", seek);
+      video.currentTime = start;
+    });
     overlay.hidden = false;
     document.body.style.overflow = "hidden";
+    video.load();
     video.play().catch(function () {});
   }
 
