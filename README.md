@@ -1,5 +1,9 @@
 # Extraction des vidéos Instagram
 
+**En ligne : <https://bolom.github.io/flag-football-training/>** — la séance de mardi et la
+galerie sont publiées depuis ce dossier via GitHub Pages. Le reste de ce document décrit
+l'extraction d'origine des 23 vidéos Instagram.
+
 Extraction réalisée le **21/09/2026** à partir des 23 liens fournis.
 
 ## Méthode
@@ -31,9 +35,10 @@ Résultat : **23/23 liens résolus, 0 erreur, 23 URLs uniques**.
 
 ## Aperçu
 
-Ouvrir `preview.html` dans un navigateur (double-clic — le `file://` est volontaire :
-un serveur HTTP Python ne gère pas les requêtes `Range`, donc le défilement dans les
-vidéos serait cassé).
+En ligne : <https://bolom.github.io/flag-football-training/> (`index.html` sert de sommaire).
+En local, ouvrir `preview.html` dans un navigateur (double-clic — le `file://` est
+volontaire : un serveur HTTP Python ne gère pas les requêtes `Range`, donc le défilement
+dans les vidéos serait cassé).
 
 Fonctions : recherche, filtre par compte, tri, filtre « non vues », densité des
 vignettes, thème clair/sombre, visionneuse avec navigation clavier
