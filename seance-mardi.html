@@ -775,9 +775,10 @@
     gap: 10px;
   }
 
-  .frame { display: grid; gap: 7px; margin: 0; }
+  .frame { position: relative; display: grid; gap: 7px; margin: 0; }
 
-  .frame img {
+  .frame img,
+  .frame video {
     width: 100%;
     aspect-ratio: 9 / 16;
     object-fit: cover;
@@ -786,6 +787,9 @@
     border: 1px solid var(--line);
     border-radius: 9px;
   }
+
+  /* la boucle se superpose à la vignette fixe, qui sert d'image de repli */
+  .frame video { position: absolute; top: 0; left: 0; }
 
   .frame figcaption {
     font-family: var(--mono);
@@ -1007,7 +1011,10 @@
     .arc { min-height: 42px; }
   }
 
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+    .frame video { display: none; }
+  }
 
   @media print {
     :root {
@@ -1023,6 +1030,7 @@
     .node, .loop, .warm-step, .frames, .half, .memo, .goal, .amrap li, .circuit { break-inside: avoid; }
     h3, h4 { break-after: avoid; }
     .clip { display: none; }
+    .frame video { display: none; }
     .headline { font-size: 15pt; }
     .subline { margin-bottom: 12px; }
     .arc { min-height: 30px; }
@@ -1142,14 +1150,17 @@
               <div class="frames">
                 <figure class="frame">
                   <img src="thumbs/DbUqh3jRoQw-step-1.jpg" alt="Drill DIP : position de départ, ballon sécurisé">
+                  <video src="clips/dip-step-1.mp4" poster="thumbs/DbUqh3jRoQw-step-1.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
                   <figcaption>1 — départ</figcaption>
                 </figure>
                 <figure class="frame">
                   <img src="thumbs/DbUqh3jRoQw-step-2.jpg" alt="Drill DIP : moment du dip, hanches basses">
+                  <video src="clips/dip-step-2.mp4" poster="thumbs/DbUqh3jRoQw-step-2.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
                   <figcaption>2 — dip</figcaption>
                 </figure>
                 <figure class="frame">
                   <img src="thumbs/DbUqh3jRoQw-step-3.jpg" alt="Drill DIP : sortie et réaccélération">
+                  <video src="clips/dip-step-3.mp4" poster="thumbs/DbUqh3jRoQw-step-3.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
                   <figcaption>3 — sortie</figcaption>
                 </figure>
               </div>
