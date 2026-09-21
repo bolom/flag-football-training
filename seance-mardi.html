@@ -625,6 +625,46 @@
 
   .clip:hover { color: var(--text); border-color: var(--line-strong); }
 
+  .turn {
+    display: grid;
+    gap: 9px;
+    margin-top: 20px;
+    padding: 15px 17px 16px;
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+  }
+
+  .turn h4 {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .turn ul {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .turn li { font-size: 13.5px; }
+  .turn li b { font-weight: 680; }
+  .turn li span { color: var(--muted); }
+
+  .turn-go {
+    margin: 0;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    color: var(--accent);
+  }
+
+  .turn-note { margin: 0; font-size: 12px; color: var(--muted); }
+
   .loop-close {
     display: flex;
     align-items: center;
@@ -928,6 +968,8 @@
 
   /* --- déroulement / consignes / à éviter --- */
 
+  .ex-cols.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
   .ex-cols {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1173,6 +1215,7 @@
     .frames { max-width: none; gap: 8px; }
     .frame figcaption b, .frame figcaption span { font-size: 6.5pt; }
     .ex-cols { gap: 12px; }
+    .turn { padding: 11px 13px 12px; }
     .circuits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .loop { padding: 9px 10px 10px; }
     .loop-head { margin-bottom: 8px; padding-bottom: 7px; }
@@ -1464,7 +1507,7 @@
         <header>
           <h3>Circuit technique</h3>
         </header>
-        <p class="lead"><strong>5 min</strong> pour expliquer et placer. Ensuite <strong>2 circuits identiques en parallèle</strong> : les QB ne bougent jamais, les autres joueurs changent de rôle à chaque passage.</p>
+        <p class="lead"><strong>5 min</strong> pour expliquer et placer. Ensuite <strong>2 circuits identiques en parallèle</strong> : dans chaque circuit, 4 joueurs forment <strong>2 binômes</strong> qui échangent de zone après chaque mini-set complet.</p>
 
         <section class="circuit" aria-label="Deux circuits en parallèle">
 
@@ -1499,32 +1542,32 @@
 
                 <article class="node">
                   <header>
-                    <span class="n">1</span>
+                    <span class="n">A</span>
                     <h4>Zone QB</h4>
-                    <span class="at">2 joueurs</span>
+                    <span class="at">binôme · 2 joueurs</span>
                   </header>
-                  <p class="keyline">1 receveur + 1 rusher</p>
-                  <p class="do">Le rusher met la pression sur chaque ballon.</p>
+                  <p class="keyline">1 receveur + 1 rusher — mini-set de <b>3 passes</b></p>
+                  <p class="do">Mini-set complet <b>slant → out → go</b> : on ne change pas de joueur entre les trois, et le rusher presse les trois.</p>
                 </article>
 
                 <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
 
                 <article class="node">
                   <header>
-                    <span class="n">2</span>
+                    <span class="n">B</span>
                     <h4>Zone Flag pull</h4>
-                    <span class="at">2 joueurs</span>
+                    <span class="at">binôme · 2 joueurs</span>
                   </header>
-                  <p class="keyline">1 attaquant + 1 défenseur</p>
-                  <p class="do">1 attaquant + 1 défenseur, rôles inversés tout de suite.</p>
+                  <p class="keyline">1 attaquant + 1 défenseur — <b>4 reps</b>, 2 par rôle</p>
+                  <p class="do"><b>4 reps rapides</b> : inversion à chaque rep, soit 2 attaques + 2 défenses par joueur.</p>
                 </article>
 
                 <div class="arc transit">
                   <span class="seg"></span>
                   <span class="tip">↓</span>
                   <p class="transit-note">
-                    <b>Appui / cut</b>
-                    <span>sortie explosive — tu traverses, tu ne fais pas la queue</span>
+                    <b>Appui / cut — sas</b>
+                    <span>un par un : appuis rapides, sortie, retour au QB — pas de file, pas d'attente</span>
                   </p>
                 </div>
               </div>
@@ -1556,29 +1599,30 @@
 
                 <article class="node">
                   <header>
-                    <span class="n">1</span>
+                    <span class="n">A</span>
                     <h4>Zone QB</h4>
-                    <span class="at">2 joueurs</span>
+                    <span class="at">binôme · 2 joueurs</span>
                   </header>
-                  <p class="keyline">1 receveur + 1 rusher</p>
+                  <p class="keyline">1 receveur + 1 rusher — <b>3 passes</b></p>
                 </article>
 
                 <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
 
                 <article class="node">
                   <header>
-                    <span class="n">2</span>
+                    <span class="n">B</span>
                     <h4>Zone Flag pull</h4>
-                    <span class="at">2 joueurs</span>
+                    <span class="at">binôme · 2 joueurs</span>
                   </header>
-                  <p class="keyline">1 attaquant + 1 défenseur</p>
+                  <p class="keyline">1 attaquant + 1 défenseur — <b>4 reps</b></p>
                 </article>
 
                 <div class="arc transit">
                   <span class="seg"></span>
                   <span class="tip">↓</span>
                   <p class="transit-note">
-                    <b>Appui / cut</b>
+                    <b>Appui / cut — sas</b>
+                    <span>un par un</span>
                   </p>
                 </div>
               </div>
@@ -1586,9 +1630,19 @@
 
           </div>
 
+          <div class="turn">
+            <h4>Quand on tourne ?</h4>
+            <ul>
+              <li><b>Zone QB</b> — slant + out + go terminés <span>(3 passes)</span></li>
+              <li><b>Zone Flag pull</b> — 4 reps terminées <span>(2 attaques + 2 défenses par joueur)</span></li>
+            </ul>
+            <p class="turn-go">→ Les deux binômes échangent de zone.</p>
+            <p class="turn-note">Au départ : binôme A au QB, binôme B au flag pull. Le binôme qui sort du flag pull traverse le sas, un joueur après l'autre.</p>
+          </div>
+
           <p class="loop-close">
             <span class="glyph">↺</span>
-            <span><b>Les QB ne bougent jamais</b> : seuls les 8 joueurs tournent, et chacun change de rôle après chaque passage.</span>
+            <span><b>Les QB restent fixes.</b> Les deux binômes échangent de zone après chaque mini-set complet.</span>
           </p>
 
         </section>
@@ -1989,16 +2043,33 @@
         <header>
           <h3>Renforcement — finisher collectif</h3>
         </header>
-        <p class="lead">Finisher collectif, un seul passage. Chacun avance à son rythme — on ne chronomètre personne, on finit ensemble.</p>
+        <p class="lead">Finisher collectif. Les volumes sont des <strong>objectifs totaux à atteindre</strong>, pas 100 répétitions d'affilée : après 1 h 40 de séance, on garde la qualité du mouvement.</p>
 
-        <ol class="finisher">
-          <li>Squats <b>100</b></li>
-          <li>Pompes <b>50</b></li>
-          <li>Abdos <b>100</b></li>
-          <li>Gainage — 10 s par joueur, en relais <b>10 s × joueurs</b></li>
-        </ol>
+        <div class="ex-cols two">
+          <div class="ex-col">
+            <h5>Objectif total</h5>
+            <ol class="finisher">
+              <li>Squats <b>100</b></li>
+              <li>Pompes <b>50</b></li>
+              <li>Abdos <b>100</b></li>
+            </ol>
+          </div>
+          <div class="ex-col">
+            <h5>4 tours conseillés</h5>
+            <ol class="finisher">
+              <li>Squats <b>25</b></li>
+              <li>Pompes <b>12 / 13</b></li>
+              <li>Abdos <b>25</b></li>
+            </ol>
+          </div>
+        </div>
 
-        <p class="lead">Dix joueurs = <strong>1 min 40</strong> de gainage au total.</p>
+        <p class="lead">4 tours × 25 squats = 100 · 4 × 12 ou 13 pompes = 50 · 4 × 25 abdos = 100. On coupe un tour en deux plutôt que de dégrader un mouvement.</p>
+
+        <aside class="callout">
+          <b>Gainage collectif — tout le monde en même temps</b>
+          <p>Personne ne travaille seul : <b>tout le groupe reste en gainage</b> pendant que chaque joueur compte <b>10 secondes à voix haute</b>, à tour de rôle. 10 joueurs × 10 s = <b>1 min 40 de gainage continu pour tout le groupe</b> — personne n'attend.</p>
+        </aside>
       </div>
     </article>
 

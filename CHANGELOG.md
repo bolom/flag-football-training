@@ -40,3 +40,22 @@ Toutes les images sont en 480 px de large, extraites du fichier local du dépôt
   (déroulement complet, points de coaching, erreurs à éviter).
 - Renforcement : finisher collectif (squats 100, pompes 50, abdos 100, gainage 10 s × joueurs)
   à la place de l'AMRAP.
+
+## Clarification opérationnelle de la rotation
+
+Passe de clarification uniquement : aucun design refait, aucune fiche vidéo reconstruite.
+
+- **Rotation corrigée.** Les 4 joueurs de chaque circuit forment **2 binômes**. Le binôme en
+  zone QB reste pour un **mini-set complet** — slant → out → go, soit **3 passes**, le rusher
+  pressant les trois. Le binôme en zone Flag pull fait **4 reps** (2 attaques + 2 défenses par
+  joueur, inversion à chaque rep). Ensuite **les deux binômes échangent de zone**.
+- **Formule ambiguë supprimée** : « chacun change de rôle après chaque passage » disparaît au
+  profit de « Les QB restent fixes. Les deux binômes échangent de zone après chaque mini-set complet. »
+- **Nouveau bloc « Quand on tourne ? »** sous le schéma : zone QB = slant + out + go terminés,
+  zone flag = 4 reps terminées → les deux binômes échangent. Visible sans ouvrir les détails.
+- **Sas appuis renforcé** dans le schéma : un joueur après l'autre, quelques secondes,
+  « pas de file, pas d'attente ». Ce n'est pas une troisième station.
+- **Renforcement** : les volumes sont présentés comme des **objectifs totaux** (100 squats,
+  50 pompes, 100 abdos) avec **4 tours conseillés** (25 / 12-13 / 25).
+- **Gainage reformulé** : tout le groupe reste en gainage pendant que chaque joueur compte
+  10 secondes à voix haute, à tour de rôle — 10 joueurs = 1 min 40 de gainage continu, personne n'attend.
