@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+#
+# analyse-video-detail — niveau 2 : gros plan sur une plage de temps.
+#
+#   ./analyse-video-detail videos/ma-video.mp4 17 21        -> 8 i/s de 17 s à 21 s
+#   ./analyse-video-detail videos/ma-video.mp4 17 21 10     -> 10 i/s
+#
+# À utiliser seulement après le niveau 1 : on ne fait pas du 8 i/s sur toute la vidéo.
+# Produit analysis/<video-id>/detail_<debut>-<fin>_<fps>fps/ avec frames/, sheets/, manifest.json
+#
+set -euo pipefail
+cd "$(dirname "$0")"
+
+export LC_ALL=C   # sinon printf et awk écrivent « 00,0 » au lieu de « 00.0 »
+
+VIDEO="${1:?usage: ./analyse-video-detail <video> <debut> <fin> [images_par_seconde]}"
+START="${2:?début manquant (secondes)}"
+END="${3:?fin manquante (secondes)}"
+FPS="${4:-8}"
+HEIGHT=900
+PER_SHEET=12
+QUALITY=4
+FONT="/System/Library/Fonts/Supplemental/Arial.ttf"
+
+[ -f "$VIDEO" ] || { echo "vidéo introuvable : $VIDEO"; exit 1; }
+command -v magick >/dev/null || { echo "ImageMagick manquant"; exit 1; }
+
+DURATION="$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$VIDEO")"
+if awk -v s="$START" -v e="$END" -v d="$DURATION" 'BEGIN{exit !(s>=0 && e>s && s<d)}'; then :; else
+  echo "plage invalide : $START -> $END (durée $DURATION)"; exit 1
+fi
+
+ID="$(basename "$VIDEO" .mp4)"
+LABEL="detail_${START}-${END}_${FPS}fps"
+OUT="analysis/$ID/$LABEL"
+rm -rf "$OUT"
+mkdir -p "$OUT/frames" "$OUT/sheets"
+
+echo "  $ID  de ${START}s à ${END}s à ${FPS} i/s"
+
+ffmpeg -v error -y -ss "$START" -to "$END" -i "$VIDEO" \
+  -vf "fps=$FPS,scale=-2:$HEIGHT" -q:v "$QUALITY" "$OUT/frames/tmp_%04d.jpg"
+
+i=0
+for f in "$OUT"/frames/tmp_*.jpg; do
+  t="$(awk -v i="$i" -v r="$FPS" -v s="$START" 'BEGIN{printf "%.2f", s + i/r}')"
+  printf -v new 'frame_%04d_%06.2fs.jpg' "$i" "$t"
+  mv "$f" "$OUT/frames/$new"
+  i=$((i + 1))
+done
+
+all=()
+while IFS= read -r line; do all+=("$line"); done < <(ls "$OUT/frames"/frame_*.jpg | sort)
+total=${#all[@]}
+sheets=0
+args=()
+for ((i = 0; i < total; i += PER_SHEET)); do
+  sheets=$((sheets + 1))
+  args=()
+  for ((j = i; j < i + PER_SHEET && j < total; j++)); do
+    f="${all[$j]}"
+    t="$(basename "$f" | sed -E 's/^frame_[0-9]+_([0-9.]+)s\.jpg$/\1s/')"
+    args+=(-label "$t" "$f")
+  done
+  magick montage "${args[@]}" -tile 4x3 -geometry 320x320+5+5 \
+    -background '#141416' -fill '#ffffff' -pointsize 22 -font "$FONT" -quality 84 \
+    "$OUT/sheets/sheet_$(printf '%02d' "$sheets").jpg"
+done
+
+VIDEO="$VIDEO" OUT="$OUT" ID="$ID" START="$START" END="$END" FPSD="$FPS" \
+SHEETS="$sheets" python3 - <<'PY'
+import json, os, re
+from pathlib import Path
+
+out = Path(os.environ["OUT"])
+frames = []
+for f in sorted((out / "frames").glob("frame_*.jpg")):
+    m = re.match(r"frame_(\d+)_([0-9.,]+)s\.jpg$", f.name)
+    frames.append({"file": f.name, "index": int(m.group(1)), "time": float(m.group(2).replace(",", "."))})
+
+sheets = [{"file": p.name, "from": i * 12, "to": min((i + 1) * 12 - 1, len(frames) - 1)}
+          for i, p in enumerate(sorted((out / "sheets").glob("sheet_*.jpg")))]
+
+manifest = {
+    "video": os.path.basename(os.environ["VIDEO"]),
+    "video_id": os.environ["ID"],
+    "level": "detail",
+    "range": {"start": float(os.environ["START"]), "end": float(os.environ["END"])},
+    "analysis_fps": float(os.environ["FPSD"]),
+    "frame_size": {"height": 900, "width": "auto"},
+    "frames_per_sheet": 12,
+    "sheet_count": int(os.environ["SHEETS"]),
+    "frame_count": len(frames),
+    "frames": frames,
+    "sheets": sheets,
+}
+(out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+PY
+
+echo "    -> $total frames, $sheets planches dans $OUT"

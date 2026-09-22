@@ -1,0 +1,132 @@
+#!/usr/bin/env bash
+#
+# analyse-video — niveau 1 : pack d'analyse d'une vidéo (ou de toutes).
+#
+#   ./analyse-video                      -> toutes les vidéos de videos/
+#   ./analyse-video videos/ma-video.mp4  -> une seule vidéo
+#
+# Pour chaque vidéo, produit dans analysis/<video-id>/ :
+#   frames/frame_0000_00.0s.jpg   une image toutes les 0,5 s (2 i/s), hauteur 720 px
+#   sheets/sheet_01.jpg           planches contact de 12 images, timestamps incrustés
+#   manifest.json                 métadonnées + liste des frames et des planches
+#
+set -euo pipefail
+cd "$(dirname "$0")"
+
+export LC_ALL=C   # sinon printf et awk écrivent « 00,0 » au lieu de « 00.0 »
+
+FPS=2
+HEIGHT=720
+PER_SHEET=12
+QUALITY=5
+FONT="/System/Library/Fonts/Supplemental/Arial.ttf"
+
+command -v ffmpeg  >/dev/null || { echo "ffmpeg manquant";  exit 1; }
+command -v ffprobe >/dev/null || { echo "ffprobe manquant"; exit 1; }
+command -v magick  >/dev/null || { echo "ImageMagick manquant"; exit 1; }
+
+probe() { # $1=video $2=champ
+  ffprobe -v error -select_streams v:0 -show_entries "$2" -of csv=p=0 "$1" | head -1
+}
+
+analyse_one() {
+  local video="$1"
+  local id out
+  id="$(basename "$video" .mp4)"
+  out="analysis/$id"
+
+  local duration fps width height
+  duration="$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$video")"
+  fps="$(probe "$video" stream=r_frame_rate)"
+  width="$(probe "$video" stream=width)"
+  height="$(probe "$video" stream=height)"
+
+  echo "  $id  (${duration}s, ${width}x${height}, $fps)"
+  rm -rf "$out"
+  mkdir -p "$out/frames" "$out/sheets"
+
+  # 1. extraction régulière
+  ffmpeg -v error -y -i "$video" -vf "fps=$FPS,scale=-2:$HEIGHT" -q:v "$QUALITY" \
+    "$out/frames/tmp_%04d.jpg"
+
+  # 2. renommage horodaté : frame_0000_00.0s.jpg
+  local i=0 f t new
+  for f in "$out"/frames/tmp_*.jpg; do
+    t="$(awk -v i="$i" -v r="$FPS" 'BEGIN{printf "%.1f", i/r}')"
+    printf -v new 'frame_%04d_%04.1fs.jpg' "$i" "$t"
+    mv "$f" "$out/frames/$new"
+    i=$((i + 1))
+  done
+
+  # 3. planches contact de 12, ordre chronologique strict
+  local -a all
+  local -a all=()
+  while IFS= read -r line; do all+=("$line"); done < <(ls "$out/frames"/frame_*.jpg | sort)
+  local total=${#all[@]} sheets=0
+  local -a args
+  for ((i = 0; i < total; i += PER_SHEET)); do
+    sheets=$((sheets + 1))
+    args=()
+    for ((j = i; j < i + PER_SHEET && j < total; j++)); do
+      f="${all[$j]}"
+      t="$(basename "$f" | sed -E 's/^frame_[0-9]+_([0-9.]+)s\.jpg$/\1s/')"
+      args+=(-label "$t" "$f")
+    done
+    magick montage "${args[@]}" -tile 4x3 -geometry 280x280+5+5 \
+      -background '#141416' -fill '#ffffff' -pointsize 20 -font "$FONT" -quality 82 \
+      "$out/sheets/sheet_$(printf '%02d' "$sheets").jpg"
+  done
+
+  # 4. manifest
+  VIDEO="$video" OUT="$out" ID="$id" DURATION="$duration" SRCFPS="$fps" \
+  WIDTH="$width" HEIGHT="$height" AFPS="$FPS" SHEETS="$sheets" python3 - <<'PY'
+import json, os, re
+from pathlib import Path
+
+out = Path(os.environ["OUT"])
+frames = []
+for f in sorted((out / "frames").glob("frame_*.jpg")):
+    m = re.match(r"frame_(\d+)_([0-9.,]+)s\.jpg$", f.name)
+    frames.append({"file": f.name, "index": int(m.group(1)), "time": float(m.group(2).replace(",", "."))})
+
+sheets = [{"file": p.name, "from": i * 12, "to": min((i + 1) * 12 - 1, len(frames) - 1)}
+          for i, p in enumerate(sorted((out / "sheets").glob("sheet_*.jpg")))]
+
+try:
+    num, den = os.environ["SRCFPS"].split("/")
+    srcfps = round(int(num) / int(den), 3) if int(den) else None
+except Exception:
+    srcfps = None
+
+manifest = {
+    "video": os.path.basename(os.environ["VIDEO"]),
+    "video_id": os.environ["ID"],
+    "duration": round(float(os.environ["DURATION"]), 3),
+    "source": {
+        "width": int(os.environ["WIDTH"]),
+        "height": int(os.environ["HEIGHT"]),
+        "fps": srcfps,
+    },
+    "analysis_fps": float(os.environ["AFPS"]),
+    "frame_size": {"height": 720, "width": "auto"},
+    "frames_per_sheet": 12,
+    "sheet_count": int(os.environ["SHEETS"]),
+    "frame_count": len(frames),
+    "frames": frames,
+    "sheets": sheets,
+}
+(out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+PY
+
+  echo "    -> $total frames, $sheets planches"
+}
+
+if [ "$#" -gt 0 ]; then
+  analyse_one "$1"
+else
+  echo "Analyse niveau 1 (2 i/s) de toutes les vidéos"
+  for v in videos/*.mp4; do analyse_one "$v"; done
+fi
+
+echo
+echo "Terminé. Pack dans analysis/ — voir analysis/README.md"

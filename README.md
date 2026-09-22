@@ -33,6 +33,9 @@ Résultat : **23/23 liens résolus, 0 erreur, 23 URLs uniques**.
 | `thumbs/` | Une vignette JPG par vidéo (480 px de large) |
 | `seance-mardi.html` | Fiche de coaching de la séance du mardi (warm-up, 2 circuits, fiches vidéo) |
 | `CHANGELOG.md` | Journal des modifications de la page de séance |
+| `analyse-video` | Script : pack d'analyse d'une vidéo (2 i/s, planches horodatées, manifest) |
+| `analyse-video-detail` | Script : gros plan 8 i/s sur une plage de temps |
+| `analysis/` | Packs d'analyse par vidéo (outil de travail, hors production) |
 
 ## Aperçu
 

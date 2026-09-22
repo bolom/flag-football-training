@@ -91,3 +91,21 @@ concurrencer le bouton principal de chaque fiche.
 - **Formulation du Flag pull corrigée** : « environ 4 reps… idéalement une fois chacun » était
   incohérent avec l'inversion à chaque rep. Remplacé par : « reps en continu jusqu'au signal QB ;
   inversion à chaque rep ; viser ≈ 4 reps, soit ≈ 2 dans chaque rôle par joueur ».
+
+## Pack d'analyse vidéo (`analysis/`)
+
+Nouvel outil de travail, **distinct de `thumbs/`** (rien n'est affiché sur le site).
+
+- `./analyse-video` — niveau 1 : extrait **2 images/seconde** sur toute la vidéo (hauteur 720 px),
+  les nomme `frame_0000_00.0s.jpg` (index + timestamp), génère des **planches contact de 12
+  images** avec le timestamp incrusté sous chaque vignette (ordre chronologique strict), et
+  écrit un `manifest.json` (durée, fps source, cadence, liste des frames et des planches).
+- `./analyse-video-detail VIDEO 17 21 [fps]` — niveau 2 : **8 i/s** (réglable 5–10) uniquement
+  sur la plage demandée, hauteur 900 px, mêmes planches et manifest.
+- 25 vidéos traitées, soit ~1 650 images et ~140 planches.
+- `analysis/README.md` décrit le workflow (planches → repérage des exercices → détail → choix
+  des images à copier dans `thumbs/`).
+
+Note : `drawtext` n'étant pas compilé dans le ffmpeg local, l'incrustation des timestamps est
+faite avec ImageMagick (montage), et la locale est forcée en `C` pour que les timestamps
+s'écrivent `00.0s` et non `00,0s`.

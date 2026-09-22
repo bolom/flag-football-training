@@ -886,6 +886,64 @@
 
   .frame figcaption span { font-size: 11.5px; line-height: 1.4; color: var(--muted); }
 
+  /* --- animation image par image, façon GIF --- */
+
+  .visual {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .visual .frames { flex: 1 1 auto; }
+
+  .flip { position: relative; flex: none; display: grid; gap: 7px; width: 176px; margin: 0; }
+
+  .flip-box { position: relative; aspect-ratio: 9 / 16; }
+
+  .flip img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    background: #000;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+  }
+
+  .flip img.on { display: block; }
+
+  .flip figcaption {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .flip-toggle {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    flex: none;
+    background: none;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    color: var(--accent);
+    font-size: 8px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .flip-toggle:hover { border-color: var(--accent); }
+
   /* --- l'essentiel, toujours visible --- */
 
   .ex-key { display: grid; gap: 8px; }
@@ -1167,6 +1225,8 @@
       -webkit-overflow-scrolling: touch;
     }
     .frame { scroll-snap-align: start; }
+    .visual { flex-direction: column; gap: 14px; }
+    .flip { width: 150px; }
     .loop { padding: 12px 14px 14px; }
     .flow { padding-left: 42px; }
     .return { left: 11px; }
@@ -1244,6 +1304,8 @@
     .node, .loop, .warm-step, .route, .frames, .ex-key, .half, .memo, .goal, .finisher li, .circuit { break-inside: avoid; }
     h3, h4 { break-after: avoid; }
     .clip { display: none; }
+    .flip { width: 130px; }
+    .flip figcaption { display: none; }
     .headline { font-size: 15pt; }
     .subline { margin-bottom: 12px; }
     .arc { min-height: 30px; }
@@ -1360,7 +1422,8 @@
 
             <p class="ex-goal"><b>Objectif&nbsp;:</b> faire descendre fortement les hanches et le corps sans perdre l'équilibre ni le contrôle du ballon. <em>Phase d'apprentissage&nbsp;: ce n'est pas encore un sprint.</em></p>
 
-            <div class="frames">
+            <div class="visual">
+        <div class="frames">
                 <figure class="frame">
                   <img src="thumbs/DbUqh3jRoQw_ex1_1.jpg" alt="Exercice 1 : position avant la descente, ballon au-dessus de la tête">
                   <figcaption>
@@ -1390,6 +1453,24 @@
                   </figcaption>
                 </figure>
             </div>
+        <figure class="flip" data-delay="250">
+          <div class="flip-box">
+          <img src="thumbs/DbUqh3jRoQw_ex1_a1.jpg" alt="Exercice 01, le dip en 8 images" class="on">
+          <img src="thumbs/DbUqh3jRoQw_ex1_a2.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex1_a3.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex1_a4.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex1_a5.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex1_a6.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex1_a7.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex1_a8.jpg" alt="">
+          </div>
+          <figcaption>
+            <button class="flip-toggle" type="button" aria-label="Mettre l'animation en pause">❚❚</button>
+            <span class="flip-count">1 / 8</span>
+            <span>animation</span>
+          </figcaption>
+        </figure>
+        </div>
 
             <div class="ex-key">
               <h5>L'essentiel</h5>
@@ -1457,7 +1538,8 @@
 
             <p class="ex-goal"><b>Objectif&nbsp;:</b> ne pas faire un dip statique — descendre sous la tentative de flag et repartir immédiatement.</p>
 
-            <div class="frames">
+            <div class="visual">
+        <div class="frames">
                 <figure class="frame">
                   <img src="thumbs/DbUqh3jRoQw_ex2_1.jpg" alt="Exercice 2 : arrivée en course avec le ballon">
                   <figcaption>
@@ -1487,6 +1569,24 @@
                   </figcaption>
                 </figure>
             </div>
+        <figure class="flip" data-delay="250">
+          <div class="flip-box">
+          <img src="thumbs/DbUqh3jRoQw_ex2_a1.jpg" alt="Exercice 02, le dip en mouvement en 8 images" class="on">
+          <img src="thumbs/DbUqh3jRoQw_ex2_a2.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex2_a3.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex2_a4.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex2_a5.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex2_a6.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex2_a7.jpg" alt="">
+          <img src="thumbs/DbUqh3jRoQw_ex2_a8.jpg" alt="">
+          </div>
+          <figcaption>
+            <button class="flip-toggle" type="button" aria-label="Mettre l'animation en pause">❚❚</button>
+            <span class="flip-count">1 / 8</span>
+            <span>animation</span>
+          </figcaption>
+        </figure>
+        </div>
 
             <div class="ex-key">
               <h5>L'essentiel</h5>
@@ -1725,7 +1825,8 @@
                 <span>coupe intérieure</span>
                 <button class="clip mini" type="button" data-clip="slant">▶ 0:01</button>
               </header>
-              <div class="frames three">
+              <div class="visual">
+        <div class="frames three">
                   <figure class="frame">
                     <img src="thumbs/2rOdrFzcNls_slant_1.jpg" alt="Slant : installation du drill, QB et receveur face à face">
                     <figcaption>
@@ -1748,6 +1849,24 @@
                     </figcaption>
                   </figure>
               </div>
+        <figure class="flip" data-delay="250">
+          <div class="flip-box">
+          <img src="thumbs/2rOdrFzcNls_slant_a1.jpg" alt="Tracé slant en 8 images" class="on">
+          <img src="thumbs/2rOdrFzcNls_slant_a2.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_slant_a3.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_slant_a4.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_slant_a5.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_slant_a6.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_slant_a7.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_slant_a8.jpg" alt="">
+          </div>
+          <figcaption>
+            <button class="flip-toggle" type="button" aria-label="Mettre l'animation en pause">❚❚</button>
+            <span class="flip-count">1 / 8</span>
+            <span>animation</span>
+          </figcaption>
+        </figure>
+        </div>
               <p class="route-key">Coupe nette vers l'intérieur · fenêtre de passe tôt · ballon devant la poitrine.</p>
             </section>
 
@@ -1757,7 +1876,8 @@
                 <span>cassure extérieure</span>
                 <button class="clip mini" type="button" data-clip="out">▶ 0:04</button>
               </header>
-              <div class="frames three">
+              <div class="visual">
+        <div class="frames three">
                   <figure class="frame">
                     <img src="thumbs/2rOdrFzcNls_out_1.jpg" alt="Out : le QB arme et le receveur démarre">
                     <figcaption>
@@ -1780,6 +1900,24 @@
                     </figcaption>
                   </figure>
               </div>
+        <figure class="flip" data-delay="250">
+          <div class="flip-box">
+          <img src="thumbs/2rOdrFzcNls_out_a1.jpg" alt="Tracé out en 8 images" class="on">
+          <img src="thumbs/2rOdrFzcNls_out_a2.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_out_a3.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_out_a4.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_out_a5.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_out_a6.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_out_a7.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_out_a8.jpg" alt="">
+          </div>
+          <figcaption>
+            <button class="flip-toggle" type="button" aria-label="Mettre l'animation en pause">❚❚</button>
+            <span class="flip-count">1 / 8</span>
+            <span>animation</span>
+          </figcaption>
+        </figure>
+        </div>
               <p class="route-key">Cassure vers l'extérieur · rester bas dans la cassure · ballon vers la ligne.</p>
             </section>
 
@@ -1789,7 +1927,8 @@
                 <span>trajectoire profonde</span>
                 <button class="clip mini" type="button" data-clip="go">▶ 0:08</button>
               </header>
-              <div class="frames three">
+              <div class="visual">
+        <div class="frames three">
                   <figure class="frame">
                     <img src="thumbs/2rOdrFzcNls_go_1.jpg" alt="Go : départ vertical du receveur, QB qui arme">
                     <figcaption>
@@ -1812,6 +1951,24 @@
                     </figcaption>
                   </figure>
               </div>
+        <figure class="flip" data-delay="250">
+          <div class="flip-box">
+          <img src="thumbs/2rOdrFzcNls_go_a1.jpg" alt="Tracé go en 8 images" class="on">
+          <img src="thumbs/2rOdrFzcNls_go_a2.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_go_a3.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_go_a4.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_go_a5.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_go_a6.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_go_a7.jpg" alt="">
+          <img src="thumbs/2rOdrFzcNls_go_a8.jpg" alt="">
+          </div>
+          <figcaption>
+            <button class="flip-toggle" type="button" aria-label="Mettre l'animation en pause">❚❚</button>
+            <span class="flip-count">1 / 8</span>
+            <span>animation</span>
+          </figcaption>
+        </figure>
+        </div>
               <p class="route-key">Départ vertical sans flotter · ballon lancé devant, jamais derrière · réception en course.</p>
             </section>
 
@@ -1883,7 +2040,8 @@
 
           <p class="ex-goal"><b>Objectif&nbsp;:</b> fermer l'espace <b>avec les pieds</b>, rester bas, et finir le flag sans se jeter ni s'arrêter.</p>
 
-          <div class="frames three">
+          <div class="visual">
+        <div class="frames three">
                 <figure class="frame">
                   <img src="thumbs/DdFXgBFvyGk_1.jpg" alt="Flag pull : position d'attente basse du défenseur, l'attaquant déclenche">
                   <figcaption>
@@ -1906,6 +2064,24 @@
                   </figcaption>
                 </figure>
           </div>
+        <figure class="flip" data-delay="250">
+          <div class="flip-box">
+          <img src="thumbs/DdFXgBFvyGk_a1.jpg" alt="Flag pull en 8 images" class="on">
+          <img src="thumbs/DdFXgBFvyGk_a2.jpg" alt="">
+          <img src="thumbs/DdFXgBFvyGk_a3.jpg" alt="">
+          <img src="thumbs/DdFXgBFvyGk_a4.jpg" alt="">
+          <img src="thumbs/DdFXgBFvyGk_a5.jpg" alt="">
+          <img src="thumbs/DdFXgBFvyGk_a6.jpg" alt="">
+          <img src="thumbs/DdFXgBFvyGk_a7.jpg" alt="">
+          <img src="thumbs/DdFXgBFvyGk_a8.jpg" alt="">
+          </div>
+          <figcaption>
+            <button class="flip-toggle" type="button" aria-label="Mettre l'animation en pause">❚❚</button>
+            <span class="flip-count">1 / 8</span>
+            <span>animation</span>
+          </figcaption>
+        </figure>
+        </div>
 
           <div class="ex-key">
             <h5>L'essentiel</h5>
@@ -1971,7 +2147,8 @@
 
           <p class="ex-goal"><b>Objectif&nbsp;:</b> traverser le sas en deux ou trois secondes — entrer en mouvement, descendre, réorienter, ressortir — <b>sans jamais s'arrêter</b>.</p>
 
-          <div class="frames">
+          <div class="visual">
+        <div class="frames">
                 <figure class="frame">
                   <img src="thumbs/DcumOOqNKAi_1.jpg" alt="Appuis : entrée du joueur déjà en mouvement">
                   <figcaption>
@@ -2001,6 +2178,24 @@
                   </figcaption>
                 </figure>
           </div>
+        <figure class="flip" data-delay="250">
+          <div class="flip-box">
+          <img src="thumbs/DcumOOqNKAi_a1.jpg" alt="Appuis et sortie en 8 images" class="on">
+          <img src="thumbs/DcumOOqNKAi_a2.jpg" alt="">
+          <img src="thumbs/DcumOOqNKAi_a3.jpg" alt="">
+          <img src="thumbs/DcumOOqNKAi_a4.jpg" alt="">
+          <img src="thumbs/DcumOOqNKAi_a5.jpg" alt="">
+          <img src="thumbs/DcumOOqNKAi_a6.jpg" alt="">
+          <img src="thumbs/DcumOOqNKAi_a7.jpg" alt="">
+          <img src="thumbs/DcumOOqNKAi_a8.jpg" alt="">
+          </div>
+          <figcaption>
+            <button class="flip-toggle" type="button" aria-label="Mettre l'animation en pause">❚❚</button>
+            <span class="flip-count">1 / 8</span>
+            <span>animation</span>
+          </figcaption>
+        </figure>
+        </div>
 
           <div class="ex-key">
             <h5>L'essentiel</h5>
@@ -2271,6 +2466,52 @@
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") close();
+  });
+
+  /* animation image par image : on fait défiler les frames en boucle */
+  var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  Array.prototype.forEach.call(document.querySelectorAll(".flip"), function (flip) {
+    var frames = flip.querySelectorAll("img");
+    var count = flip.querySelector(".flip-count");
+    var button = flip.querySelector(".flip-toggle");
+    var delay = parseInt(flip.dataset.delay || "250", 10);
+    var index = 0;
+    var timer = null;
+
+    function show(n) {
+      frames[index].classList.remove("on");
+      index = (n + frames.length) % frames.length;
+      frames[index].classList.add("on");
+      if (count) count.textContent = (index + 1) + " / " + frames.length;
+    }
+
+    function play() {
+      if (timer) return;
+      timer = setInterval(function () { show(index + 1); }, delay);
+      if (button) {
+        button.textContent = "❚❚";
+        button.setAttribute("aria-label", "Mettre l'animation en pause");
+      }
+    }
+
+    function pause() {
+      clearInterval(timer);
+      timer = null;
+      if (button) {
+        button.textContent = "▶";
+        button.setAttribute("aria-label", "Lancer l'animation");
+      }
+    }
+
+    if (button) {
+      button.addEventListener("click", function () { timer ? pause() : play(); });
+    }
+
+    flip.addEventListener("mouseenter", function () { if (!calm) play(); });
+    flip.addEventListener("mouseleave", function () { if (!calm) pause(); });
+
+    if (!calm) play();
   });
 
   /* impression : on déplie les détails, la fiche papier doit être complète */
