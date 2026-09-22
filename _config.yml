@@ -1,0 +1,17 @@
+# Configuration GitHub Pages.
+#
+# Le site est publié depuis la branche main (build « legacy » = Jekyll).
+# Tout ce qui n'est pas du contenu de site est exclu de la publication.
+
+exclude:
+  - analysis                 # pack d'analyse : artefact de travail
+  - analyse-video            # scripts d'extraction
+  - analyse-video-detail
+  - build-preview.py         # outillage de génération de la galerie
+  - preview.template.html
+  - .gitignore
+  - .DS_Store
+
+# Pas de thème, pas de plugin : le site est du HTML statique.
+theme: null
+plugins: []

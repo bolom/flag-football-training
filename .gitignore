@@ -2,3 +2,8 @@
 .check-*
 .venv-ytdlp/
 *.tmp
+
+# Pack d'analyse : les frames individuelles restent locales (régénérables avec ./analyse-video),
+# seules les planches et les manifests sont versionnés.
+analysis/*/frames/
+analysis/*/detail_*/
