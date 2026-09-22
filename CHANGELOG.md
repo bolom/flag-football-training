@@ -198,3 +198,32 @@ cette partie-là qui est à travailler à part. La note dit maintenant exactemen
 - Grille passée de 3 à 4 images (`.frames`) pour montrer à la fois l'approche et la saisie.
 - Affiche de galerie `thumbs/DdFXgBFvyGk_flaglabperformance.jpg` : supprimée par erreur pendant
   la génération, restaurée à l'identique depuis git (vérifié : identique à HEAD).
+
+## Fiche Appuis : images reprises depuis le pack d'analyse
+
+Même méthode : planches 2 i/s, repérage des 6 prises réelles, vérification des candidats en
+pleine résolution.
+
+Les 4 images précédentes venaient de **3 prises différentes** (6,40 / 15,30 / 16,80 / 18,60 s).
+Elles sont remplacées par 4 images issues d'**une seule prise continue** — la meilleure
+(prise 2, 6,2–12,5 s : sujet le plus grand, le mieux éclairé, même joueur du début à la fin) :
+
+| Image | Moment |
+|---|---|
+| Entrée | **6,60 s** — le joueur arrive déjà en mouvement, hanches basses |
+| Abaissement | **8,10 s** — les hanches descendent, un pied se pose sur la ligne |
+| Appuis courts | **8,40 s** — position la plus basse, pieds rapprochés, buste replié |
+| Sortie | **8,90 s** — poussée de la jambe arrière, le buste se redresse |
+
+**Correction d'une affirmation fausse.** La légende « Entrée » disait : « le joueur entre déjà
+lancé, **pas de départ arrêté** ». C'est faux : la prise 1 (0,00 → 0,90 s) montre un joueur
+immobile, fléchi, mains près des genoux, presque une seconde avant le premier pas. Vérifié image
+par image.
+
+**Ajout d'une nuance honnête.** Le joueur de la vidéo **ne change pas de direction** : il croise
+les appuis et tourne le buste le long de la ligne, sans inversion de trajectoire. La note le dit
+maintenant explicitement, et précise que la **réorientation et la sortie vers le QB sont notre
+adaptation** — pas le contenu de la source.
+
+- Bouton vidéo recalé sur la meilleure prise : 6,2 s au lieu de 6,0 s (libellé · 6 s inchangé).
+- Aucun ballon dans toute la vidéo : confirmé (les prises 5 et 6, en contre-jour, sont écartées).
