@@ -153,3 +153,22 @@ c'est le **même drill que le 01**, avec une partie du groupe mains derrière la
   bas jusqu'à la feinte en situation dynamique. »
 - La fiche `01B` porte désormais « **Variante de l'exercice 01** » en tête d'objectif.
 - Légendes vidéo et textes alternatifs des 19 images alignés sur la nouvelle numérotation.
+
+## Fiche QB : images reprises depuis le pack d'analyse
+
+Même méthode que pour la vidéo DIP : planches 2 i/s, puis vérification des candidats en pleine
+résolution, image par image, avant de toucher à la fiche.
+
+- **Slant** : 1,20 (départ, libellé « 1. SLANT » affiché) · 2,20 (le ballon quitte la main) ·
+  2,90 (le receveur saute, bras levés).
+- **Out** : 4,40 (face à face) · 5,30 (bras armé au-dessus de l'épaule) · 6,00 (ballon en vol
+  vers la ligne). L'ancienne image de « cassure » (4,55) ne montrait ni cassure ni ballon.
+- **Go** : 7,90 (alignés, libellé « 3. GO ») · 8,60 (bras armé) · 9,80 (ballon nettement en l'air).
+- Repères des popups ajustés sur l'apparition des libellés : slant 1,0 s · out 4,0 s · go 7,5 s
+  (bouton passé de ▶ 0:08 à ▶ 0:07).
+- Deux affirmations retirées faute de preuve à l'image : « ballon attrapé en avançant » (le ballon
+  n'est pas lisible dans les mains) et « réception près de la ligne, pieds dedans ».
+- Vérifié au passage : le libellé du 2ᵉ tracé est bien **« 2. OUT »** du début à la fin (une lecture
+  de planche m'avait fait croire à « 2. CUT » : c'était un artefact de compression).
+- Aucun rusher dans la vidéo, et le QB tient bien deux ballons dans les mains à 4,80 s : le
+  « 3-ball drill » du titre est littéral.
