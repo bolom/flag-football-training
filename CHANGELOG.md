@@ -253,3 +253,19 @@ Vérifications de cohérence entre les vidéos et nos adaptations :
   est littéral.
 - **DIP** : la variante sans ballon est le même drill que l'exercice 01 → présentée en `01B`,
   pas comme un exercice filmé distinct.
+
+## Nouvelle version coach, 2 pages
+
+`seance-mardi-coach.html` — document séparé, à imprimer pour le terrain. La version complète
+reste la référence détaillée et n'est pas modifiée.
+
+Contenu, dans l'ordre : chronologie visuelle proportionnelle (0:00 → 2:00), échauffement
+(5 fiches, 1 image chacune, chaîne + 3 consignes), circuit technique (les 2 circuits côte à côte,
+la règle de rotation), matériel et répartition, les 4 zones (1 image + 3 consignes chacune),
+match avec les 3 choses à regarder, renforcement (volumes, 4 tours, gainage) et une zone de notes.
+
+- **2 pages A4** exactement, vérifié au rendu PDF, ~85–90 % de remplissage sur chacune.
+- Aucune explication longue : que des consignes, des timings et des repères.
+- Liens croisés : la fiche complète pointe vers la version coach (dans l'en-tête, masqué à
+  l'impression), et la version coach renvoie vers la fiche complète.
+- La galerie et le `README.md` listent le nouveau document.

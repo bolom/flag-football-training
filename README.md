@@ -32,6 +32,7 @@ Résultat : **23/23 liens résolus, 0 erreur, 23 URLs uniques**.
 | `build-preview.py` | Régénère `preview.html` + les vignettes manquantes |
 | `thumbs/` | Une vignette JPG par vidéo (480 px de large) |
 | `seance-mardi.html` | Fiche de coaching de la séance du mardi (warm-up, 2 circuits, fiches vidéo) |
+| `seance-mardi-coach.html` | Version coach 2 pages, à imprimer pour le terrain |
 | `CHANGELOG.md` | Journal des modifications de la page de séance |
 | `analyse-video` | Script : pack d'analyse d'une vidéo (2 i/s, planches horodatées, manifest) |
 | `analyse-video-detail` | Script : gros plan 8 i/s sur une plage de temps |

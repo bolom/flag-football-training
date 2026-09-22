@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mardi — fiche coach (2 pages)</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f7f7f5;
+    --surface-2: #efefec;
+    --line: #e3e3de;
+    --line-strong: #cfcfc8;
+    --text: #17171a;
+    --muted: #63635f;
+    --dim: #8d8d87;
+    --accent: oklch(.55 .15 132);
+    --accent-ink: #ffffff;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 22px 20px 40px;
+    background: var(--bg);
+    color: var(--text);
+    font: 13px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet { max-width: 900px; margin: 0 auto; }
+
+  /* ---------- en-tête ---------- */
+
+  .top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--text);
+  }
+
+  .kicker {
+    margin: 0 0 3px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1 { margin: 0; font-size: 25px; font-weight: 750; letter-spacing: -.03em; }
+
+  .when { margin: 3px 0 0; font-size: 12px; color: var(--muted); }
+
+  .timeline {
+    display: flex;
+    gap: 4px;
+    margin-top: 12px;
+  }
+
+  .timeline .seg {
+    min-width: 0;
+    padding: 7px 10px 8px;
+    border-radius: 7px;
+    background: var(--surface-2);
+    border-left: 3px solid var(--accent);
+  }
+  .timeline .seg:nth-child(2) { background: var(--surface); }
+  .timeline .seg b {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+  }
+  .timeline .seg span { display: block; font-size: 11.5px; font-weight: 650; letter-spacing: -.01em; }
+  .timeline .seg i { font-style: normal; font-size: 10px; color: var(--dim); }
+
+  .blocks { display: flex; gap: 0; margin: 0; padding: 0; list-style: none; }
+  .blocks li {
+    padding: 0 12px;
+    border-left: 1px solid var(--line-strong);
+    font-size: 11.5px;
+    line-height: 1.35;
+  }
+  .blocks li:first-child { border-left: 0; padding-left: 0; }
+  .blocks li:last-child { padding-right: 0; }
+  .blocks b { display: block; font-family: var(--mono); font-size: 10px; color: var(--accent); }
+  .blocks span { color: var(--dim); }
+
+  /* ---------- sections ---------- */
+
+  section { margin-top: 18px; break-inside: avoid; }
+
+  .head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  .head h2 { margin: 0; font-size: 15px; font-weight: 720; letter-spacing: -.02em; }
+  .head .time {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .head .len { margin-left: auto; font-size: 11.5px; color: var(--muted); }
+
+  .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
+  .cols.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  /* ---------- exercice ---------- */
+
+  .ex { display: flex; gap: 9px; break-inside: avoid; }
+  .ex img {
+    flex: none;
+    width: 62px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+  }
+
+  .ex h3 {
+    margin: 0 0 2px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+  .ex h3 .n {
+    display: inline-block;
+    min-width: 20px;
+    margin-right: 4px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--mono);
+    font-size: 9px;
+    text-align: center;
+  }
+  .ex h3 .t { float: right; font-family: var(--mono); font-size: 9.5px; color: var(--dim); font-weight: 500; }
+
+  .chain { margin: 0 0 3px; font-size: 10.5px; color: var(--muted); }
+  .chain i { font-style: normal; color: var(--dim); }
+
+  .ex ul { margin: 0; padding: 0; list-style: none; }
+  .ex li { position: relative; padding-left: 11px; font-size: 11px; line-height: 1.4; }
+  .ex li::before {
+    content: "";
+    position: absolute;
+    left: 1px; top: 6px;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ---------- circuit ---------- */
+
+  .circuit { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px; }
+
+  .loop {
+    padding: 8px 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+  }
+  .loop header {
+    display: flex; align-items: baseline; gap: 7px;
+    font-size: 11.5px; font-weight: 700;
+    padding-bottom: 5px; margin-bottom: 5px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .loop header .tag {
+    font-family: var(--mono); font-size: 9px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .loop ol { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+  .loop li {
+    position: relative;
+    padding: 3px 0 3px 20px;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  .loop li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute; left: 0; top: 4px;
+    width: 14px; height: 14px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    background: var(--surface-2);
+    font-family: var(--mono); font-size: 8.5px;
+  }
+  .loop li b { font-weight: 650; }
+  .loop li span { color: var(--muted); }
+
+  .turn {
+    margin-top: 9px;
+    padding: 8px 11px;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    font-size: 11.5px;
+    line-height: 1.45;
+  }
+  .turn b { color: var(--accent); }
+
+  /* ---------- blocs courts ---------- */
+
+  .brief { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 16px; }
+
+  .brief h3 { margin: 0 0 4px; font-size: 11.5px; font-weight: 700; }
+  .brief ul { margin: 0; padding: 0; list-style: none; }
+  .brief li { position: relative; padding-left: 11px; font-size: 11px; line-height: 1.4; }
+  .brief li::before {
+    content: ""; position: absolute; left: 1px; top: 6px;
+    width: 4px; height: 4px; border-radius: 50%; background: var(--accent);
+  }
+
+  .volumes { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 8px; padding: 0; list-style: none; }
+  .volumes li {
+    padding: 5px 11px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-size: 11.5px;
+  }
+  .volumes b { font-family: var(--mono); font-size: 12px; }
+
+  .note {
+    margin: 8px 0 0;
+    padding: 7px 10px;
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+
+  .ruled { display: grid; }
+
+  .ruled span {
+    display: block;
+    height: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .foot {
+    margin-top: 16px;
+    padding-top: 9px;
+    border-top: 1px solid var(--line);
+    font-size: 10.5px;
+    color: var(--dim);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .foot a { color: var(--muted); }
+
+  /* ---------- écran étroit ---------- */
+
+  @media (max-width: 700px) {
+    .cols, .cols.three, .circuit, .brief { grid-template-columns: minmax(0, 1fr); }
+    .blocks { flex-wrap: wrap; gap: 6px 0; }
+    .blocks li { padding: 0 10px; }
+  }
+
+  /* ---------- impression : 2 pages ---------- */
+
+  @page { size: A4; margin: 11mm 11mm 9mm; }
+
+  @media print {
+    body { padding: 0; font-size: 9.6pt; }
+    .sheet { max-width: none; }
+
+    h1 { font-size: 19pt; }
+    .head h2 { font-size: 11.5pt; }
+    .ex h3 { font-size: 10pt; }
+    .ex img { width: 52px; height: 92px; }
+    .ex li, .brief li, .loop li { font-size: 8.6pt; }
+    .chain, .turn, .volumes li, .note { font-size: 8.6pt; }
+    .blocks li { font-size: 8.8pt; }
+
+    section { margin-top: 11px; }
+    .foot { display: none; }
+    a { color: inherit; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="top">
+    <div>
+      <p class="kicker">Fiche coach · à avoir en main</p>
+      <h1>Mardi — séance 2 h 15</h1>
+      <p class="when">Version courte. La <a href="seance-mardi.html">fiche complète</a> reste la référence détaillée.</p>
+    </div>
+  </header>
+
+  <div class="timeline" aria-label="Chronologie de la séance">
+    <div class="seg" style="flex:15"><b>0:00</b><span>Échauffement</span><i>15 min</i></div>
+    <div class="seg" style="flex:65"><b>0:15</b><span>Circuit technique</span><i>65 min</i></div>
+    <div class="seg" style="flex:20"><b>1:20</b><span>Match</span><i>20 min</i></div>
+    <div class="seg" style="flex:20"><b>1:40</b><span>Renforcement</span><i>20 min</i></div>
+  </div>
+
+  <!-- ================= WARM-UP ================= -->
+  <section>
+    <div class="head">
+      <span class="time">0:00 → 0:15</span>
+      <h2>Échauffement — 4 exercices + 1 variante</h2>
+      <span class="len">15 min</span>
+    </div>
+
+    <div class="cols">
+      <article class="ex">
+        <img src="thumbs/DbUqh3jRoQw_mob_3.jpg" alt="Position la plus basse, ballon au-dessus de la tête">
+        <div>
+          <h3><span class="n">01</span>Mobilité basse, ballon haut<span class="t">3–6</span></h3>
+          <p class="chain">Position haute <i>→</i> descente <i>→</i> genou près du sol <i>→</i> transfert</p>
+          <ul>
+            <li>Bassin très bas, genou près du sol.</li>
+            <li>Ballon tenu haut du début à la fin.</li>
+            <li>Lent et propre, pas encore de vitesse.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="ex">
+        <img src="thumbs/DbUqh3jRoQw_noball_2.jpg" alt="Mains derrière la tête, hanches très basses">
+        <div>
+          <h3><span class="n">01B</span>Variante sans ballon<span class="t">6–8</span></h3>
+          <p class="chain">Arrivée <i>→</i> grosse descente <i>→</i> point bas <i>→</i> poussée</p>
+          <ul>
+            <li>Mains derrière la tête, ballon retiré.</li>
+            <li>Descendre plus bas que confortable.</li>
+            <li>Pousser pour ressortir, jamais s'arrêter en bas.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="ex">
+        <img src="thumbs/DbUqh3jRoQw_cut_3.jpg" alt="Appui latéral au plot, ballon sécurisé">
+        <div>
+          <h3><span class="n">02</span>Dip/cut, ballon sécurisé<span class="t">8–11</span></h3>
+          <p class="chain">Arrivée avec ballon <i>→</i> descente <i>→</i> appui latéral <i>→</i> sortie</p>
+          <ul>
+            <li>Ballon plaqué contre le corps.</li>
+            <li>Hanches basses au plot, appui planté.</li>
+            <li>Sortir en réaccélérant.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="ex">
+        <img src="thumbs/DbUqh3jRoQw_move_2.jpg" alt="Dip en mouvement, ballon toujours au-dessus de la tête">
+        <div>
+          <h3><span class="n">03</span>Dip en mouvement, ballon haut<span class="t">11–13</span></h3>
+          <p class="chain">Arrivée lancée <i>→</i> ballon haut <i>→</i> dip <i>→</i> transfert <i>→</i> sortie</p>
+          <ul>
+            <li>On arrive déjà lancé, pas de départ arrêté.</li>
+            <li>Le ballon reste haut pendant la descente.</li>
+            <li>Il redescend au corps seulement à la sortie.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="ex">
+        <img src="thumbs/DbUqh3jRoQw_fake_3.jpg" alt="Feinte : ballon tendu d'un côté, buste et regard de l'autre">
+        <div>
+          <h3><span class="n">04</span>Feinte corps + ballon<span class="t">13–15</span></h3>
+          <p class="chain">Arrivée <i>→</i> descente <i>→</i> feinte <i>→</i> réorientation <i>→</i> accélération</p>
+          <ul>
+            <li>Vendre la feinte avec le buste ET le ballon.</li>
+            <li>Rester bas pendant la feinte.</li>
+            <li>Sortir dans l'autre sens, ballon sécurisé.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <p class="note">0–3 min : mobilité générale et activation, sans ballon. Le groupe <b>exécute</b>, il ne regarde pas.</p>
+  </section>
+
+  <!-- ================= TECHNIQUE ================= -->
+  <section>
+    <div class="head">
+      <span class="time">0:15 → 1:20</span>
+      <h2>Circuit technique — 2 QB fixes, 2 circuits identiques</h2>
+      <span class="len">65 min</span>
+    </div>
+
+    <div class="circuit">
+      <div class="loop">
+        <header><span class="tag">circuit A</span>QB1 fixe · 2 binômes</header>
+        <ol>
+          <li><b>Zone QB</b> — 1 receveur + 1 rusher. <span>Mini-set de 3 passes : slant → out → go.</span></li>
+          <li><b>Zone Flag pull</b> — 1 attaquant + 1 défenseur. <span>Reps en continu : ≈ 4 par mini-set, ≈ 2 dans chaque rôle.</span></li>
+          <li><b>Sas appuis</b> — un par un : joueur 1 traverse, joueur 2 traverse. <span>Pas de file, pas d'attente.</span></li>
+          <li><b>Retour zone QB.</b></li>
+        </ol>
+      </div>
+
+      <div class="loop">
+        <header><span class="tag">circuit B</span>QB2 fixe · 2 binômes</header>
+        <ol>
+          <li><b>Zone QB</b> — 1 receveur + 1 rusher. <span>Mini-set de 3 passes : slant → out → go.</span></li>
+          <li><b>Zone Flag pull</b> — 1 attaquant + 1 défenseur. <span>Reps en continu : ≈ 4 par mini-set, ≈ 2 dans chaque rôle.</span></li>
+          <li><b>Sas appuis</b> — un par un : joueur 1 traverse, joueur 2 traverse. <span>Pas de file, pas d'attente.</span></li>
+          <li><b>Retour zone QB.</b></li>
+        </ol>
+      </div>
+    </div>
+
+    <p class="turn">
+      <b>Quand on tourne ?</b> Zone QB : slant + out + go terminés → <b>rotation immédiate</b>.
+      Pendant ce temps, zone Flag pull enchaîne sans pause ; au signal, on termine la répétition en cours.
+      Les deux binômes échangent de zone. À chaque retour en zone QB, <b>receveur et rusher inversent leurs rôles</b>.
+    </p>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="time">terrain</span>
+      <h2>Matériel &amp; répartition</h2>
+    </div>
+
+    <div class="brief">
+      <div>
+        <h3>Joueurs</h3>
+        <ul>
+          <li>≈ 10 joueurs : 2 circuits de 5.</li>
+          <li>Par circuit : 1 QB fixe + 2 binômes de 2.</li>
+          <li>Binôme 1 part en zone QB, binôme 2 en zone Flag pull.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Matériel</h3>
+        <ul>
+          <li>2 ballons minimum par QB (le drill de la vidéo en utilise 3).</li>
+          <li>5 à 6 plots, dont 1 pour le sas.</li>
+          <li>1 jeu de fanions complet + sifflet.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>À ne pas oublier</h3>
+        <ul>
+          <li>Le sas est un passage : <b>pas de file, pas d'attente</b>.</li>
+          <li>Les QB ne bougent jamais de poste.</li>
+          <li>Sur le renfo, on coupe un tour en deux plutôt que de mal exécuter.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= LES 4 ZONES ================= -->
+  <section>
+    <div class="head">
+      <span class="time">repères</span>
+      <h2>Les zones — l'essentiel à dire</h2>
+    </div>
+
+    <div class="cols">
+      <article class="ex">
+        <img src="thumbs/2rOdrFzcNls_slant_2.jpg" alt="Le ballon quitte la main du QB">
+        <div>
+          <h3><span class="n">1</span>Zone QB — 3 tracés<span class="t">13 s</span></h3>
+          <p class="chain">Slant <i>→</i> out <i>→</i> go, même receveur</p>
+          <ul>
+            <li>Ballon attrapable, quel que soit le tracé.</li>
+            <li>Slant rapide et dosé · out : timing · go : devant lui.</li>
+            <li>Les deux binômes passent aux 3 tracés.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="ex">
+        <img src="thumbs/DdFXgBFvyGk_4.jpg" alt="Le gant arrive sur le fanion, tiré sous tension">
+        <div>
+          <h3><span class="n">2</span>Zone Flag pull<span class="t">5 s</span></h3>
+          <p class="chain">Réaction <i>→</i> angle <i>→</i> approche basse <i>→</i> main au flag</p>
+          <ul>
+            <li>Ne pas partir trop tôt : on réagit.</li>
+            <li>Rester bas, fermer avec les pieds.</li>
+            <li>La main arrive en dernier, sur le fanion.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="ex">
+        <img src="thumbs/DcumOOqNKAi_3.jpg" alt="Position la plus basse, pieds rapprochés sur la ligne">
+        <div>
+          <h3><span class="n">3</span>Sas appuis<span class="t">6 s</span></h3>
+          <p class="chain">Entrée <i>→</i> abaissement <i>→</i> appuis courts <i>→</i> sortie</p>
+          <ul>
+            <li>Deux ou trois appuis suffisent : c'est un passage.</li>
+            <li>Rester bas, ne pas se redresser.</li>
+            <li>Un par un, personne n'attend.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="ex">
+        <img src="thumbs/DbUqh3jRoQw_cut_4.jpg" alt="Sortie du dip, ballon sécurisé">
+        <div>
+          <h3><span class="n">4</span>Adaptation Iguanes<span class="t">ajout</span></h3>
+          <p class="chain">Ajouter un rusher en zone QB</p>
+          <ul>
+            <li>La vidéo ne montre <b>aucun</b> rusher : c'est notre ajout.</li>
+            <li>Pression sur les 3 tracés du mini-set.</li>
+            <li>Le QB reste fixe, le rusher ne touche pas le ballon.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= MATCH + RENFO ================= -->
+  <section>
+    <div class="head">
+      <span class="time">1:20 → 2:00</span>
+      <h2>Match puis renforcement</h2>
+    </div>
+
+    <div class="cols">
+      <div>
+        <div class="brief" style="grid-template-columns:minmax(0,1fr)">
+          <div>
+            <h3>Match — 2 × 10 min</h3>
+            <ul>
+              <li>Changement immédiat à la fin de la 1<sup>re</sup> mi-temps.</li>
+              <li>On limite les interruptions au maximum.</li>
+              <li>Tu ne regardes que trois choses : <b>QB</b> précision sous rush ·
+                  <b>receveurs</b> catch + accélération · <b>défense</b> angle + flag pull.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <ul class="volumes">
+          <li>Squats <b>100</b></li>
+          <li>Pompes <b>50</b></li>
+          <li>Abdos <b>100</b></li>
+        </ul>
+        <div class="brief" style="grid-template-columns:minmax(0,1fr)">
+          <div>
+            <h3>4 tours conseillés</h3>
+            <ul>
+              <li>Squats 25 · Pompes 12 / 13 / 12 / 13 · Abdos 25.</li>
+              <li>Après 1 h 40 de séance, on garde la qualité.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">
+      <b>Gainage collectif</b> — tout le monde est en gainage en même temps : chaque joueur compte
+      10 secondes à voix haute, à tour de rôle. 10 joueurs = <b>1 min 40 de gainage continu</b>,
+      personne n'attend.
+    </p>
+  </section>
+
+  <section class="notes">
+    <div class="head">
+      <span class="time">à remplir</span>
+      <h2>Notes de séance</h2>
+    </div>
+    <div class="ruled" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </section>
+
+  <p class="foot">
+    <span>Mardi — 2 h 15 · fiche coach</span>
+    <span><a href="seance-mardi.html">Version complète et détaillée</a> · <a href="preview.html">Galerie des vidéos</a></span>
+  </p>
+
+</div>
+</body>
+</html>
