@@ -66,3 +66,20 @@ Les boutons « Voir dans la vidéo » passent en plein accent : fond vert, texte
 police plus grande et plus grasse, icône lecture agrandie. Les trois boutons de tracé
 (0:01 / 0:04 / 0:08) restent volontairement discrets, en simple contour accent, pour ne pas
 concurrencer le bouton principal de chaque fiche.
+
+## Clarification terrain : binômes, déclencheur de rotation, finisher
+
+- **Confusion A/B levée.** Les zones redeviennent neutres (`Zone QB`, `Zone Flag pull`) : ce
+  sont les binômes qui tournent, pas les zones. Un bloc dédié affiche l'échange :
+  **Binôme A — Zone QB → Zone Flag pull** et **Binôme B — Zone Flag pull → Zone QB**.
+- **Inversion des rôles en zone QB.** À chaque retour d'un binôme dans la zone, le receveur et
+  le rusher **inversent leurs rôles** — personne ne reste toujours receveur ou toujours rusher.
+- **Le mini-set QB devient le déclencheur de rotation.** Le flag pull n'a plus de quota rigide :
+  il enchaîne les reps **en continu** jusqu'au signal du QB (≈ 4 reps par mini-set, sans jamais
+  ralentir pour atteindre un chiffre). Au signal, on termine la répétition en cours et les deux
+  binômes échangent.
+- **Sas appuis** : règle terrain explicite — flag pull terminé → joueur 1 traverse → joueur 2
+  traverse → retour zone QB. Un par un, pas de file, pas d'attente.
+- **Finisher corrigé** : `4 × 12 ou 13 pompes = 50` était faux. Remplacé par
+  **Pompes : 12 / 13 / 12 / 13** (12 + 13 + 12 + 13 = 50). Squats 25 × 4 = 100 et abdos
+  25 × 4 = 100 inchangés.

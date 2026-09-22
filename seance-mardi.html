@@ -651,17 +651,17 @@
     color: var(--accent);
   }
 
-  .turn ul {
-    display: grid;
-    gap: 6px;
+  .turn-trigger {
     margin: 0;
-    padding: 0;
-    list-style: none;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: -.01em;
   }
 
-  .turn li { font-size: 13.5px; }
-  .turn li b { font-weight: 680; }
-  .turn li span { color: var(--muted); }
+  .turn-trigger span { color: var(--accent); }
+
+  .turn-flag { margin: 0; font-size: 12.5px; color: var(--muted); }
+  .turn-flag b { color: var(--text); font-weight: 620; }
 
   .turn-go {
     margin: 0;
@@ -672,6 +672,41 @@
   }
 
   .turn-note { margin: 0; font-size: 12px; color: var(--muted); }
+
+  /* --- les deux binômes --- */
+
+  .binomes {
+    display: grid;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 14px 17px 15px;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+  }
+
+  .binomes h4 {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .binome-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 9px;
+    margin: 0;
+    font-size: 13.5px;
+  }
+
+  .binome-row b { min-width: 84px; font-weight: 680; }
+  .binome-row span { color: var(--muted); }
+  .binome-row i { font-style: normal; color: var(--accent); font-weight: 700; }
+
+  .binome-note { margin: 0; font-size: 12px; color: var(--dim); }
 
   .loop-close {
     display: flex;
@@ -1560,24 +1595,24 @@
 
                 <article class="node">
                   <header>
-                    <span class="n">A</span>
+                    <span class="n">1</span>
                     <h4>Zone QB</h4>
-                    <span class="at">binôme · 2 joueurs</span>
+                    <span class="at">2 joueurs</span>
                   </header>
                   <p class="keyline">1 receveur + 1 rusher — mini-set de <b>3 passes</b></p>
-                  <p class="do">Mini-set complet <b>slant → out → go</b> : on ne change pas de joueur entre les trois, et le rusher presse les trois.</p>
+                  <p class="do">Mini-set complet <b>slant → out → go</b> : on ne change pas de joueur entre les trois, le rusher presse les trois. <b>Au retour suivant dans la zone, receveur et rusher inversent leurs rôles.</b></p>
                 </article>
 
                 <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
 
                 <article class="node">
                   <header>
-                    <span class="n">B</span>
+                    <span class="n">2</span>
                     <h4>Zone Flag pull</h4>
-                    <span class="at">binôme · 2 joueurs</span>
+                    <span class="at">2 joueurs</span>
                   </header>
-                  <p class="keyline">1 attaquant + 1 défenseur — <b>4 reps</b>, 2 par rôle</p>
-                  <p class="do"><b>4 reps rapides</b> : inversion à chaque rep, soit 2 attaques + 2 défenses par joueur.</p>
+                  <p class="keyline">1 attaquant + 1 défenseur — <b>reps en continu</b></p>
+                  <p class="do">On enchaîne <b>sans pause jusqu'au signal du QB</b> : environ 4 reps par mini-set, en inversant les rôles, idéalement une fois chacun. On ne ralentit pas pour atteindre un chiffre.</p>
                 </article>
 
                 <div class="arc transit">
@@ -1585,7 +1620,7 @@
                   <span class="tip">↓</span>
                   <p class="transit-note">
                     <b>Appui / cut — sas</b>
-                    <span>un par un : appuis rapides, sortie, retour au QB — pas de file, pas d'attente</span>
+                    <span>flag pull terminé → joueur 1 traverse → joueur 2 traverse → retour zone QB. Un par un, pas de file, pas d'attente.</span>
                   </p>
                 </div>
               </div>
@@ -1617,22 +1652,23 @@
 
                 <article class="node">
                   <header>
-                    <span class="n">A</span>
+                    <span class="n">1</span>
                     <h4>Zone QB</h4>
-                    <span class="at">binôme · 2 joueurs</span>
+                    <span class="at">2 joueurs</span>
                   </header>
                   <p class="keyline">1 receveur + 1 rusher — <b>3 passes</b></p>
+                  <p class="keyline">rôles inversés au retour</p>
                 </article>
 
                 <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
 
                 <article class="node">
                   <header>
-                    <span class="n">B</span>
+                    <span class="n">2</span>
                     <h4>Zone Flag pull</h4>
-                    <span class="at">binôme · 2 joueurs</span>
+                    <span class="at">2 joueurs</span>
                   </header>
-                  <p class="keyline">1 attaquant + 1 défenseur — <b>4 reps</b></p>
+                  <p class="keyline">1 attaquant + 1 défenseur — reps en continu</p>
                 </article>
 
                 <div class="arc transit">
@@ -1648,14 +1684,19 @@
 
           </div>
 
+          <div class="binomes">
+            <h4>Les zones ne bougent pas — les binômes changent de zone</h4>
+            <p class="binome-row"><b>Binôme A</b><span>Zone QB</span><i>→</i><span>Zone Flag pull</span></p>
+            <p class="binome-row"><b>Binôme B</b><span>Zone Flag pull</span><i>→</i><span>Zone QB</span></p>
+            <p class="binome-note">Puis on recommence : à chaque rotation, chaque binôme repart dans l'autre sens.</p>
+          </div>
+
           <div class="turn">
             <h4>Quand on tourne ?</h4>
-            <ul>
-              <li><b>Zone QB</b> — slant + out + go terminés <span>(3 passes)</span></li>
-              <li><b>Zone Flag pull</b> — 4 reps terminées <span>(2 attaques + 2 défenses par joueur)</span></li>
-            </ul>
-            <p class="turn-go">→ Les deux binômes échangent de zone.</p>
-            <p class="turn-note">Au départ : binôme A au QB, binôme B au flag pull. Le binôme qui sort du flag pull traverse le sas, un joueur après l'autre.</p>
+            <p class="turn-trigger"><b>Zone QB</b> — slant + out + go terminés <span>→ rotation immédiate</span></p>
+            <p class="turn-flag">Pendant ce temps, <b>zone Flag pull</b> : enchaîner les reps en continu, <b>≈ 4 par mini-set</b>, sans jamais attendre. Au signal, on termine la répétition en cours.</p>
+            <p class="turn-go">→ Les deux binômes échangent de zone. Pas d'attente.</p>
+            <p class="turn-note">À chaque retour en zone QB, le receveur et le rusher inversent leurs rôles. Le binôme qui sort du flag pull traverse le sas appuis, un joueur après l'autre.</p>
           </div>
 
           <p class="loop-close">
@@ -2076,13 +2117,13 @@
             <h5>4 tours conseillés</h5>
             <ol class="finisher">
               <li>Squats <b>25</b></li>
-              <li>Pompes <b>12 / 13</b></li>
+              <li>Pompes <b>12 / 13 / 12 / 13</b></li>
               <li>Abdos <b>25</b></li>
             </ol>
           </div>
         </div>
 
-        <p class="lead">4 tours × 25 squats = 100 · 4 × 12 ou 13 pompes = 50 · 4 × 25 abdos = 100. On coupe un tour en deux plutôt que de dégrader un mouvement.</p>
+        <p class="lead">Squats : 25 × 4 = <strong>100</strong> · Abdos : 25 × 4 = <strong>100</strong> · Pompes : 12 + 13 + 12 + 13 = <strong>50</strong>. On coupe un tour en deux plutôt que de dégrader un mouvement.</p>
 
         <aside class="callout">
           <b>Gainage collectif — tout le monde en même temps</b>
