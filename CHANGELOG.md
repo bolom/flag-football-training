@@ -109,3 +109,33 @@ Nouvel outil de travail, **distinct de `thumbs/`** (rien n'est affiché sur le s
 Note : `drawtext` n'étant pas compilé dans le ffmpeg local, l'incrustation des timestamps est
 faite avec ImageMagick (montage), et la locale est forcée en `C` pour que les timestamps
 s'écrivent `00.0s` et non `00,0s`.
+
+## Warm-up : la vidéo DIP passe de 2 à 5 exercices
+
+L'ancien découpage (2 exercices) simplifiait trop `DbUqh3jRoQw`. Réanalyse complète à partir
+du pack `analysis/` (planches 2 i/s puis détails à 10 i/s sur les passages clés) : la vidéo
+montre une **progression de 5 exercices**, pas deux blocs génériques.
+
+| # | Exercice | Prise retenue | Images |
+|---|---|---|---|
+| 01 | Mobilité basse — ballon au-dessus de la tête | 11,5 → 16,5 s | 13,30 / 13,60 / 14,50 / 15,10 |
+| 02 | Dip explosif, mains derrière la tête | 8,4 → 10,5 s | 8,40 / 8,80 / 9,40 |
+| 03 | Dip / cut avec ballon sécurisé | 22,0 → 24,4 s | 23,30 / 23,40 / 23,60 / 24,20 |
+| 04 | Dip en mouvement — ballon au-dessus de la tête | 2,2 → 6,6 s | 2,30 / 3,50 / 5,60 / 6,20 |
+| 05 | Feinte du corps et du ballon + changement de direction | 32,1 → 34,7 s | 32,60 / 33,10 / 33,50 / 33,80 |
+
+Répartition des 15 minutes revue : 0–3 mobilité générale, 3–6 ex. 01, 6–8 ex. 02, 8–11 ex. 03,
+11–13 ex. 04, 13–15 ex. 05.
+
+- Chaque fiche garde la même première couche qu'avant : numéro, nom, chaîne, 3–4 images,
+  3 consignes, bouton vidéo. Le déroulement, les points de coaching et les erreurs restent
+  repliés dans **Détails coaching**.
+- 19 nouvelles images dans `thumbs/` ; les 8 anciennes (`DbUqh3jRoQw_ex1_*`, `ex2_*`) sont
+  supprimées, elles ne correspondaient plus au découpage.
+- Registre vidéo mis à jour : `mob` 11,5 s · `noball` 8,4 s · `cut` 22,0 s · `move` 2,2 s ·
+  `fake` 32,1 s (les clés `ex1`/`ex2` disparaissent). Les 11 popups ont été retestées.
+- **Vérification honnête sur l'exercice 02** : la vidéo ne contient pas de séquence réellement
+  « sans ballon » isolée. Sur la prise 8,4–10,5 s, une partie du groupe garde le ballon
+  au-dessus de la tête et d'autres ont les mains derrière la tête — c'est le même drill. La
+  fiche le dit explicitement et les images montrent une joueuse mains derrière la tête.
+- Impression : 14 pages (contre 10), une fiche par page environ pour le warm-up.
