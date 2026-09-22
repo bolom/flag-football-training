@@ -139,3 +139,17 @@ Répartition des 15 minutes revue : 0–3 mobilité générale, 3–6 ex. 01, 6�
   au-dessus de la tête et d'autres ont les mains derrière la tête — c'est le même drill. La
   fiche le dit explicitement et les images montrent une joueuse mains derrière la tête.
 - Impression : 14 pages (contre 10), une fiche par page environ pour le warm-up.
+
+## Warm-up : 4 exercices + 1 variante (au lieu de « 5 exercices »)
+
+L'introduction annonçait « une progression de 5 exercices… ceux de la vidéo », ce qui contredisait
+notre propre vérification : l'ancien exercice 02 (sans ballon) n'est pas un exercice distinct filmé,
+c'est le **même drill que le 01**, avec une partie du groupe mains derrière la tête.
+
+- Nouvelle présentation : **4 exercices issus de la vidéo + 1 variante de progression**.
+  `01` Mobilité basse, ballon haut · `01B` Variante sans ballon, mains derrière la tête ·
+  `02` Dip/cut avec ballon sécurisé · `03` Dip en mouvement, ballon haut · `04` Feinte corps + ballon.
+- Introduction : « 15 min : 4 exercices issus de la vidéo + 1 variante de progression. Du contrôle
+  bas jusqu'à la feinte en situation dynamique. »
+- La fiche `01B` porte désormais « **Variante de l'exercice 01** » en tête d'objectif.
+- Légendes vidéo et textes alternatifs des 19 images alignés sur la nouvelle numérotation.
