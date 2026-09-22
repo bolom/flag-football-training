@@ -83,3 +83,11 @@ concurrencer le bouton principal de chaque fiche.
 - **Finisher corrigé** : `4 × 12 ou 13 pompes = 50` était faux. Remplacé par
   **Pompes : 12 / 13 / 12 / 13** (12 + 13 + 12 + 13 = 50). Squats 25 × 4 = 100 et abdos
   25 × 4 = 100 inchangés.
+
+## Micro-corrections de cohérence
+
+- **Binômes renommés 1 et 2** pour ne plus confondre avec les circuits : `Circuit A` / `Circuit B`
+  restent, mais les binômes deviennent **Binôme 1** et **Binôme 2** (une seule lettre A/B dans la page).
+- **Formulation du Flag pull corrigée** : « environ 4 reps… idéalement une fois chacun » était
+  incohérent avec l'inversion à chaque rep. Remplacé par : « reps en continu jusqu'au signal QB ;
+  inversion à chaque rep ; viser ≈ 4 reps, soit ≈ 2 dans chaque rôle par joueur ».
