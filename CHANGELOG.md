@@ -227,3 +227,29 @@ adaptation** — pas le contenu de la source.
 
 - Bouton vidéo recalé sur la meilleure prise : 6,2 s au lieu de 6,0 s (libellé · 6 s inchangé).
 - Aucun ballon dans toute la vidéo : confirmé (les prises 5 et 6, en contre-jour, sont écartées).
+
+## Revue globale des 4 fiches
+
+Inventaire complet : **36 images**, chacune avec son timestamp vérifié et sa légende recadrée sur
+ce que l'image montre réellement.
+
+Quatre légendes corrigées, toutes pour la même raison — elles affirmaient un mouvement ou une
+géométrie qu'une image fixe ne peut pas prouver :
+
+| Fiche | Avant | Après |
+|---|---|---|
+| Dip/cut, appui latéral | « appui planté, ballon à l'abri » | « …**le corps se réoriente**, ballon à l'abri » (le pivot est visible) |
+| Dip/cut, sortie | « **Repart dans l'autre direction** » | « Le buste se redresse, le joueur réaccélère » — la trajectoire continue, elle ne s'inverse pas |
+| Variante sans ballon, descente | « Les hanches tombent **d'un coup** » | « Les hanches descendent » — la vitesse ne se lit pas sur une image |
+| Mobilité basse, transfert | « **Pousse sur la jambe** » | « La jambe se tend » |
+
+Vérifications de cohérence entre les vidéos et nos adaptations :
+
+- **Flag pull** : la vidéo montre le contact et la traction, jamais la séparation → dit explicitement.
+- **Appuis** : la vidéo montre un vrai départ arrêté et aucun changement de direction → dit
+  explicitement, avec la mention que la réorientation et la sortie vers le QB sont notre ajout.
+- **QB** : aucun rusher dans la vidéo → le bloc « Adaptation Iguanes — ajouter un rusher » reste
+  bien identifié comme notre adaptation ; le QB tient deux ballons à 4,80 s, le « 3-ball drill »
+  est littéral.
+- **DIP** : la variante sans ballon est le même drill que l'exercice 01 → présentée en `01B`,
+  pas comme un exercice filmé distinct.
