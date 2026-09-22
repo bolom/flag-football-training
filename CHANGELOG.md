@@ -269,3 +269,53 @@ match avec les 3 choses à regarder, renforcement (volumes, 4 tours, gainage) et
 - Liens croisés : la fiche complète pointe vers la version coach (dans l'en-tête, masqué à
   l'impression), et la version coach renvoie vers la fiche complète.
 - La galerie et le `README.md` listent le nouveau document.
+
+## Warm-up : 1 parcours → 6 séries
+
+L'ancienne présentation en fiches d'exercices indépendantes ne correspondait pas à l'usage :
+les joueuses utilisent le même couloir de plots et répètent le trajet, avec une consigne
+différente à chaque passage.
+
+- **Vue d'ensemble** : « Échauffement — parcours DIP / mobilité », *1 parcours · 6 séries*, avec
+  un schéma simple `DÉPART → cône 1 → cône 2 → cône 3` et la règle « on ne range rien, on ne
+  déplace pas les plots, on change seulement la consigne ».
+- **6 séries compactes** (numéro, nom, 1 à 3 images, chaîne, 2-3 consignes, bouton vidéo) :
+  1 Duck walk · 2 Duck walk + rotation · 3 Fentes ballon au-dessus de la tête ·
+  4 Fentes + extension de jambe · 5 Descente très basse puis sprint · 6 Rotation / feinte → sortie.
+- Chaque série porte sa **provenance** : `vidéo` (avec le timestamp) ou `ajout`.
+
+### Vérification faite avant d'écrire — et corrections
+
+Analyse image par image, avec détection des coupes. Trois points de la nouvelle lecture ne
+résistent pas à l'image :
+
+- La vidéo est un **montage de 10 plans** (coupes à 0,00 / 2,20 / 6,67 / 8,40 / 10,97 / 16,53 /
+  19,50 / 22,60 / 25,17 / 28,00) d'un échauffement **collectif** — ce n'est pas une joueuse qui
+  enchaîne six passages sur un couloir balisé. On voit ~7 joueuses à 9,30 s et ~15 à 16,50 s.
+- L'exercice **dominant** est la **fente marchée avec le ballon au-dessus de la tête** :
+  présent sur 8 des 10 plans (séries 3 et 4).
+- La **position très basse** existe bien (19,50 → 22,50 s) mais avec le **ballon devant la
+  poitrine**, jamais levé, et **sans rotation**.
+- L'**extension de jambe** en fente est nette à **14,40 → 14,70 s** : c'est une extension
+  (jambe tendue, pied décollé), **pas** une rotation de hanche.
+- Les **sprints sont toujours en sortie**, après la phase basse (5,90 · 18,70 · 21,90 · 24,50 ·
+  27,60 · 33,80 s). La série 5 telle que décrite (sprint **puis** descente) est donc notre
+  progression : l'ordre de la vidéo est conservé pour l'atelier.
+- Le **pivot de la série 6** (33,10 → 33,70 s) n'est **pas certifiable** : la caméra tourne
+  autour de la joueuse.
+
+➡️ Les séries **2 et 5** sont explicitement marquées comme **notre progression** dans la page,
+et les séries 1, 4 et 6 portent une réserve en clair.
+
+### Images
+
+- 12 nouvelles images : `DbUqh3jRoQw_s1_1` … `s6_2`.
+- Les 19 anciennes (`mob`, `noball`, `cut`, `move`, `fake`) sont **supprimées** — plus aucune
+  référence dans la page, la galerie ni la fiche coach.
+- Registre vidéo : `s1` 19,5 s · `s3` 0,7 s · `s4` 14,2 s · `s5` 23,2 s · `s6` 32,9 s.
+  Pas de bouton pour la série 2 : elle n'existe pas dans la vidéo.
+
+### Conséquences
+
+- La **fiche coach 2 pages** est mise en cohérence (même parcours, 6 séries, 1 image chacune).
+- Impression : fiche complète **10 pages** (au lieu de 14), fiche coach **2 pages** inchangée.

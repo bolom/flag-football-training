@@ -846,6 +846,145 @@
   .warm-step h4 { margin: 0; font-size: 15.5px; font-weight: 670; letter-spacing: -.015em; }
   .warm-step p { margin: 0; font-size: 12.5px; color: var(--muted); }
 
+  /* --- le parcours : vue d'ensemble --- */
+
+  .course {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 14px 0 0;
+    padding: 13px 15px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 11px;
+  }
+
+  .course .lbl {
+    margin-right: 2px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .course .stop {
+    padding: 5px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .02em;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .course .stop.start {
+    background: var(--accent);
+    border-color: transparent;
+    color: var(--accent-ink);
+    font-weight: 620;
+  }
+
+  .course .arrow { color: var(--dim); font-size: 12px; }
+
+  .course p {
+    flex: 1 1 100%;
+    margin: 6px 0 0;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* --- les séries : même parcours, consigne différente --- */
+
+  .series {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .serie {
+    display: grid;
+    gap: 8px;
+    align-content: start;
+    padding: 13px 15px 14px;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+  }
+
+  .serie > header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .serie .n {
+    display: grid;
+    place-items: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 7px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .serie h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 680;
+    letter-spacing: -.015em;
+  }
+
+  .serie .at {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .serie .chain {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .serie .chain span { color: var(--accent); }
+
+  .serie .frames { margin-top: 2px; }
+
+  .serie .frame figcaption b { font-size: 10px; }
+  .serie .frame figcaption span { font-size: 11px; }
+
+  .serie .ex-key { margin-top: 2px; border-top: 0; padding-top: 0; }
+  .serie .ex-key li { font-size: 12.5px; }
+
+  .serie .clip { margin-top: 2px; }
+
+  .serie-note {
+    margin: 0;
+    padding: 6px 9px;
+    border-left: 2px solid var(--accent);
+    background: var(--surface-2);
+    border-radius: 0 6px 6px 0;
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
+  @media (max-width: 720px) {
+    .series { grid-template-columns: minmax(0, 1fr); }
+  }
+
   .ex-num {
     font-family: var(--mono);
     font-size: 11px;
@@ -1351,492 +1490,260 @@
         <header>
           <h3>Échauffement dynamique</h3>
         </header>
-        <p class="lead">15 min&nbsp;: <strong>4 exercices issus de la vidéo + 1 variante de progression</strong>. Du contrôle bas jusqu'à la feinte en situation dynamique. Le groupe les <strong>exécute</strong>, il ne les regarde pas.</p>
+        <p class="headline">Échauffement — parcours DIP / mobilité</p>
+        <p class="subline"><i></i> 1 parcours <b>·</b> 6 séries — le même couloir, les mêmes plots, une consigne différente à chaque passage.</p>
 
-        <div class="warm">
+        <div class="course">
+          <span class="lbl">parcours</span>
+          <span class="stop start">DÉPART</span>
+          <span class="arrow">→</span>
+          <span class="stop">cône 1</span>
+          <span class="arrow">→</span>
+          <span class="stop">cône 2</span>
+          <span class="arrow">→</span>
+          <span class="stop">cône 3</span>
+          <p>On traverse le couloir 6 fois de suite. On ne range rien, on ne déplace pas les plots : on change seulement la consigne.</p>
+        </div>
 
-          <article class="warm-step">
+        <div class="series">
+
+          <article class="serie">
             <header>
-              <span class="warm-time">0–3 min</span>
-              <h4>Mobilité générale / activation</h4>
-            </header>
-            <p>Hanches, chevilles, genoux, déplacements bas, activation progressive. Sans ballon.</p>
-          </article>
-
-          <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
-
-          <article class="warm-step ex">
-            <header>
-              <span class="warm-time">3–6 min</span>
-              <span class="ex-num">01</span>
-              <h4>Mobilité basse, ballon haut</h4>
+              <span class="n">1</span>
+              <h4>Duck walk</h4>
+              <span class="at">vidéo · 20 s</span>
             </header>
 
-            <p class="chain">Position haute <span>→</span> descente <span>→</span> genou proche du sol <span>→</span> transfert <span>→</span> progression</p>
-
-            <p class="ex-goal"><b>Objectif&nbsp;:</b> apprendre à descendre très bas et à transférer le poids sans perdre le contrôle du ballon. <em>Mouvement lent et contrôlé&nbsp;: ce n'est pas encore un dip explosif.</em></p>
+            <p class="chain">Entrée <span>→</span> squat profond <span>→</span> appuis bas <span>→</span> sortie</p>
 
             <div class="frames">
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_mob_1.jpg" alt="Exercice 01 : position haute, ballon au-dessus de la tête">
-                  <figcaption>
-                    <b>Position haute</b>
-                    <span>Debout, ballon au-dessus de la tête, regard devant.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_mob_2.jpg" alt="Exercice 01 : déclenchement de la descente">
-                  <figcaption>
-                    <b>Déclenchement</b>
-                    <span>Les genoux cassent, les hanches descendent.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_mob_3.jpg" alt="Exercice 01 : position la plus basse, genou près du sol">
-                  <figcaption>
-                    <b>Genou proche du sol</b>
-                    <span>Fente très basse, ballon toujours haut.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_mob_4.jpg" alt="Exercice 01 : transfert et remontée">
-                  <figcaption>
-                    <b>Transfert</b>
-                    <span>La jambe se tend : on remonte juste assez pour repartir.</span>
-                  </figcaption>
-                </figure>
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s1_1.jpg" alt="Série 1 : squat profond, cône dans l'axe">
+                    <figcaption>
+                      <b>Position basse</b>
+                      <span>Bassin très bas, deux genoux fléchis, cône dans l'axe.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s1_2.jpg" alt="Série 1 : squat profond de face">
+                    <figcaption>
+                      <b>Face caméra</b>
+                      <span>Même position de face : le ballon est tenu devant la poitrine.</span>
+                    </figcaption>
+                  </figure>
             </div>
 
             <div class="ex-key">
-              <h5>L'essentiel</h5>
               <ul>
-                <li>Bassin très bas, genou proche du sol sans s'écraser dessus.</li>
-                <li>Ballon tenu haut du début à la fin.</li>
-                <li>Mouvement lent et propre avant toute vitesse.</li>
+                <li>Deux genoux fléchis, bassin près du sol.</li>
+                <li>Le ballon reste devant la poitrine : dans la vidéo il n'est pas levé sur cette série.</li>
+                <li>On ne se redresse pas entre les appuis.</li>
               </ul>
             </div>
-
-            <button class="clip" type="button" data-clip="mob">
+            <button class="clip" type="button" data-clip="s1">
               <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-              Voir dans la vidéo <i>· 12 s</i>
+              Voir dans la vidéo <i>· 20 s</i>
             </button>
-
-            <details class="ex-more">
-              <summary>Détails coaching : déroulement, points de coaching, erreurs à éviter</summary>
-
-              <div class="ex-cols">
-                <div class="ex-col">
-                  <h5>Déroulement</h5>
-                  <ol class="ex-steps">
-                    <li>Ballon tenu <b>haut, au-dessus de la tête</b>.</li>
-                    <li>Descente <b>très basse</b> sur les jambes, sans se pencher.</li>
-                    <li>Passage en <b>fente</b>, genou qui descend près du sol.</li>
-                    <li><b>Transfert</b> du poids d'un côté à l'autre sans se redresser.</li>
-                    <li><b>Avancée progressive</b> entre les plots, ballon contrôlé de bout en bout.</li>
-                  </ol>
-                </div>
-                <div class="ex-col">
-                  <h5>Points de coaching</h5>
-                  <ul class="points">
-                    <li>Bassin très bas.</li>
-                    <li>Genou proche du sol, sans s'écraser dessus.</li>
-                    <li>Poitrine contrôlée.</li>
-                    <li>Ballon sécurisé, au-dessus de la tête.</li>
-                    <li>Alterner les côtés.</li>
-                    <li>Mouvement propre avant vitesse.</li>
-                  </ul>
-                </div>
-                <div class="ex-col">
-                  <h5>À éviter</h5>
-                  <ul class="points warn">
-                    <li>Se redresser entre les mouvements.</li>
-                    <li>S'écraser sur le genou.</li>
-                    <li>Baisser ou perdre le ballon.</li>
-                    <li>Chercher la vitesse avant la propreté du geste.</li>
-                  </ul>
-                </div>
-              </div>
-            </details>
           </article>
 
-          <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
-
-          <article class="warm-step ex">
+          <article class="serie">
             <header>
-              <span class="warm-time">6–8 min</span>
-              <span class="ex-num">01B</span>
-              <h4>Variante sans ballon, mains derrière la tête</h4>
+              <span class="n">2</span>
+              <h4>Duck walk + rotation</h4>
+              <span class="at">ajout</span>
             </header>
 
-            <p class="chain">Arrivée <span>→</span> grosse descente <span>→</span> point bas <span>→</span> poussée <span>→</span> accélération</p>
+            <p class="chain">Squat bas <span>→</span> rotation des épaules <span>→</span> hanches qui suivent <span>→</span> sortie</p>
 
-            <p class="ex-goal"><b>Variante de l'exercice 01.</b> Même drill, ballon retiré, mains derrière la tête&nbsp;: tout le travail porte sur le centre de gravité et les appuis, sans se soucier du ballon.</p>
+            <div class="frames">
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s2_1.jpg" alt="Série 2 : position basse de référence">
+                    <figcaption>
+                      <b>Position basse</b>
+                      <span>Image de la série 1 : ce passage n'existe pas dans la vidéo.</span>
+                    </figcaption>
+                  </figure>
+            </div>
+
+            <div class="ex-key">
+              <ul>
+                <li>Tourner les épaules <b>et</b> les hanches, pas seulement le buste.</li>
+                <li>Rester bas pendant toute la rotation.</li>
+                <li>Sortir dans l'axe, sans se redresser.</li>
+              </ul>
+            </div>
+            <p class="serie-note">Passage ajouté : la vidéo ne montre pas de position basse avec rotation.</p>
+          </article>
+
+          <article class="serie">
+            <header>
+              <span class="n">3</span>
+              <h4>Fentes, ballon au-dessus de la tête</h4>
+              <span class="at">vidéo · 1 s</span>
+            </header>
+
+            <p class="chain">Entrée <span>→</span> fente <span>→</span> ballon haut <span>→</span> transfert <span>→</span> sortie</p>
 
             <div class="frames three">
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_noball_1.jpg" alt="Variante 01B : arrivée en garde basse, mains derrière la tête">
-                  <figcaption>
-                    <b>Arrivée</b>
-                    <span>Garde basse, mains derrière la tête : pas de ballon.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_noball_2.jpg" alt="Variante 01B : grosse descente, hanches très basses">
-                  <figcaption>
-                    <b>Grosse descente</b>
-                    <span>Les hanches descendent, les appuis restent très bas.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_noball_3.jpg" alt="Variante 01B : point bas, mains derrière la tête">
-                  <figcaption>
-                    <b>Point bas</b>
-                    <span>Position la plus basse, pieds plantés, prêt à pousser.</span>
-                  </figcaption>
-                </figure>
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s3_1.jpg" alt="Série 3 : fente, ballon au-dessus de la tête, coupelle devant">
+                    <figcaption>
+                      <b>Entrée dans le couloir</b>
+                      <span>Fente profonde, genou arrière près du sol, ballon à deux mains au-dessus de la tête, coupelle devant.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s3_2.jpg" alt="Série 3 : fente au plot, ballon au-dessus de la tête">
+                    <figcaption>
+                      <b>Fente + plot</b>
+                      <span>Même consigne, coupelle rose au sol devant le pied.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s3_3.jpg" alt="Série 3 : le groupe fait la même fente">
+                    <figcaption>
+                      <b>Tout le groupe</b>
+                      <span>Le groupe entier fait la même fente, en formation lâche sur la pelouse.</span>
+                    </figcaption>
+                  </figure>
             </div>
 
             <div class="ex-key">
-              <h5>L'essentiel</h5>
               <ul>
-                <li>Mains derrière la tête, sans ballon : tout le travail est sur le centre de gravité.</li>
-                <li>Descendre plus bas que ce qui est confortable.</li>
-                <li>Pousser pour ressortir, jamais s'arrêter en bas.</li>
+                <li>Ballon tenu à deux mains au-dessus de la tête.</li>
+                <li>Genou arrière près du sol à chaque fente.</li>
+                <li>On enchaîne les fentes sans se redresser entre deux.</li>
               </ul>
             </div>
-
-            <button class="clip" type="button" data-clip="noball">
+            <button class="clip" type="button" data-clip="s3">
               <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-              Voir dans la vidéo <i>· 8 s</i>
+              Voir dans la vidéo <i>· 1 s</i>
             </button>
-
-            <details class="ex-more">
-              <summary>Détails coaching : déroulement, points de coaching, erreurs à éviter</summary>
-
-              <div class="ex-cols">
-                <div class="ex-col">
-                  <h5>Déroulement</h5>
-                  <ol class="ex-steps">
-                    <li>Départ en <b>garde basse</b>, mains derrière la tête, sans ballon.</li>
-                    <li><b>Grosse descente</b> : les hanches tombent d'un coup.</li>
-                    <li><b>Point bas</b> : appuis plantés, genoux très fléchis.</li>
-                    <li><b>Poussée</b> immédiate pour ressortir de la position.</li>
-                    <li><b>Accélération</b> sur quelques appuis après la sortie.</li>
-                  </ol>
-                </div>
-                <div class="ex-col">
-                  <h5>Points de coaching</h5>
-                  <ul class="points">
-                    <li>Ballon retiré pour tout le groupe. <em>Dans la vidéo, certains le gardent au-dessus de la tête&nbsp;: même drill, version sans ballon.</em></li>
-                    <li>Descendre plus bas qu'à l'habitude.</li>
-                    <li>Pieds largeur de bassin, appuis stables.</li>
-                    <li>Dos droit, poitrine haute.</li>
-                    <li>Pas de pause en position basse.</li>
-                  </ul>
-                </div>
-                <div class="ex-col">
-                  <h5>À éviter</h5>
-                  <ul class="points warn">
-                    <li>Poser les mains sur les cuisses.</li>
-                    <li>S'arrêter au point bas.</li>
-                    <li>Descendre à moitié.</li>
-                    <li>Se relever avant de pousser.</li>
-                  </ul>
-                </div>
-              </div>
-            </details>
           </article>
 
-          <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
-
-          <article class="warm-step ex">
+          <article class="serie">
             <header>
-              <span class="warm-time">8–11 min</span>
-              <span class="ex-num">02</span>
-              <h4>Dip/cut avec ballon sécurisé</h4>
+              <span class="n">4</span>
+              <h4>Fentes + extension de jambe, ballon haut</h4>
+              <span class="at">vidéo · 14 s</span>
             </header>
 
-            <p class="chain">Arrivée avec ballon <span>→</span> descente <span>→</span> appui latéral <span>→</span> changement de direction <span>→</span> sortie</p>
-
-            <p class="ex-goal"><b>Objectif&nbsp;:</b> faire le même travail en situation proche du jeu, ballon en main, avec un <b>vrai changement de direction</b>.</p>
+            <p class="chain">Fente posée <span>→</span> extension de la jambe arrière <span>→</span> retour <span>→</span> fente suivante</p>
 
             <div class="frames">
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_cut_1.jpg" alt="Exercice 02 : arrivée en course avec le ballon">
-                  <figcaption>
-                    <b>Arrivée avec ballon</b>
-                    <span>Arrive en course, ballon déjà plaqué contre le corps.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_cut_2.jpg" alt="Exercice 02 : descente des hanches, ballon protégé">
-                  <figcaption>
-                    <b>Descente</b>
-                    <span>Les hanches tombent, le ballon reste protégé.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_cut_3.jpg" alt="Exercice 02 : appui latéral au point bas">
-                  <figcaption>
-                    <b>Appui latéral</b>
-                    <span>Fente basse au plot, appui planté, le corps se réoriente, ballon à l'abri.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_cut_4.jpg" alt="Exercice 02 : sortie et réaccélération, ballon sécurisé">
-                  <figcaption>
-                    <b>Sortie</b>
-                    <span>Le buste se redresse, le joueur réaccélère, ballon sécurisé.</span>
-                  </figcaption>
-                </figure>
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s4_1.jpg" alt="Série 4 : extension de la jambe arrière en fente">
+                    <figcaption>
+                      <b>Extension</b>
+                      <span>Jambe arrière tendue, pied décollé, ballon toujours au-dessus de la tête.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s4_2.jpg" alt="Série 4 : fente posée avant l'extension">
+                    <figcaption>
+                      <b>Avant l'extension</b>
+                      <span>La fente posée, genou au sol : le point de départ du mouvement.</span>
+                    </figcaption>
+                  </figure>
             </div>
 
             <div class="ex-key">
-              <h5>L'essentiel</h5>
               <ul>
-                <li>Ballon proche du corps, jamais exposé.</li>
-                <li>Hanches basses au moment de l'appui.</li>
-                <li>Changement de direction réel, puis accélération.</li>
+                <li>Jambe arrière tendue, pied décollé du sol.</li>
+                <li>Le ballon reste au-dessus de la tête pendant l'extension.</li>
+                <li>Chercher l'amplitude avant la vitesse.</li>
               </ul>
             </div>
-
-            <button class="clip" type="button" data-clip="cut">
+            <p class="serie-note">Dans la vidéo c'est une extension de jambe, pas une rotation de hanche.</p>
+            <button class="clip" type="button" data-clip="s4">
               <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-              Voir dans la vidéo <i>· 22 s</i>
+              Voir dans la vidéo <i>· 14 s</i>
             </button>
-
-            <details class="ex-more">
-              <summary>Détails coaching : déroulement, points de coaching, erreurs à éviter</summary>
-
-              <div class="ex-cols">
-                <div class="ex-col">
-                  <h5>Déroulement</h5>
-                  <ol class="ex-steps">
-                    <li><b>Arriver en course</b> avec le ballon.</li>
-                    <li><b>Approcher le plot</b> sans casser l'allure.</li>
-                    <li><b>Abaisser</b> le centre de gravité : dip très bas.</li>
-                    <li><b>Planter l'appui latéral</b> pour changer de trajectoire.</li>
-                    <li><b>Protéger le ballon</b> pendant le cut.</li>
-                    <li><b>Ressortir et réaccélérer</b> immédiatement.</li>
-                  </ol>
-                </div>
-                <div class="ex-col">
-                  <h5>Points de coaching</h5>
-                  <ul class="points">
-                    <li>Ballon plaqué contre la poitrine ou l'avant-bras.</li>
-                    <li>Hanches basses au plot.</li>
-                    <li>Appui planté, pas glissé.</li>
-                    <li>Le regard anticipe la nouvelle direction.</li>
-                    <li>Les séquences de 20–25 s et 28–31 s sont des variantes du même exercice.</li>
-                  </ul>
-                </div>
-                <div class="ex-col">
-                  <h5>À éviter</h5>
-                  <ul class="points warn">
-                    <li>Freiner complètement avant le dip.</li>
-                    <li>Faire un dip statique, s'arrêter en bas.</li>
-                    <li>Descendre sans changer de direction.</li>
-                    <li>Ballon exposé pendant le cut.</li>
-                    <li>Ressortir sans réaccélérer.</li>
-                  </ul>
-                </div>
-              </div>
-            </details>
           </article>
 
-          <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
-
-          <article class="warm-step ex">
+          <article class="serie">
             <header>
-              <span class="warm-time">11–13 min</span>
-              <span class="ex-num">03</span>
-              <h4>Dip en mouvement, ballon haut</h4>
+              <span class="n">5</span>
+              <h4>Descente très basse, puis sortie en sprint</h4>
+              <span class="at">vidéo · 24 s</span>
             </header>
 
-            <p class="chain">Arrivée en mouvement <span>→</span> ballon haut <span>→</span> dip <span>→</span> transfert <span>→</span> ballon sécurisé <span>→</span> sortie</p>
-
-            <p class="ex-goal"><b>Objectif&nbsp;:</b> enchaîner vitesse, descente basse et contrôle du ballon. <em>Ici le joueur arrive déjà lancé&nbsp;: ce n'est pas l'exercice 01.</em></p>
+            <p class="chain">Descente très basse <span>→</span> genou proche du sol <span>→</span> poussée <span>→</span> sprint</p>
 
             <div class="frames">
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_move_1.jpg" alt="Exercice 03 : arrivée en mouvement, ballon au-dessus de la tête">
-                  <figcaption>
-                    <b>Arrivée en mouvement</b>
-                    <span>Déjà lancé, ballon tenu au-dessus de la tête.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_move_2.jpg" alt="Exercice 03 : dip avec le ballon toujours haut">
-                  <figcaption>
-                    <b>Ballon haut + dip</b>
-                    <span>Descente basse sans baisser le ballon.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_move_3.jpg" alt="Exercice 03 : transfert, le ballon redescend au corps">
-                  <figcaption>
-                    <b>Transfert</b>
-                    <span>On se relève en gardant le contrôle, ballon ramené au corps.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_move_4.jpg" alt="Exercice 03 : sortie en course, ballon sécurisé">
-                  <figcaption>
-                    <b>Ballon sécurisé, sortie</b>
-                    <span>Repart en course, ballon plaqué contre soi.</span>
-                  </figcaption>
-                </figure>
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s5_1.jpg" alt="Série 5 : sortie en sprint après la position basse">
+                    <figcaption>
+                      <b>Sortie en sprint</b>
+                      <span>Après la position basse, sprint pleine foulée, ballon dans la main.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s5_2.jpg" alt="Série 5 : sprint face caméra, ballon en main">
+                    <figcaption>
+                      <b>Sprint face caméra</b>
+                      <span>Même sortie, vue de face : ballon en main, appuis rasants.</span>
+                    </figcaption>
+                  </figure>
             </div>
 
             <div class="ex-key">
-              <h5>L'essentiel</h5>
               <ul>
-                <li>On arrive avec de la vitesse, on ne repart pas de zéro.</li>
-                <li>Le ballon reste haut pendant toute la descente.</li>
-                <li>Le ballon redescend au corps seulement à la sortie.</li>
+                <li>Descendre plus bas qu'à l'habitude avant de pousser.</li>
+                <li>Pousser pour ressortir : pas d'arrêt en bas.</li>
+                <li>Sprint sur 3 à 4 appuis après la sortie.</li>
               </ul>
             </div>
-
-            <button class="clip" type="button" data-clip="move">
+            <p class="serie-note">La vidéo montre la descente PUIS le sprint : on garde cet ordre pour l'atelier.</p>
+            <button class="clip" type="button" data-clip="s5">
               <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-              Voir dans la vidéo <i>· 2 s</i>
+              Voir dans la vidéo <i>· 24 s</i>
             </button>
-
-            <details class="ex-more">
-              <summary>Détails coaching : déroulement, points de coaching, erreurs à éviter</summary>
-
-              <div class="ex-cols">
-                <div class="ex-col">
-                  <h5>Déroulement</h5>
-                  <ol class="ex-steps">
-                    <li><b>Arriver en mouvement</b>, ballon au-dessus de la tête.</li>
-                    <li><b>Enchaîner les descentes basses</b> sans s'arrêter.</li>
-                    <li><b>Transfert</b> du poids d'un côté à l'autre.</li>
-                    <li><b>Ramener le ballon au corps</b> en se relevant.</li>
-                    <li><b>Sortir en course</b>, ballon sécurisé.</li>
-                  </ol>
-                </div>
-                <div class="ex-col">
-                  <h5>Points de coaching</h5>
-                  <ul class="points">
-                    <li>Ne pas repartir d'un départ arrêté : on est déjà lancé.</li>
-                    <li>Ballon haut pendant toute la descente.</li>
-                    <li>Bassin bas, poitrine contrôlée.</li>
-                    <li>Le ballon redescend seulement quand on ressort.</li>
-                    <li>Alterner les côtés.</li>
-                  </ul>
-                </div>
-                <div class="ex-col">
-                  <h5>À éviter</h5>
-                  <ul class="points warn">
-                    <li>Confondre avec l'exercice 01, lent et sans élan.</li>
-                    <li>Baisser le ballon pendant la descente.</li>
-                    <li>Casser l'allure entre deux descentes.</li>
-                    <li>Sortir sans avoir sécurisé le ballon.</li>
-                  </ul>
-                </div>
-              </div>
-            </details>
           </article>
 
-          <div class="arc" aria-hidden="true"><span class="seg"></span><span class="tip">↓</span></div>
-
-          <article class="warm-step ex">
+          <article class="serie">
             <header>
-              <span class="warm-time">13–15 min</span>
-              <span class="ex-num">04</span>
-              <h4>Feinte corps + ballon</h4>
+              <span class="n">6</span>
+              <h4>Rotation / feinte avec ballon, puis sortie</h4>
+              <span class="at">vidéo · 33 s</span>
             </header>
 
-            <p class="chain">Arrivée <span>→</span> descente <span>→</span> feinte épaules / ballon <span>→</span> réorientation <span>→</span> accélération</p>
-
-            <p class="ex-goal"><b>Objectif&nbsp;:</b> donner une <b>fausse information</b> avec le corps et le ballon avant de sortir dans une autre direction. <em>Ce n'est pas un simple dip.</em></p>
+            <p class="chain">Arrivée <span>→</span> descente <span>→</span> ballon tendu <span>→</span> réorientation <span>→</span> accélération</p>
 
             <div class="frames">
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_fake_1.jpg" alt="Exercice 04 : arrivée avec le ballon">
-                  <figcaption>
-                    <b>Arrivée</b>
-                    <span>Arrive avec le ballon, buste déjà orienté.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_fake_2.jpg" alt="Exercice 04 : descente et amorce de la feinte">
-                  <figcaption>
-                    <b>Descente + amorce</b>
-                    <span>Le corps tourne, le ballon part vers l'extérieur.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_fake_3.jpg" alt="Exercice 04 : feinte, ballon tendu d'un côté">
-                  <figcaption>
-                    <b>Feinte</b>
-                    <span>Ballon tendu d'un côté, buste et regard de l'autre.</span>
-                  </figcaption>
-                </figure>
-                <figure class="frame">
-                  <img src="thumbs/DbUqh3jRoQw_fake_4.jpg" alt="Exercice 04 : réorientation et sortie">
-                  <figcaption>
-                    <b>Réorientation</b>
-                    <span>Ballon ramené au corps, appui pris dans la nouvelle direction.</span>
-                  </figcaption>
-                </figure>
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s6_1.jpg" alt="Série 6 : ballon tendu à bout de bras">
+                    <figcaption>
+                      <b>Ballon tendu</b>
+                      <span>Accroupie, face caméra, ballon tenu à bout de bras devant elle.</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="frame">
+                    <img src="thumbs/DbUqh3jRoQw_s6_2.jpg" alt="Série 6 : pivot, ballon tendu">
+                    <figcaption>
+                      <b>Pivot</b>
+                      <span>Le même moment vu de dos : le corps tourne, ballon tendu sur le côté.</span>
+                    </figcaption>
+                  </figure>
             </div>
 
             <div class="ex-key">
-              <h5>L'essentiel</h5>
               <ul>
                 <li>Vendre la feinte avec le buste ET le ballon.</li>
                 <li>Rester bas pendant la feinte.</li>
-                <li>Sortir dans la direction opposée, ballon sécurisé.</li>
+                <li>Sortir en course dans l'autre sens, ballon sécurisé.</li>
               </ul>
             </div>
-
-            <button class="clip" type="button" data-clip="fake">
+            <p class="serie-note">La caméra tourne autour de la joueuse : impossible de certifier que le pivot vient d'elle.</p>
+            <button class="clip" type="button" data-clip="s6">
               <svg width="9" height="10" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" fill="currentColor"></path></svg>
-              Voir dans la vidéo <i>· 32 s</i>
+              Voir dans la vidéo <i>· 33 s</i>
             </button>
-
-            <details class="ex-more">
-              <summary>Détails coaching : déroulement, points de coaching, erreurs à éviter</summary>
-
-              <div class="ex-cols">
-                <div class="ex-col">
-                  <h5>Déroulement</h5>
-                  <ol class="ex-steps">
-                    <li><b>Arriver</b> avec le ballon, en mouvement.</li>
-                    <li><b>Descendre</b> les hanches.</li>
-                    <li><b>Tendre le ballon</b> d'un côté en tournant le buste.</li>
-                    <li><b>Réorienter</b> épaules et regard dans l'autre sens.</li>
-                    <li><b>Ramener le ballon</b> au corps.</li>
-                    <li><b>Accélérer</b> dans la nouvelle direction.</li>
-                  </ol>
-                </div>
-                <div class="ex-col">
-                  <h5>Points de coaching</h5>
-                  <ul class="points">
-                    <li>La feinte se joue au buste et au ballon, pas seulement aux pieds.</li>
-                    <li>Rester bas pendant la feinte.</li>
-                    <li>Le regard vend la fausse direction.</li>
-                    <li>Une fois la direction choisie, ne plus hésiter.</li>
-                    <li>Cet exercice n'est pas un dip : c'est une feinte.</li>
-                  </ul>
-                </div>
-                <div class="ex-col">
-                  <h5>À éviter</h5>
-                  <ul class="points warn">
-                    <li>Feinter uniquement avec les pieds.</li>
-                    <li>Se redresser pendant la feinte.</li>
-                    <li>Tendre le ballon trop loin du corps.</li>
-                    <li>Hésiter après la feinte.</li>
-                  </ul>
-                </div>
-              </div>
-            </details>
           </article>
 
         </div>
 
+        <p class="note">Ce que la vidéo montre vraiment&nbsp;: un <b>montage de 10 plans</b> d'un échauffement <b>collectif</b>. L'exercice dominant est la <b>fente marchée avec le ballon au-dessus de la tête</b> (séries 3 et 4). La position très basse (série 1) existe, mais avec le ballon devant la poitrine. Les séries 2 et 5, telles que décrites ici, sont <b>notre progression</b>&nbsp;: la vidéo ne montre ni position basse avec rotation, ni sprint avant la descente.</p>
       </div>
     </article>
 
@@ -2479,35 +2386,35 @@
   "use strict";
 
   var CLIPS = {
-    mob: {
+    s1: {
       src: "videos/DbUqh3jRoQw_ryanyayawalker.mp4",
       poster: "thumbs/DbUqh3jRoQw_ryanyayawalker.jpg",
-      start: 11.5,
-      caption: "Exercice 01 — mobilité basse : ballon au-dessus de la tête, descente très basse, genou près du sol, transfert. Lent et contrôlé."
+      start: 19.5,
+      caption: "Série 1 — duck walk : position très basse, deux genoux fléchis, ballon devant la poitrine."
     },
-    noball: {
+    s3: {
       src: "videos/DbUqh3jRoQw_ryanyayawalker.mp4",
       poster: "thumbs/DbUqh3jRoQw_ryanyayawalker.jpg",
-      start: 8.4,
-      caption: "Variante 01B — sans ballon, mains derrière la tête : garde basse, grosse descente, point bas, poussée, accélération."
+      start: 0.7,
+      caption: "Série 3 — fentes, ballon au-dessus de la tête : l'exercice dominant de la vidéo, exécuté par tout le groupe."
     },
-    cut: {
+    s4: {
       src: "videos/DbUqh3jRoQw_ryanyayawalker.mp4",
       poster: "thumbs/DbUqh3jRoQw_ryanyayawalker.jpg",
-      start: 22.0,
-      caption: "Exercice 02 — dip et cut avec ballon sécurisé : arrivée en course, descente, appui latéral, changement de direction, sortie accélérée."
+      start: 14.2,
+      caption: "Série 4 — fente avec extension de la jambe arrière, ballon toujours au-dessus de la tête."
     },
-    move: {
+    s5: {
       src: "videos/DbUqh3jRoQw_ryanyayawalker.mp4",
       poster: "thumbs/DbUqh3jRoQw_ryanyayawalker.jpg",
-      start: 2.2,
-      caption: "Exercice 03 — dip en mouvement : arrivée lancée, ballon au-dessus de la tête, dip, transfert, ballon sécurisé, sortie."
+      start: 23.2,
+      caption: "Série 5 — descente très basse puis sortie en sprint, ballon en main."
     },
-    fake: {
+    s6: {
       src: "videos/DbUqh3jRoQw_ryanyayawalker.mp4",
       poster: "thumbs/DbUqh3jRoQw_ryanyayawalker.jpg",
-      start: 32.1,
-      caption: "Exercice 04 — feinte du corps et du ballon : descente, ballon tendu d'un côté, réorientation, accélération dans l'autre direction."
+      start: 32.9,
+      caption: "Série 6 — rotation / feinte avec le ballon tendu, puis sortie en course."
     },
     qb: {
       src: "videos/2rOdrFzcNls_@dhflagfootball.mp4",
