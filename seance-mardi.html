@@ -613,17 +613,25 @@
     justify-self: start;
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    padding: 5px 11px;
-    background: none;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    font-size: 11.5px;
-    color: var(--muted);
+    gap: 9px;
+    padding: 9px 16px;
+    background: var(--accent);
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-size: 13.5px;
+    font-weight: 660;
+    letter-spacing: -.005em;
+    color: var(--accent-ink);
     cursor: pointer;
   }
 
-  .clip:hover { color: var(--text); border-color: var(--line-strong); }
+  .clip svg { width: 11px; height: 13px; }
+
+  .clip i { font-style: normal; font-weight: 500; opacity: .65; }
+
+  .clip:hover { filter: brightness(1.07); }
+
+  .clip:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 
   .turn {
     display: grid;
@@ -941,7 +949,17 @@
 
   .route-key { margin: 0; font-size: 12.5px; color: var(--text); }
 
-  .clip.mini { padding: 3px 9px; font-size: 10.5px; }
+  /* les trois boutons de tracé restent discrets : contour accent, pas de fond */
+  .clip.mini {
+    padding: 5px 11px;
+    background: none;
+    border: 1px solid var(--accent);
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .clip.mini:hover { filter: none; background: var(--surface-2); }
 
   /* --- encadré d'adaptation --- */
 

@@ -59,3 +59,10 @@ Passe de clarification uniquement : aucun design refait, aucune fiche vidéo rec
   50 pompes, 100 abdos) avec **4 tours conseillés** (25 / 12-13 / 25).
 - **Gainage reformulé** : tout le groupe reste en gainage pendant que chaque joueur compte
   10 secondes à voix haute, à tour de rôle — 10 joueurs = 1 min 40 de gainage continu, personne n'attend.
+
+## Bouton vidéo plus visible
+
+Les boutons « Voir dans la vidéo » passent en plein accent : fond vert, texte contrasté,
+police plus grande et plus grasse, icône lecture agrandie. Les trois boutons de tracé
+(0:01 / 0:04 / 0:08) restent volontairement discrets, en simple contour accent, pour ne pas
+concurrencer le bouton principal de chaque fiche.
