@@ -172,3 +172,29 @@ résolution, image par image, avant de toucher à la fiche.
   de planche m'avait fait croire à « 2. CUT » : c'était un artefact de compression).
 - Aucun rusher dans la vidéo, et le QB tient bien deux ballons dans les mains à 4,80 s : le
   « 3-ball drill » du titre est littéral.
+
+## Fiche Flag pull : images reprises depuis le pack d'analyse
+
+Même méthode : planches 2 i/s, repérage des 8 plans réels, puis vérification des candidats en
+pleine résolution et **zoom sur la zone de contact** avant de toucher à la fiche.
+
+Les 3 images précédentes venaient du **plan 8** (17,0–19,8 s) — le plus faible : contre-jour
+relatif et échelle moyenne. Elles sont remplacées par 4 images prises dans les meilleurs plans :
+
+| Image | Plan | Moment |
+|---|---|---|
+| Réaction | 6 (11,7–14,8 s), **12,00 s** | base large, hanches basses, attente du premier pas |
+| Fermeture de l'angle | 7 (14,8–17,0 s), **16,20 s** | corps sur la trajectoire, bras qui part vers la hanche |
+| Main vers le flag | 3 (3,7–6,4 s), **5,40 s** | approche basse, gant tendu vers le fanion jaune |
+| Gant sur le flag | 3, **5,70 s** | le gant arrive sur le fanion, tiré sous tension |
+
+**Correction d'une affirmation fausse de la fiche.** La note disait : « le plan coupe à l'arrivée
+de la main ». C'est faux. Le zoom montre le gant qui part vers le fanion jaune (5,40 s), le gant
+qui arrive dessus (5,70 s) et le **contact maintenu environ 0,7 s** (jusqu'à la coupe à 6,37 s),
+le fanion visiblement tiré. En revanche, **aucune image ne montre le fanion se détacher** : c'est
+cette partie-là qui est à travailler à part. La note dit maintenant exactement cela.
+
+- Bouton vidéo recalé sur le plan clé : **4,8 s** au lieu de 17,2 s (bouton passé de · 18 s à · 5 s).
+- Grille passée de 3 à 4 images (`.frames`) pour montrer à la fois l'approche et la saisie.
+- Affiche de galerie `thumbs/DdFXgBFvyGk_flaglabperformance.jpg` : supprimée par erreur pendant
+  la génération, restaurée à l'identique depuis git (vérifié : identique à HEAD).
